@@ -3,22 +3,15 @@ theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://cover.sli.dev
-# some information about your slides (markdown enabled)
 title: APSTA-GE 2352 Lecture 1
+author: Klint Kanopka
 info: |
-  ## APSTA-GE 2352: Lecture 1
-  
   Introductions, built-ins, using the tidyverse, and visualization
-# apply unocss classes to the current slide
 class: text-center
-# https://sli.dev/features/drawing
 drawings:
   persist: false
-# slide transition: https://sli.dev/guide/animations.html#slide-transitions
 transition: fade-out
-# enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
-# open graph
 seoMeta:
   # By default, Slidev will use ./og-image.png if it exists,
   # or generate one from the first slide if not found.
