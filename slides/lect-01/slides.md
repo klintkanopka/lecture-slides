@@ -3,10 +3,12 @@ theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://meet.nyu.edu/wp-content/uploads/2020/04/Main_Header.jpg
-title: Statistical Computing - Lecture 1
+title: Statistical Computing - Week 1
 author: Klint Kanopka
 info: |
+  ## APSTA-GE 2352: Lecture 1
   Introductions, built-ins, using the tidyverse, and visualization
+date: 2025-09-04
 class: text-center
 drawings:
   persist: false
