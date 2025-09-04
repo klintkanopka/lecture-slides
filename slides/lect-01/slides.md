@@ -2,8 +2,8 @@
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
-title: APSTA-GE 2352 Lecture 1
+background: https://meet.nyu.edu/wp-content/uploads/2020/04/Main_Header.jpg
+title: Statistical Computing - Lecture 1
 author: Klint Kanopka
 info: |
   Introductions, built-ins, using the tidyverse, and visualization
@@ -27,9 +27,6 @@ Klint Kanopka
 
 New York University
 
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
 
 ---
 
@@ -56,3 +53,16 @@ src: ./pages/04-tidyverse.md
 ---
 src: ./pages/05-ggplot.md
 ---
+
+---
+level: 2
+---
+
+# Wrapping up
+
+- We covered a lot of kinda bland introductory material, with not a lot of context!
+- Your lab on Wednesday is devoted to practicing `tidyverse` and `ggplot2` 
+- Lab is also a place where you'll go over homework-related problems and can ask questions. Use Ruiting as a resource!
+- Ask questions on Slack!
+- PS0 is posted and due before class next week
+- PS1 will post tonight or tomorrow and be due in two weeks 

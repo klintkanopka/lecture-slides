@@ -235,8 +235,154 @@ data <- ungroup(data)
 level: 2
 ---
 
+# The pipe
+
+- Did you notice how all of the first inputs and outputs are always dataframes?
+- Tidyverse functions are built to be connected with _pipes_
+- There are two pipes in `R`
+    - `%>%` is from a package called `magrittr`
+    - `|>`, added later, is native `R` syntax
+    - The native `R` pipe is faster and should be preferred
+    - That said, the `magrittr` pipe has more features (I don't use them) 
+- The pipe takes the output on the left hand side and puts it into the first argument of the function on the right hand side
+
+````md magic-move {lines:true}
+
+```r
+out <- mean(x)
+```
+
+```r
+out <- x |>
+    mean()
+```
+````
+<div v-click>
+
+- Okay, but why is this any good?
+
+</div>
+
+---
+level: 2
+---
+
+# Rewriting `dplyr` code with pipes
+
+````md magic-move {lines:true}
+
+```r
+out <- read_csv('./file_path/data.csv')
+out <- filter(out, var_3 != 0)
+out <- group_by(out, var_1)
+out <- summarize(out, mean_var = mean(var_2), sd_var = sd(var_2))
+out <- ungroup(out)
+out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var) 
+```
+
+```r
+out <- read_csv('./file_path/data.csv') |>
+    filter(var_3 != 0)
+out <- group_by(out, var_1)
+out <- summarize(out, mean_var = mean(var_2), sd_var = sd(var_2))
+out <- ungroup(out)
+out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var) 
+```
+
+```r
+out <- read_csv('./file_path/data.csv') |>
+    filter(var_3 != 0) |>
+    group_by(var_1)
+out <- summarize(out, mean_var = mean(var_2), sd_var = sd(var_2))
+out <- ungroup(out)
+out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var) 
+```
+```r
+out <- read_csv('./file_path/data.csv') |>
+    filter(var_3 != 0) |>
+    group_by(var_1) |>
+    summarize(mean_var = mean(var_2), 
+              sd_var = sd(var_2))
+out <- ungroup(out)
+out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var) 
+```
+
+```r
+out <- read_csv('./file_path/data.csv') |>
+    filter(var_3 != 0) |>
+    group_by(var_1) |>
+    summarize(mean_var = mean(var_2), 
+              sd_var = sd(var_2)) |>
+    ungroup() 
+out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var) 
+```
+
+```r
+out <- read_csv('./file_path/data.csv') |>
+    filter(var_3 != 0) |>
+    group_by(var_1) |>
+    summarize(mean_var = mean(var_2), 
+              sd_var = sd(var_2)) |>
+    ungroup() |>
+    mutate(ci_lower = mean_var - 1.96*sd_var,
+           ci_upper = mean_var + 1.96*sd_var) 
+```
+
+````
+
+<div v-click>
+
+- What you get is more readable code with fewer intermediate objects stored!
+
+</div>
+
+
+
+---
+level: 2
+---
+
 # Long data and wide data
 
+- We often think of dataframes being structured like spreadsheets
+    - One row per individual, one column per variable
+    - This is called _wide_ data
+- There is another way!
+    - One column for an `id` variable
+    - One column to identify the measurement
+    - One column to store the value of that measurement
+    - This is called _long_ data
+
+
+---
+level: 2
+layout: two-cols-header
+---
+
+# Two versions of the same data
+
+::left::
+
+## Wide
+
+| id | test_1 | test_2 |
+|----|--------|--------|
+| A  | 95     | 99     | 
+| B  | 86     | 92     | 
+| C  | 90     | 84     |  
+
+::right::
+
+## Long
+
+| id | test | score |
+|----|------|-------|
+| A  | 1    | 95    |
+| A  | 2    | 99    |
+| B  | 1    | 86    |
+| B  | 2    | 92    |
+| C  | 1    | 90    |
+| C  | 2    | 84    |
 
 ---
 level: 2
@@ -244,9 +390,142 @@ level: 2
 
 # `pivot_longer()`
 
+- The job of `pivot_longer()` is to turn data from a wider form into a longer form!
+
+
+- To read the documentation:
+```r
+?pivot_longer
+```
+
+- Usage:
+
+````md magic-move {lines: true}
+
+```r 
+data_long <- pivot_longer()
+```
+
+```r
+data_long <- pivot_longer(
+  data,    
+  cols, 
+  names_to,
+  values_to  
+)
+```
+
+```r
+data_long <- pivot_longer(
+  data = data_wide,         # the data you want to pivot
+  cols,
+  names_to,
+  values_to 
+)
+
+```
+
+```r
+data_long <- pivot_longer(
+  data = data_wide,         # the data you want to pivot
+  cols = c(test_1, test_2), # the (unquoted) columns you want to make longer
+  names_to,
+  values_to 
+)
+```
+
+```r
+data_long <- pivot_longer(
+  data = data_wide,         # the data you want to pivot
+  cols = c(test_1, test_2), # the (unquoted) columns you want to make longer
+  names_to = 'test',        # the name of the new column that identifies each measurement
+  values_to
+)
+```
+
+```r
+data_long <- pivot_longer(
+  data = data_wide,         # the data you want to pivot
+  cols = c(test_1, test_2), # the (unquoted) columns you want to make longer
+  names_to = 'test',        # the name of the new column that identifies each measurement
+  values_to = 'score'       # the name of the new column that contains the values of each measurement 
+)
+```
+````
+
+
 ---
 level: 2
 ---
 
 # `pivot_wider()`
 
+- The job of `pivot_longer()` is to turn data from a longer form into a wider form!
+
+
+- To read the documentation:
+```r
+?pivot_wider
+```
+
+- Usage:
+
+````md magic-move {lines: true}
+```r 
+data_wide <- pivot_wider()
+```
+
+```r
+data_long <- pivot_wider(
+  data,    
+  id_cols, 
+  names_from,
+  values_from  
+)
+```
+```r
+data_long <- pivot_wider(
+  data = data_long,    # the data you want to pivot
+  id_cols,
+  names_from,
+  values_from  
+)
+```
+```r
+data_long <- pivot_wider(
+  data = data_long,    # the data you want to pivot
+  id_cols = id,        # the column(s) that uniquely identify which row each measurement belongs to
+  names_from,
+  values_from   
+)
+```
+```r
+data_long <- pivot_wider(
+  data = data_long,    # the data you want to pivot
+  id_cols = id,        # the column(s) that uniquely identify which row each measurement belongs to
+  names_from = test,   # the column that identifies the measurements
+  values_from
+)
+```
+
+
+```r
+data_long <- pivot_wider(
+  data = data_long,    # the data you want to pivot
+  id_cols = id,        # the column(s) that uniquely identify which row each measurement belongs to
+  names_from = test,   # the column that identifies the measurements
+  values_from = score  # the column that contains the values of the measurements  
+)
+```
+
+```r
+data_long <- pivot_wider(
+  data = data_long,       # the data you want to pivot
+  id_cols = id,           # the column(s) that uniquely identify which row each measurement belongs to
+  names_from = test,      # the column that identifies the measurements
+  values_from = score,    # the column that contains the values of the measurements  
+  names_prefix = 'test_'  # a prefix that goes in front of the new column names
+)
+```
+
+````
