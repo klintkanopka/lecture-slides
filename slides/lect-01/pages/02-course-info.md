@@ -82,7 +82,7 @@ level: 2
 # Meeting Times
 
 - Lecture: Th 4.55-6.35p
-- Lab (with Ruiting): T 3.45-4.35p
+- Lab (with Ruiting): W 3.45-4.35p
 - Office Hours:
   - Klint: T 2-3p
   - Ruiting: W 9-10a
