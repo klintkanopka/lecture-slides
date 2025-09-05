@@ -11,6 +11,7 @@
     "@slidev/cli": "catalog:",
     "@slidev/theme-default": "catalog:",
     "@slidev/theme-seriph": "catalog:",
-    "vue": "catalog:"
+    "vue": "catalog:",
+    "webr": "^0.5.5"
   }
 }

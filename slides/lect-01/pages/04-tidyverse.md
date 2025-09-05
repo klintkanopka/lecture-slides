@@ -181,7 +181,7 @@ raw_data <- read_csv('./file_path/data.csv')
 data <- group_by(raw_data, var_1)
 
 # specifying multiple grouping variables
-data <- filter(raw_data, var_2, var_3)
+data <- group_by(raw_data, var_2, var_3)
 
 # remove grouping
 data <- ungroup(data)
@@ -348,6 +348,7 @@ level: 2
     - One row per individual, one column per variable
     - This is called _wide_ data
 - There is another way!
+    - Multiple rows per individual, with each row associated with a specific variable or measurement!
     - One column for an `id` variable
     - One column to identify the measurement
     - One column to store the value of that measurement
@@ -476,7 +477,7 @@ data_wide <- pivot_wider()
 ```
 
 ```r
-data_long <- pivot_wider(
+data_wide <- pivot_wider(
   data,    
   id_cols, 
   names_from,
@@ -484,7 +485,7 @@ data_long <- pivot_wider(
 )
 ```
 ```r
-data_long <- pivot_wider(
+data_wide <- pivot_wider(
   data = data_long,    # the data you want to pivot
   id_cols,
   names_from,
@@ -492,7 +493,7 @@ data_long <- pivot_wider(
 )
 ```
 ```r
-data_long <- pivot_wider(
+data_wide <- pivot_wider(
   data = data_long,    # the data you want to pivot
   id_cols = id,        # the column(s) that uniquely identify which row each measurement belongs to
   names_from,
@@ -500,7 +501,7 @@ data_long <- pivot_wider(
 )
 ```
 ```r
-data_long <- pivot_wider(
+data_wide <- pivot_wider(
   data = data_long,    # the data you want to pivot
   id_cols = id,        # the column(s) that uniquely identify which row each measurement belongs to
   names_from = test,   # the column that identifies the measurements
@@ -508,9 +509,8 @@ data_long <- pivot_wider(
 )
 ```
 
-
 ```r
-data_long <- pivot_wider(
+data_wide <- pivot_wider(
   data = data_long,    # the data you want to pivot
   id_cols = id,        # the column(s) that uniquely identify which row each measurement belongs to
   names_from = test,   # the column that identifies the measurements
@@ -519,7 +519,7 @@ data_long <- pivot_wider(
 ```
 
 ```r
-data_long <- pivot_wider(
+data_wide <- pivot_wider(
   data = data_long,       # the data you want to pivot
   id_cols = id,           # the column(s) that uniquely identify which row each measurement belongs to
   names_from = test,      # the column that identifies the measurements

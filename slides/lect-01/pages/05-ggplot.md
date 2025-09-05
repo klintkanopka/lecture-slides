@@ -54,8 +54,8 @@ level: 2
 # Scales
 
 - Scales determine how data are transformed into visual elements
-    - They can be translate values to colors
-    - They can be translate values to numeric scales for positions
+    - They can be used to translate values to colors
+    - They can be used to translate values to numeric scales for positions
 - Added using `scale_A_B()` calls
     - `A` is the aspect you’re scaling ($x$, $y$, color, fill)
     - `B` is how you’re scaling it (manually, `log10`, or something else)
