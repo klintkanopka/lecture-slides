@@ -26,12 +26,71 @@ level: 2
 
 # Function Anatomy
 
-```r {*|1,4|2|3|*}
-RollDice <- function(n_sides = 6, n_dice = 1){
-  results <- sample(1:n_sides, n_dice, replace=TRUE)
+Let's write a function called `RollDice()` that rolls an arbitrarily sized die an arbitrary number of times and returns the individual results.
+
+<v-click>
+
+````md magic-move
+
+
+```r
+RollDice <- function(){}
+```
+
+```r
+RollDice <- function(){
+  results <- sample()
+}
+```
+
+```r
+RollDice <- function(){
+  results <- sample(x, size, replace = FALSE, prob = NULL)
+}
+```
+
+```r
+RollDice <- function(){
+  result <- sample(x = 1:N_sides, size, replace = FALSE, prob = NULL)
+}
+```
+```r
+RollDice <- function(N_sides){
+  result <- sample(x = 1:N_sides, size, replace = FALSE, prob = NULL)
+}
+```
+```r
+RollDice <- function(N_sides){
+  result <- sample(x = 1:N_sides, size = N_dice, replace = FALSE, prob = NULL)
+}
+```
+```r
+RollDice <- function(N_sides, N_dice){
+  result <- sample(x = 1:N_sides, size = N_dice, replace = FALSE, prob = NULL)
+}
+```
+```r
+RollDice <- function(N_sides, N_dice){
+  result <- sample(x = 1:N_sides, size = N_dice, replace = TRUE, prob = NULL)
+}
+```
+
+```r
+RollDice <- function(N_sides, N_dice){
+  result <- sample(x = 1:N_sides, size = N_dice, replace = TRUE, prob = NULL)
   return(result)
 }
 ```
+
+```r {*|1,4|2|3|*}
+RollDice <- function(N_sides = 6, N_dice = 1){
+  result <- sample(x = 1:N_sides, size = N_dice, replace = TRUE, prob = NULL)
+  return(result)
+}
+```
+````
+
+</v-click>
 
 ---
 level: 2

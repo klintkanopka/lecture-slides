@@ -8,7 +8,7 @@ author: Klint Kanopka
 info: |
   ## APSTA-GE 2352: Lecture 2
   Vector/matrix arithmetic and functions
-date: 2025-09-04
+date: 2025-09-11
 class: text-center
 drawings:
   persist: false
