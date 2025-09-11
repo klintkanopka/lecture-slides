@@ -7,7 +7,7 @@ title: Statistical Computing - Week 2
 author: Klint Kanopka
 info: |
   ## APSTA-GE 2352: Lecture 2
-  Introductions, built-ins, using the tidyverse, and visualization
+  Vector/matrix arithmetic and functions
 date: 2025-09-04
 class: text-center
 drawings:
@@ -23,7 +23,7 @@ seoMeta:
 
 # APSTA-GE 2352
 
-Statistical Computing: Lecture 1
+Statistical Computing: Lecture 2
 
 Klint Kanopka
 
