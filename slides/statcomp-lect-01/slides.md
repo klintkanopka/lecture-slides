@@ -6,8 +6,9 @@ background: https://meet.nyu.edu/wp-content/uploads/2020/04/Main_Header.jpg
 title: Statistical Computing - Week 1
 author: Klint Kanopka
 info: |
-  ## APSTA-GE 2352: Lecture 1
-  Introductions, built-ins, using the tidyverse, and visualization
+  ## APSTA-GE 2352: StatComp
+  Lecture 1
+  Introductions; Built-ins; Data Manipulation with the tidyverse; Visualization with ggplot2
 date: 2025-09-04
 class: text-center
 drawings:

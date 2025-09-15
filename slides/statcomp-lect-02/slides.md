@@ -6,8 +6,9 @@ background: https://meet.nyu.edu/wp-content/uploads/2020/04/Main_Header.jpg
 title: Statistical Computing - Week 2
 author: Klint Kanopka
 info: |
-  ## APSTA-GE 2352: Lecture 2
-  Vector/matrix arithmetic and functions
+  ## APSTA-GE 2352: StatComp
+  Lecture 2
+  Vector and Matrix Arithmetic; Functions
 date: 2025-09-11
 class: text-center
 drawings:
