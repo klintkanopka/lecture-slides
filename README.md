@@ -1,5 +1,5 @@
 # Slidev Workspace Starter
 
-Repository of slides for APSTA-GE 2352: Practicum in Statistical Computing
+Repository of slides for courses I teach and talks I give.
 
-Viewable here: https://klintkanopka.com/statcomp-slides
+Viewable here: https://klintkanopka.com/lecture-slides
