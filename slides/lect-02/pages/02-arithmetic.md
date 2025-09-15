@@ -74,7 +74,7 @@ level: 2
 
 - `R`'s general behavior when things aren't the same length is to _recycle_ the shorter object
 - Behavior is the same regardless of order
-- Length of the output is the _maximum_ of the lenghts of the inputs
+- Length of the output is the _maximum_ of the lengths of the inputs
 - How does this work?
   - `R` will paste the shorter object to itself end-to-end until it matches the length of the longer object
   - If the longer object is an integer multiple of the length of the longer object, it does this silently
@@ -385,9 +385,9 @@ level: 2
 # Matrix Multiplication
 
 - We want to multiply two matrices, $AB = C$ 
-  - Where $a_{ij}$ is the element of matrix $A$ in the $i$th row and $j$th column
-  - And matrices $A$ is and $N \times K$ matrix and $B$ is a $K \times M$ matrix
-- To construct the $N \times M$ matrix, $C$:
+  - Here, $a_{ij}$ is the element of matrix $A$ in the $i$th row and $j$th column
+  - And matrix $A$ is an $N \times K$ matrix and matrix $B$ is a $K \times M$ matrix
+- To construct the resultant $N \times M$ matrix, $C$:
 
 $$c_{ij} = \sum_{k=1}^K a_{ik}b_{kj}$$
 

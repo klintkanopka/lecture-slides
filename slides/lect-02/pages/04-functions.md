@@ -193,7 +193,7 @@ level: 2
 - The basic idea is that we want to write our code in chunks (often in the form of functions)
   - If we write our code in chunks, we can also test our code in chunks
   - This makes it _much_ easier to pinpoint where things may be going wrong
-  - This will be come much more important very soon once we start to include control flow and loops!
+  - This will become much more important very soon once we start to include control flow and loops!
 - How do you do this?
   - First, make sure your code gives the correct output under a variety of conditions!
   - Second, see what your code does in unexpected situations
