@@ -1,6 +1,7 @@
 ---
 level: 2
 layout: section
+transition: fade
 ---
 
 # `for` Loops

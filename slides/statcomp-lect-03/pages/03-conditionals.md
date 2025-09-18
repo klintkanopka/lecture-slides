@@ -1,6 +1,7 @@
 ---
 level: 2
 layout: section
+transition: fade
 ---
 
 # Conditional Statements

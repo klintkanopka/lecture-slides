@@ -1,6 +1,7 @@
 ---
 level: 1
 layout: section
+transition: fade
 ---
 
 # Wrap Up
