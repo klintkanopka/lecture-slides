@@ -13,7 +13,7 @@ level: 2
 
 - Sorting presents a common problem in computer science
     - There are efficient ways to sort and there are horrible ways to sort
-    - `bogosort` is an algorithm that generates random permuations of its input and then checks if it is sorted. This works, but is horrible!
+    - `bogosort` is an algorithm that generates random permutations of its input and then checks if it is sorted. This works, but is horrible!
     - You'll implement another sorting algorithm in PS2
 - We now have the tools to do most programming tasks
     - Maybe not in an optimally efficient way, however!
