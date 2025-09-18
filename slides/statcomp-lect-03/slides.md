@@ -1,7 +1,5 @@
 ---
 theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
 background: https://meet.nyu.edu/wp-content/uploads/2020/04/Main_Header.jpg
 title: Statistical Computing - Week 3
 author: Klint Kanopka
@@ -16,10 +14,7 @@ drawings:
 transition: fade-out
 mdc: true
 seoMeta:
-  # By default, Slidev will use ./og-image.png if it exists,
-  # or generate one from the first slide if not found.
   ogImage: auto
-  # ogImage: https://cover.sli.dev
 ---
 
 # APSTA-GE 2352
