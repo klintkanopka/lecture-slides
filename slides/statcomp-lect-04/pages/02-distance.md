@@ -29,19 +29,19 @@ level: 3
 ---
 level: 3
 layout: image
-image: ../img/map.png
+image: /map.png
 ---
 
 <img
   v-click
   style="position: absolute; top: 400px; left: 250px; width: 30px"
-  src="../img/pin.png"
+  src="/pin.png"
   alt=""
 />
 <img
   v-click
   style="position: absolute; top: 140px; left: 600px; width: 30px"
-  src="../img/pin.png"
+  src="/pin.png"
   alt=""
 />
 <arrow v-click x1="285" y1="410" x2="500" y2="70" width="4" color="#3772ff" />

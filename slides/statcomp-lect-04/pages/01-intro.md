@@ -1,5 +1,6 @@
 ---
 level: 2
+transition: fade
 ---
 
 # Table of Contents
