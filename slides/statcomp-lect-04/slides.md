@@ -42,5 +42,13 @@ src: ./pages/04-k-means.md
 ---
   
 ---
-src: ./pages/05-wrap-up.md
+src: ./pages/05-k-means-gen.md
+---
+
+---
+src: ./pages/06-k-means-eval.md
+---
+
+---
+src: ./pages/07-wrap-up.md
 ---
