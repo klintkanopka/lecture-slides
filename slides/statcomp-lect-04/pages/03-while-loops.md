@@ -690,7 +690,7 @@ level: 3
 ---
 
 
-## Example `while` Loop 6
+# Example `while` Loop 6
 
 - You can combine both methods to set a maximum number of iterations while looking for convergence
 
