@@ -38,6 +38,7 @@ ggplot(d, aes(x=x,
   geom_point(data=centroids, aes(x=x, y=y), 
              color="black", size=4) +
   labs(color='cluster') +
+  scale_color_okabeito() +
   theme_bw()
 ```
 
@@ -81,6 +82,7 @@ ggplot(d, aes(x=x,
   geom_point(data=centroids, aes(x=x, y=y), 
              color="black", size=4) +
   labs(color='cluster') +
+  scale_color_okabeito() +
   theme_bw()
 ```
 

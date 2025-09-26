@@ -76,8 +76,7 @@ image: /k-means-true-labels.png
 ```r
 ggplot(d, aes(x=x, y=y, color=cluster)) +
   geom_point() +
-  scale_color_manual(values=c('B'='#8900e1',
-                              'A'='#009b8a')) +
+  scale_color_okabeito() +
   theme_bw()
 ```
 
@@ -199,8 +198,7 @@ ggplot(d,
              color="black", 
              size=4) +
   labs(color='cluster') +
-  scale_color_manual(values=c('1'='#8900e1',
-                              '2'='#009b8a')) +
+  scale_color_okabeito() +
   theme_bw()
 ```
 
@@ -230,8 +228,7 @@ ggplot(d,
              color="black", 
              size=4) +
   labs(color='cluster') +
-  scale_color_manual(values=c('1'='#8900e1',
-                              '2'='#009b8a')) +
+  scale_color_okabeito() +
   theme_bw()
 ```
 
@@ -260,8 +257,7 @@ ggplot(d,
              color="black", 
              size=4) +
   labs(color='cluster') +
-  scale_color_manual(values=c('1'='#8900e1',
-                              '2'='#009b8a')) +
+  scale_color_okabeito() +
   theme_bw()
 ```
 
@@ -291,8 +287,7 @@ ggplot(d,
              color="black", 
              size=4) +
   labs(color='cluster') +
-  scale_color_manual(values=c('1'='#8900e1',
-                              '2'='#009b8a')) +
+  scale_color_okabeito() +
   theme_bw()
 ```
 
@@ -320,8 +315,7 @@ ggplot(d,
              color="black", 
              size=4) +
   labs(color='cluster') +
-  scale_color_manual(values=c('1'='#8900e1',
-                              '2'='#009b8a')) +
+  scale_color_okabeito() +
   theme_bw()
 ```
 
@@ -351,8 +345,7 @@ ggplot(d,
              color="black", 
              size=4) +
   labs(color='cluster') +
-  scale_color_manual(values=c('1'='#8900e1',
-                              '2'='#009b8a')) +
+  scale_color_okabeito() +
   theme_bw()
 ```
 
@@ -380,8 +373,7 @@ ggplot(d,
              color="black", 
              size=4) +
   labs(color='cluster') +
-  scale_color_manual(values=c('1'='#8900e1',
-                              '2'='#009b8a')) +
+  scale_color_okabeito() +
   theme_bw()
 ```
 
@@ -411,8 +403,7 @@ ggplot(d,
              color="black", 
              size=4) +
   labs(color='cluster') +
-  scale_color_manual(values=c('1'='#8900e1',
-                              '2'='#009b8a')) +
+  scale_color_okabeito() +
   theme_bw()
 ```
 
@@ -440,8 +431,7 @@ ggplot(d,
              color="black", 
              size=4) +
   labs(color='cluster') +
-  scale_color_manual(values=c('1'='#8900e1',
-                              '2'='#009b8a')) +
+  scale_color_okabeito() +
   theme_bw()
 ```
 
@@ -471,9 +461,8 @@ ggplot(d,
              color="black", 
              size=4) +
   labs(color='cluster') +
-  scale_color_manual(values=c('1'='#8900e1',
-                              '2'='#009b8a')) +
-  theme_bw()
+  scale_color_okabeito() +
+ theme_bw()
 ```
 
 ---
@@ -500,9 +489,8 @@ ggplot(d,
              color="black", 
              size=4) +
   labs(color='cluster') +
-  scale_color_manual(values=c('1'='#8900e1',
-                              '2'='#009b8a')) +
-  theme_bw()
+  scale_color_okabeito() +
+ theme_bw()
 ```
 
 
@@ -531,8 +519,7 @@ ggplot(d,
              color="black", 
              size=4) +
   labs(color='cluster') +
-  scale_color_manual(values=c('1'='#8900e1',
-                              '2'='#009b8a')) +
+  scale_color_okabeito() +
   theme_bw()
 ```
 
@@ -553,7 +540,6 @@ ggplot(d, aes(x=x, y=y, color=cluster)) +
              color="black", 
              size=4) +
   labs(color='cluster') +
-  scale_color_manual(values=c('B'='#8900e1', 
-                              'A'='#009b8a')) +
+  scale_color_okabeito() +
   theme_bw()
 ```

@@ -318,10 +318,10 @@ image: /k-means-new-data.png
 set.seed(8675309)
 
 # New data, same solution but larger variance
-d <- data.frame(x = c(rnorm(250, 0, 0.5), 
-                      rnorm(100, 1, 0.5)),
-                y = c(rnorm(250, 1, 0.5), 
-                      rnorm(100, 0, 0.5)))
+d <- data.frame(x = c(rnorm(250, 0, 0.35), 
+                      rnorm(100, 1, 0.35)),
+                y = c(rnorm(250, 1, 0.35), 
+                      rnorm(100, 0, 0.35)))
 
 # shuffle to destroy any "known" solution
 d <- d[sample(1:nrow(d)),]
@@ -438,5 +438,6 @@ ggplot(d, aes(x=x,
   geom_point(data=centroids, aes(x=x, y=y), 
              color="black", size=4) +
   labs(color='cluster') +
+  scale_color_okabeito() +
   theme_bw()
 ```
