@@ -14,7 +14,7 @@ level: 2
 
 # Announcements
 
-- PS2 is now late!
+- PS2 is due tonight at 11.59p!
 - PS3 is out!
   - It has six parts
   - They are not ordered by difficulty
