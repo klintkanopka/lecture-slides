@@ -74,7 +74,7 @@ image: /fisher.jpg
 
 - Called the "greatest statistician of all time"
 - Noted eugenicist
-- Though Bristol's claim was nuts, so devised an experiment to test her tea-tasting ability
+- Thought Bristol's claim was nuts, so devised an experiment to test her tea-tasting ability
 
 </v-clicks>
 
@@ -167,7 +167,7 @@ layout: section
 level: 3
 ---
 
-# Permuation Tests
+# Permutation Tests
 
 - Permutation tests are a form of exact test used when comparing two separate samples
 - Often you want to know if two samples came from two different distributions (they have different means, or different variances, or something else)
@@ -294,7 +294,8 @@ image: /test-01.png
 # Monte Carlo Permutation Test
 
 ```r
-ggplot(test_data, aes(x = score, fill = group)) +
+ggplot(test_data, 
+       aes(x = score, fill = group)) +
   geom_histogram() +
   facet_grid(group ~ .) +
   scale_fill_okabeito() +
@@ -411,8 +412,8 @@ image: /test-02.png
 # Monte Carlo Permutation Test
 
 ```r
-mean_diff = replicate(1e4, 
-                      ReassignScores(test_data))
+mean_diff <- 
+  replicate(1e4, ReassignScores(test_data))
 
 mean(mean_diff >= true_diff)
 
@@ -466,7 +467,8 @@ image: /test-03.png
 # Monte Carlo Permutation Test
 
 ```r
-ggplot(test_data, aes(x = score, fill = group)) +
+ggplot(test_data, 
+       aes(x = score, fill = group)) +
   geom_histogram(bins = 40) +
   facet_grid(group ~ .) +
   scale_fill_okabeito() +
@@ -483,8 +485,8 @@ image: /test-04.png
 # Monte Carlo Permutation Test
 
 ```r
-mean_diff = replicate(1e4, 
-                      ReassignScores(test_data))
+mean_diff <- 
+  replicate(1e4, ReassignScores(test_data))
 
 mean(mean_diff >= true_diff)
 
