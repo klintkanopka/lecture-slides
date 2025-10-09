@@ -11,6 +11,8 @@ info: |
   Introductions; Built-ins; Data Manipulation with the tidyverse; Visualization with ggplot2
 date: 2025-09-04
 class: text-center
+routerMode: hash
+lineNumbers: true
 drawings:
   persist: false
 transition: fade-out

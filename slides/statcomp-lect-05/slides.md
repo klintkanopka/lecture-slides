@@ -9,6 +9,7 @@ info: |
   Randomization; Sampling; Simulations; Monte Carlo Methods
 date: 2025-10-02
 class: text-center
+routerMode: hash
 lineNumbers: true
 drawings:
   persist: false

@@ -9,6 +9,8 @@ info: |
   Indexing; while Loops; Distance Metrics; k-Means Clustering
 date: 2025-09-25
 class: text-center
+routerMode: hash
+lineNumbers: true
 drawings:
   persist: false
 transition: fade-out

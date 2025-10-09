@@ -9,6 +9,8 @@ info: |
   Indexing; Conditional Statements; Control Flow; for Loops; Selection Sort
 date: 2025-09-18
 class: text-center
+routerMode: hash
+lineNumbers: true
 drawings:
   persist: false
 transition: fade-out

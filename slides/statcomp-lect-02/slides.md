@@ -11,6 +11,8 @@ info: |
   Vector and Matrix Arithmetic; Functions
 date: 2025-09-11
 class: text-center
+routerMode: hash
+lineNumbers: true
 drawings:
   persist: false
 transition: fade-out

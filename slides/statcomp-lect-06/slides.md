@@ -9,6 +9,7 @@ info: |
   Rejection Sampling; Matrix Computation; Principal Component Analysis
 date: 2025-10-09
 class: text-center
+routerMode: hash
 lineNumbers: true
 drawings:
   persist: false
