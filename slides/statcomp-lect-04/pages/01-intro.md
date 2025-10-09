@@ -71,7 +71,7 @@ level: 2
   - _Divisive_: Start with one big group and repeatedly cut it into pieces
 
 ---
-level: 2
+level: 3
 ---
 
 # Making Groups from Data
