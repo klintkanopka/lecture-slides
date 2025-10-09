@@ -219,7 +219,7 @@ level: 3
 # Using PCA
 
 - PCs are often really interpretable
-  - Look at what variables are the largest positive and largest negative weights - do they have things in common?
+  - Look at what variables are the largest positive and largest negative weights---do they have things in common?
   - When you project your original data into the lower dimensional PC space, do observations that score high/low on some dimensions have things in common?
 - Really commonly used to visualize data
 - Also commonly used to "cluster" variables that may measure similar things
