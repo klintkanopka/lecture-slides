@@ -1,10 +1,10 @@
 {
-  "name": "slidev-starter-1",
+  "name": "statcomp-lect-05",
   "type": "module",
   "private": true,
   "scripts": {
     "build": "slidev build",
-    "dev": "slidev --base /slidev-starter-1/",
+    "dev": "slidev --base /statcomp-lect-05/",
     "export": "slidev export"
   },
   "dependencies": {
