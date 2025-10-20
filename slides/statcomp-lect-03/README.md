@@ -1,11 +1,9 @@
-# Welcome to [Slidev](https://github.com/slidevjs/slidev)!
+# APSTA-GE 2352: Statistical Computing
 
-To start the slide show:
+## Lecture 3 Content
 
-- `pnpm install`
-- `pnpm dev`
-- visit <http://localhost:3030>
-
-Edit the [slides.md](./slides.md) to see the changes.
-
-Learn more about Slidev at the [documentation](https://sli.dev/).
+- Indexing
+- Conditional Statements
+- Control Flow
+- `for()` Loops
+- Selection Sort

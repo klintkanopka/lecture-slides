@@ -1,6 +1,6 @@
 # APSTA-GE 2352: Statistical Computing
 
-## Lecture 7
+## Lecture 7 Content
 
 - Loss Functions
 - Numerical Optimization 
