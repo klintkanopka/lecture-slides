@@ -1,1 +1,4 @@
 baseUrl: /lecture-slides
+hero:
+  title: Lecture Slides
+  description: A repository of slides for courses I teach and talks I give.
