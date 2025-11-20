@@ -27,6 +27,7 @@ for (i in 1:n_locations) {
 TripDist <- function(path, dist_matrix) {
   total_dist <- 0
   for (i in seq_along(path)) {
+    ls
     if (i == length(path)) {
       total_dist <- total_dist + dist_mat[path[i], path[1]]
     } else {
