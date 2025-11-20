@@ -91,21 +91,44 @@ TravelingSalesmanMCMC <- function(chain_id, N_iter, temp, dist_mat) {
 
 system.time(single_out <- TravelingSalesmanMCMC(1, 1e5, 0.01, dist_mat))
 
+
 ggplot(single_out$dist, aes(x = i, y = dist)) +
   geom_line(color = okabeito_colors(2)) +
   theme_minimal()
 
 ggsave('parallel-01.png', height = 9, width = 8)
 
+
+system.time({
+  lapply_out <- lapply(
+    1:10,
+    TravelingSalesmanMCMC,
+    N_iter = 1e5,
+    temp = 0.01,
+    dist_mat = dist_mat
+  )
+})
+
+system.time({
+  mc_out <- mclapply(
+    1:10,
+    TravelingSalesmanMCMC,
+    N_iter = 1e5,
+    temp = 0.01,
+    dist_mat = dist_mat,
+    mc.cores = 4
+  )
+})
+
+
 control <- expand.grid(
-  chain_id = 1:8,
+  chain_id = 1:10,
   temp = c(0.0001, 0.001, 0.01, 0.1),
   N_iter = 1e5
 )
 
-
 system.time({
-  cl <- makeCluster(4)
+  cl <- makeCluster(6)
   clusterExport(
     cl,
     c('TripDist', 'PermutePath', 'TravelingSalesmanMCMC', 'control', 'dist_mat')
@@ -138,13 +161,3 @@ ggplot(d_out_par, aes(x = i, y = dist, color = as.factor(chain_id))) +
   theme_bw()
 
 ggsave('parallel-02.png', height = 9, width = 8)
-
-# single
-
-#    user  system elapsed
-#   3.931   0.015   3.948
-
-# full
-
-#    user  system elapsed
-#   0.101   0.102  34.735
