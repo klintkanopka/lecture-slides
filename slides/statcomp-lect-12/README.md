@@ -2,4 +2,5 @@
 
 ## Lecture 12
 
-- TBD
+- Computer Architecture
+- Parallelization
