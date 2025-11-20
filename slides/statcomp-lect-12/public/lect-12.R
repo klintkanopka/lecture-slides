@@ -89,12 +89,15 @@ TravelingSalesmanMCMC <- function(chain_id, N_iter, temp, dist_mat) {
   return(out)
 }
 
-system.time(single_out <- TravelingSalesmanMCMC(1, 1e5, 0.01, dist_mat))
+########################
+# parallel comparisons #
+########################
 
+system.time(single_out <- TravelingSalesmanMCMC(1, 1e5, 0.01, dist_mat))
 
 ggplot(single_out$dist, aes(x = i, y = dist)) +
   geom_line(color = okabeito_colors(2)) +
-  theme_minimal()
+  theme_bw()
 
 ggsave('parallel-01.png', height = 9, width = 8)
 
@@ -161,3 +164,51 @@ ggplot(d_out_par, aes(x = i, y = dist, color = as.factor(chain_id))) +
   theme_bw()
 
 ggsave('parallel-02.png', height = 9, width = 8)
+
+
+d <- data.frame(
+  x1 = rnorm(1e3),
+  x2 = rnorm(1e3),
+  x3 = rnorm(1e3)
+)
+
+d$y <- -2 + 0.3 * d$x1 - 7 * d$x2 * d$x3 + rnorm(1e3)
+
+m <- lm(y ~ x1 * x2 * x3, d)
+summary(m)
+
+coef(m)
+est_real <- unname(coef(m)[7])
+
+boot <- function(rep, data) {
+  idx <- sample(nrow(data), replace = T)
+  d_tmp <- data[idx, ]
+  m <- lm(y ~ x1 * x2 * x3, d_tmp)
+  est <- unname(coef(m)[7])
+  return(data.frame(rep = rep, est = est))
+}
+
+
+boot_out <- lapply(1:1e4, boot, data = d)
+
+boot_out <- do.call('rbind', boot_out)
+boot_out
+
+ggplot(boot_out, aes(x = est)) +
+  geom_histogram() +
+  geom_vline(aes(xintercept = est_real))
+
+
+cl <- makeCluster(4)
+clusterExport(cl, c('boot', 'd'))
+
+par_out <- parLapply(cl, 1:1e5, boot, data = d)
+
+stopCluster(cl)
+par_out
+par_out <- do.call('rbind', par_out)
+par_out
+
+ggplot(par_out, aes(x = est)) +
+  geom_histogram() +
+  geom_vline(aes(xintercept = est_real))
