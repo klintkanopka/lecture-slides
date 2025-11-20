@@ -63,16 +63,41 @@ level: 3
 level: 3
 ---
 
-# Workflow
+# Workflows
 
-  - Create a local cluster using `makeCluster()`
-  - Export data and functions to the cluster using `clusterExport()`
-  - Replace your `apply()` function with a parallelized version
-    - `parApply()`, `parLapply()`, `parSapply()` are drop-in replacements
-    - I usually use `clusterMap()`, which is like `mapply()` or `Map()`
-  - Stop the cluster with `stopCluster()` (This is important!)
+## Option 1: `mc` versions of `apply()` functions
+
+- Replace your `apply()` function with an `mc` prefixed version:
+  - `lapply()` becomes `mclapply()`
+  - `mapply()` becomes `mcmapply()`
+- Specify the number of cores you want to use in the `mc.cores = ` argument
+- Note that this _forks_ processes and can cause huge problems in any GUI-based programs 
+- May also behave badly on some operating systems
+
+---
+level: 3
+---
+
+# Workflows
+
+## Option 2: Create a socket cluster
+
+- Create a local cluster using `makeCluster()`
+- Export data and functions to the cluster using `clusterExport()`
+- Replace your `apply()` function with a parallelized version
+  - `parApply()`, `parLapply()`, `parSapply()` are drop-in replacements
+  - I usually use `clusterMap()`, which is like `mapply()` or `Map()`
+- Stop the cluster with `stopCluster()` (This is important!)
+- This may behave badly on other operating systems
+
+---
+level: 3
+---
+
+# Load-Balancing
+
 - There are also load-balanced versions like `parLapplyLB()` and `clusterMap()` has a dynamic scheduling option
-  - Normal versions use _static_ scheduling, where work is divided among cores before starting
-  - Load-balanced versions use _dynamic_ scheduling, assigning tasks to cores as other tasks finish
-  - In most small to medium sized tasks, normal versions are more efficient
-  - Load-balancing is most effective when individual jobs have wildly different runtimes
+- Normal versions use _static_ scheduling, where work is divided among cores before starting
+- Load-balanced versions use _dynamic_ scheduling, assigning tasks to cores as other tasks finish
+- In most small to medium sized tasks, normal versions are more efficient
+- Load-balancing is most effective when individual jobs have wildly different runtimes
