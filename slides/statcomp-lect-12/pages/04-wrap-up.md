@@ -13,23 +13,6 @@ hideInToc: true
 
 # Recap
 
-- Debugging is challenging, but we have four (five?) main tools:
-  - Googling error messages
-  - `print()` statements
-  - `traceback()`
-  - `browser()`
-  - Maybe ChatGPT if you like it?
-- The `apply()` family of functions allows you to hide loops
-  - Not more efficient, but _safer_ than loops
-  - Encourages functionalization of code
-  - Makes code easier to read
+- If your code is slow, try to parallelize it
+- If you wrote your code well to begin with, it'll be easy to do!
 
-
-
----
-level: 3
----
-
-# Final Thoughts
-
-- [PollEv.com/klintkanopka](https://PollEv.com/klintkanopka)
