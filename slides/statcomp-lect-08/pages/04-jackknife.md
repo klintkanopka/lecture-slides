@@ -102,5 +102,5 @@ level: 3
 - Compute your estimator or statistic on each resampled dataset
 - Aggregate these statistics to get your jackknife estimate
   - The mean of the estimator in jackknife samples can be used to understand bias
-  -The variance of the estimator in jackknife samples can be used to quantify uncertainty 
+  - The variance of the estimator in jackknife samples can be used to quantify uncertainty 
   - Does not require the CLT to apply to the estimator!

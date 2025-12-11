@@ -19,7 +19,7 @@ level: 3
   - You can control how much bias you introduce, however!
 - Upsides: Lots!
   - Helps models generalize to OOS data
-  - Useful when you have multicolinearity
+  - Useful when you have multicollinearity
   - Can allow you to estimate models that would be otherwise unidentified
   - Easy to implement
   - Works with (almost) any type of model

@@ -154,7 +154,7 @@ level: 3
 ```r
 
 SumSquaredResid <- function(beta, d){
-  # TODO: Compute sum of squared residual
+  # TODO: Compute sum of squared residuals
   return(ssr)
 }
 
@@ -162,7 +162,7 @@ SumSquaredResid <- function(beta, d){
 ```r
 
 SumSquaredResid <- function(beta, d){
-  # TODO: Compute sum of squared residual
+  # TODO: Compute sum of squared residuals
   resid <- d$y - (beta[1] + beta[2]*d$x)
   
   return(ssr)
@@ -172,7 +172,7 @@ SumSquaredResid <- function(beta, d){
 ```r
 
 SumSquaredResid <- function(beta, d){
-  # TODO: Compute sum of squared residual
+  # TODO: Compute sum of squared residuals
   resid <- d$y - (beta[1] + beta[2]*d$x)
   ssr <- sum(resid^2)
 
@@ -183,7 +183,7 @@ SumSquaredResid <- function(beta, d){
 
 ```r
 SumSquaredResid <- function(beta, d){
-  # TODO: Compute sum of squared residual
+  # TODO: Compute sum of squared residuals
   resid <- d$y - (beta[1] + beta[2]*d$x)
   ssr <- sum(resid^2)
   
@@ -195,7 +195,7 @@ SumSquaredResid(c(0,0), d)
 ```
 ```r
 SumSquaredResid <- function(beta, d){
-  # TODO: Compute sum of squared residual
+  # TODO: Compute sum of squared residuals
   resid <- d$y - (beta[1] + beta[2]*d$x)
   ssr <- sum(resid^2)
   
@@ -209,7 +209,7 @@ SumSquaredResid(c(0,0), d)
 ```
 ```r
 SumSquaredResid <- function(beta, d){
-  # TODO: Compute sum of squared residual
+  # TODO: Compute sum of squared residuals
   resid <- d$y - (beta[1] + beta[2]*d$x)
   ssr <- sum(resid^2)
 
@@ -225,7 +225,7 @@ out <- optim()
 ```
 ```r
 SumSquaredResid <- function(beta, d){
-  # TODO: Compute sum of squared residual
+  # TODO: Compute sum of squared residuals
   resid <- d$y - (beta[1] + beta[2]*d$x)
   ssr <- sum(resid^2)
 
@@ -241,7 +241,7 @@ out <- optim(c(0,0), SumSquaredResid, d=d)
 ```
 ```r
 SumSquaredResid <- function(beta, d){
-  # TODO: Compute sum of squared residual
+  # TODO: Compute sum of squared residuals
   resid <- d$y - (beta[1] + beta[2]*d$x)
   ssr <- sum(resid^2)
 
@@ -259,7 +259,7 @@ out <- optim(c(0,0),          # starting vals for parameters
 ```
 ```r
 SumSquaredResid <- function(beta, d){
-  # TODO: Compute sum of squared residual
+  # TODO: Compute sum of squared residuals
   resid <- d$y - (beta[1] + beta[2]*d$x)
   ssr <- sum(resid^2)
 
@@ -278,7 +278,7 @@ out <- optim(c(0,0),          # starting vals for parameters
 ```
 ```r
 SumSquaredResid <- function(beta, d){
-  # TODO: Compute sum of squared residual
+  # TODO: Compute sum of squared residuals
   resid <- d$y - (beta[1] + beta[2]*d$x)
   ssr <- sum(resid^2)
 
@@ -300,7 +300,7 @@ mle_beta <- out$par
 ```
 ```r
 SumSquaredResid <- function(beta, d){
-  # TODO: Compute sum of squared residual
+  # TODO: Compute sum of squared residuals
   resid <- d$y - (beta[1] + beta[2]*d$x)
   ssr <- sum(resid^2)
 
@@ -324,7 +324,7 @@ mle_beta
 ```
 ```r
 SumSquaredResid <- function(beta, d){
-  # TODO: Compute sum of squared residual
+  # TODO: Compute sum of squared residuals
   resid <- d$y - (beta[1] + beta[2]*d$x)
   ssr <- sum(resid^2)
 

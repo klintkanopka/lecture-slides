@@ -283,6 +283,24 @@ importers:
         specifier: ^0.5.5
         version: 0.5.5
 
+  slides/statcomp-lect-14:
+    dependencies:
+      '@slidev/cli':
+        specifier: 'catalog:'
+        version: 52.0.0(@babel/parser@7.28.4)(@nuxt/kit@3.17.7)(@types/markdown-it@14.1.2)(@types/node@22.16.3)(@vue/compiler-sfc@3.5.22)(lightningcss@1.30.2)(markdown-it-async@2.2.0)(playwright-chromium@1.56.1)(postcss@8.5.6)(react@18.3.1)(tsx@4.20.5)
+      '@slidev/theme-default':
+        specifier: 'catalog:'
+        version: 0.25.0
+      '@slidev/theme-seriph':
+        specifier: 'catalog:'
+        version: 0.25.0
+      vue:
+        specifier: 'catalog:'
+        version: 3.5.17(typescript@5.9.3)
+      webr:
+        specifier: ^0.5.5
+        version: 0.5.5
+
 packages:
 
   '@antfu/install-pkg@1.1.0':
@@ -825,9 +843,6 @@ packages:
 
   '@rolldown/pluginutils@1.0.0-beta.29':
     resolution: {integrity: sha512-NIJgOsMjbxAXvoGq/X0gD7VPMQ8j9g0BiDaNjVNVjvl+iKXxL3Jre0v31RmBYeLEmkbj2s02v8vFTbUXi5XS2Q==}
-
-  '@rolldown/pluginutils@1.0.0-beta.51':
-    resolution: {integrity: sha512-51/8cNXMrqWqX3o8DZidhwz1uYq0BhHDDSfVygAND1Skx5s1TDw3APSSxCMcFFedwgqGcx34gRouwY+m404BBQ==}
 
   '@rolldown/pluginutils@1.0.0-beta.53':
     resolution: {integrity: sha512-vENRlFU4YbrwVqNDZ7fLvy+JR1CRkyr01jhSiDpE1u6py3OMzQfztQU2jxykW3ALNxO4kSlqIDeYyD0Y9RcQeQ==}
@@ -4092,8 +4107,6 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.0-beta.29': {}
 
-  '@rolldown/pluginutils@1.0.0-beta.51': {}
-
   '@rolldown/pluginutils@1.0.0-beta.53': {}
 
   '@rollup/rollup-android-arm-eabi@4.45.0':
@@ -4869,7 +4882,7 @@ snapshots:
       '@babel/core': 7.28.4
       '@babel/plugin-syntax-typescript': 7.27.1(@babel/core@7.28.4)
       '@babel/plugin-transform-typescript': 7.28.0(@babel/core@7.28.4)
-      '@rolldown/pluginutils': 1.0.0-beta.51
+      '@rolldown/pluginutils': 1.0.0-beta.53
       '@vue/babel-plugin-jsx': 1.5.0(@babel/core@7.28.4)
       vite: 7.1.11(@types/node@22.16.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.20.5)(yaml@2.8.1)
       vue: 3.5.22(typescript@5.9.3)

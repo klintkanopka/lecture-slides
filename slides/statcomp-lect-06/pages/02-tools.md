@@ -62,7 +62,7 @@ level: 3
 - Addition will move one vector to the end of the other and then draw a new vector from the tail of the first to the tip of the second
 - Mechanically, if $\vec{w} = \vec{u}+\vec{v}$:
   - $w_i = u_i+v_i$
-  - $\begin{bmatrix} 1 \\ 2 \end{bmatrix} + \begin{bmatrix} 3 \\ 4 \end{bmatrix} = \begin{bmatrix} 4 \\ 6 \end{bmatrix}$
+  - To find $\\vec{w}$, add $ \vec{u}$ and $\vec{v}$ elementwise: $\begin{bmatrix} 1 \\ 2 \end{bmatrix} + \begin{bmatrix} 3 \\ 4 \end{bmatrix} = \begin{bmatrix} 4 \\ 6 \end{bmatrix}$
   - This is how `R` adds vectors---but note that in a linear algebra sense, **recycling is not allowed** and you can only add vectors with the same number of elements
 
 ---
@@ -105,7 +105,7 @@ level: 3
 <arrow v-click x1="500" y1="130" x2="710" y2="240" width="4" color="#56B4E9" />
 <arrow v-click x1="185" y1="410" x2="395" y2="520" width="4" color="#E69F00" />
 <arrow v-click x1="395" y1="520" x2="710" y2="240" width="4" color="#E69F00" />
-<div v-click x=500, y=500>Magnitude: Area of the paralellogram</div>
+<div v-click x=500, y=500>Magnitude: Area of the parallelogram</div>
 <div v-click x=500, y=500>Direction: Orthogonal to the screen</div>
 
 

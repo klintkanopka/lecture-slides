@@ -58,6 +58,7 @@ level: 3
 - How do practice finals change this?
   - They give students a chance to adjust to what the new task might be like (reducing overfitting)
   - They have to devote time spent studying to time spent taking practice tests (less training)
+  - Focusing too hard on the practice final may divert study time toward topics on the practice final but not the real final (increasing overfitting)
 
 </v-click>
 <v-click>

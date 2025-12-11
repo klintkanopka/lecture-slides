@@ -1,6 +1,6 @@
 # APSTA-GE 2352: Statistical Computing
 
-## Lecture 12
+## Lecture 13
 
-- Computer Architecture
-- Parallelization
+- Model Evaluation
+- Cross Validation
