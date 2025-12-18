@@ -93,7 +93,7 @@ level: 2
 
 # Model Evaluation
 
-- One way that classification models can be evaluated is using the $F_1$ score, which is the harmonic mean of precision and recall, where precision is proportion of predictive positive cases that were actually positive and recall is the proportion of actually positive cases that were predicted positive. The $F_1$ score is constructed as:
+- One way that classification models can be evaluated is using the $F_1$ score, which is the harmonic mean of precision and recall, where precision is the proportion of predicted positive cases that were actually positive and recall is the proportion of actually positive cases that were predicted positive. The $F_1$ score is constructed as:
 
 $$F_1 = \frac{2}{\text{precision}^{-1} + \text{recall}^{-1}}$$
 

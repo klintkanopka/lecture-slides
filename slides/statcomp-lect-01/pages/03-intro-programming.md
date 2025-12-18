@@ -228,7 +228,7 @@ level: 2
 - Some to get you started:
 
 ```r
-mean()     # find the mean of a standard vector
+mean()     # find the mean of a numeric vector
 sd()       # find the standard deviation of a numeric vector
 median()   # find the median of a numeric vector
 sort()     # return a copy of a vector with the elements sorted
