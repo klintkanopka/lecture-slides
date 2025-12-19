@@ -481,7 +481,7 @@ level: 3
 - Zombie topic: 
 ```r
 imdb_neg_raw |>
-  filter(review %in% c('8397_3.txt') |>
+  filter(review %in% c('8397_3.txt')) |>
   pull(text)
 ```
 

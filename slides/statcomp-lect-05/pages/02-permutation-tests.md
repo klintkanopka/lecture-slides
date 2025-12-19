@@ -267,7 +267,7 @@ set.seed(215)
 test_data <- data.frame(group = rep(c('A', 'B'), each=10),
                         score = c(round(rnorm(10, mean=90, sd=5)),
                                   round(rnorm(10, mean=75, sd=15))))
-true_diff <- mean(test_data$score[test_data=='A']) - mean(test_data$score[test_data=='B'])
+true_diff <- mean(test_data$score[test_data$group=='A']) - mean(test_data$score[test_data$group=='B'])
 
 true_diff
 ```
@@ -277,7 +277,7 @@ set.seed(215)
 test_data <- data.frame(group = rep(c('A', 'B'), each=10),
                         score = c(round(rnorm(10, mean=90, sd=5)),
                                   round(rnorm(10, mean=75, sd=15))))
-true_diff <- mean(test_data$score[test_data=='A']) - mean(test_data$score[test_data=='B'])
+true_diff <- mean(test_data$score[test_data$group=='A']) - mean(test_data$score[test_data$group=='B'])
 
 true_diff
 
@@ -450,7 +450,7 @@ true_diff
 test_data <- data.frame(group = rep(c('A', 'B'), each=1e4),
                         score = c(round(rnorm(1e4, mean=90, sd=5)),
                                   round(rnorm(1e4, mean=75, sd=15))))
-true_diff <- mean(test_data$score[test_data=='A']) - mean(test_data$score[test_data=='B'])
+true_diff <- mean(test_data$score[test_data$group=='A']) - mean(test_data$score[test_data$group=='B'])
 
 true_diff
 

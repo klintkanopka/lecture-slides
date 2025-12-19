@@ -34,7 +34,7 @@ level: 3
 - This is kind of the most obvious to implement (to me, at least)
 - Here's the plan:
   1. Find the smallest element in the vector
-  2. Move to to the front
+  2. Move it to the front
   3. Repeat 1-2 among the elements that are left until you're done
 - Where do we need the tools we've developed so far in this class?
   - Last week: Logical statements, functions, and unit testing

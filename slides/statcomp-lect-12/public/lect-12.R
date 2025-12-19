@@ -24,7 +24,7 @@ for (i in 1:n_locations) {
 
 # next we need a loss function to evaluate our proposed solution
 
-TripDist <- function(path, dist_matrix) {
+TripDist <- function(path, dist_mat) {
   total_dist <- 0
   for (i in seq_along(path)) {
     if (i == length(path)) {
@@ -68,7 +68,7 @@ TravelingSalesmanMCMC <- function(chain_id, N_iter, temp, dist_mat) {
       path <- new_path
     }
 
-    if (TripDist(path, dist_matrix) < TripDist(best, dist_mat)) {
+    if (TripDist(path, dist_mat) < TripDist(best, dist_mat)) {
       best <- path
     }
 
@@ -77,7 +77,7 @@ TravelingSalesmanMCMC <- function(chain_id, N_iter, temp, dist_mat) {
 
   out <- list(
     best = best,
-    best_dist = TripDist(path, dist_mat),
+    best_dist = TripDist(best, dist_mat),
     dist = data.frame(
       i = 1:N_iter,
       dist = dist,

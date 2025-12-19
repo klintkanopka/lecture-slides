@@ -34,7 +34,7 @@ mean(d$cocaine_ever == (d$p_hat_full > 0.5))
 # k fold CV!
 
 k <- 5
-d$fold <- sample(1:5, nrow(d), replace = TRUE)
+d$fold <- sample(1:k, nrow(d), replace = TRUE)
 d$p_hat_k5 <- 0
 
 for (i in 1:k) {

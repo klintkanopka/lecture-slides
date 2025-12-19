@@ -202,7 +202,7 @@ level: 3
 - Core idea: Topic models are basically principal component analysis performed on the DTM
 - A singular value decomposition (SVD) on the DTM is called Latent Semantic Analysis (LSA)
   - This is functionally the same as doing a PCA on the DTM
-  - Interpretation and use is identical - each "topic" is a dimension and words are more or less associated with each
+  - Interpretation and use are identical---each "topic" is a dimension and words are more or less associated with each
 - A better topic model is the Latent Dirichlet Allocation (LDA)
   - A Bayesian model (if you don't know what this means it doesn't super matter)
   - Structured as such:

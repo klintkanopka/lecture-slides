@@ -77,7 +77,7 @@ level: 2
 - Length of the output is the _maximum_ of the lengths of the inputs
 - How does this work?
   - `R` will paste the shorter object to itself end-to-end until it matches the length of the longer object
-  - If the longer object is an integer multiple of the length of the longer object, it does this silently
+  - If the shorter object is an integer multiple of the length of the longer object, it does this silently
   - If the longer object is not, it throws a warning, **but still produces output according to the same rules!**
 
 ---

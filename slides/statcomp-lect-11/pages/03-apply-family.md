@@ -28,7 +28,7 @@ level: 3
   - New environments protect data in the global environment
 - We can “hide loops”
   - The `apply()` family of functions does this really well
-  - These nests the entire loop we want to carry out inside of a function call
+  - These nest the entire loop we want to carry out inside of a function call
 
 ---
 level: 2

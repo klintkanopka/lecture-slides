@@ -311,7 +311,7 @@ ggplot(boot, aes(x = beta1)) +
 level: 3
 ---
 
-# Applied Boostrapping
+# Applied Bootstrapping
 
 - `lm()` estimate, SE, and 95% CI:
 
