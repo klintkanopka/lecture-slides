@@ -2,7 +2,7 @@
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: https://meet.nyu.edu/wp-content/uploads/2020/04/Main_Header.jpg
+background: /nyu-header.jpg
 title: Statistical Computing - Week 1
 author: Klint Kanopka
 info: |

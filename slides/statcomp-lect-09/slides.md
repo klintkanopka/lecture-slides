@@ -1,6 +1,6 @@
 ---
 theme: seriph
-background: https://meet.nyu.edu/wp-content/uploads/2020/04/Main_Header.jpg
+background: /nyu-header.jpg
 title: Statistical Computing - Week 9
 author: Klint Kanopka
 info: |
