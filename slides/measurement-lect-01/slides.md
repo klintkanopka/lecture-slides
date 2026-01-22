@@ -1,7 +1,7 @@
 ---
 theme: seriph
 background: /winter-park.jpg
-title: Modern Approaches in Measurement - Week 1
+title: Measurement - Week 1
 author: Klint Kanopka
 info: |
   ## APSTA-GE 2094 / APSY-GE 2524: Modern Approaches in Measurement 

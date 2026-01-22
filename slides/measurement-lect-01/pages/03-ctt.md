@@ -11,11 +11,12 @@ level: 3
 
 # Some Item Response Data
 
-The dataset `frac20_noq.csv` contains a selection of responses to math items about fractions. These data are stored in _long form_, with three columns:
 
-- `id` contains a `numeric` code that uniquely identifies each respondent. 
-- `item` contains a `string` that identifies each individual item
-- `resp` contains a `numeric` code for each respondent-item pair, containing `1` if that respondent answered correctly and `0` if they answered incorrectly
+
+- The dataset `frac20_noq.csv` (downloadable [here](https://raw.githubusercontent.com/klintkanopka/lecture-slides/refs/heads/main/slides/measurement-lect-01/public/frac20_noq.csv)) contains a selection of responses to math items about fractions. These data are stored in _long form_, with three columns:
+  - `id` contains a `numeric` code that uniquely identifies each respondent. 
+  - `item` contains a `string` that identifies each individual item
+  - `resp` contains a `numeric` code for each respondent-item pair, containing `1` if that respondent answered correctly and `0` if they answered incorrectly
 
 ---
 level: 3
