@@ -1,12 +1,12 @@
 ---
-level: 2
+level: 1
 layout: section
 ---
 
 # Measurement
 
 ---
-level: 3
+level: 2
 ---
 
 # Measurement
@@ -22,7 +22,7 @@ level: 3
 [^2]: Nominal quantities are often _not_ considered measurements, but we are going to talk about them in the second half of the course
 
 ---
-level: 3
+level: 2
 ---
 
 # Units and Scales

@@ -7,11 +7,10 @@ layout: section
 
 ---
 level: 3
+hideInToc: true
 ---
 
 # Some Item Response Data
-
-
 
 - The dataset `frac20_noq.csv` (downloadable [here](https://raw.githubusercontent.com/klintkanopka/lecture-slides/refs/heads/main/slides/measurement-lect-01/public/frac20_noq.csv)) contains a selection of responses to math items about fractions. These data are stored in _long form_, with three columns:
   - `id` contains a `numeric` code that uniquely identifies each respondent. 
@@ -250,7 +249,7 @@ level: 3
 
 
 ---
-level: 3
+level: 2
 layout: section
 ---
 
@@ -285,7 +284,7 @@ level: 3
 - **Differential Item Functioning (DIF)** - (item level) occurs when the probability of response depends on group membership
 
 ---
-level: 3
+level: 2
 ---
 
 # Ability
@@ -323,7 +322,7 @@ ggplot(sum_scores, aes(x = sum_score)) +
 ```
 
 ---
-level: 3
+level: 2
 ---
 
 # Difficulty
@@ -355,7 +354,7 @@ ggplot(diff, aes(x = p, y=reorder(item,p))) +
 ```
 
 ---
-level: 3
+level: 2
 ---
 
 # Discrimination 
@@ -392,7 +391,7 @@ ggplot(disc, aes(x = a, y = reorder(item, a))) +
   theme_bw()
 ```
 ---
-level: 3
+level: 2
 ---
 
 # Differential Item Functioning

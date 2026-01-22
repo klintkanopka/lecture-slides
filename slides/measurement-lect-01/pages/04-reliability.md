@@ -3,10 +3,10 @@ level: 1
 layout: section
 ---
 
-# Reliability
+# Test and Score Properties
 
 ---
-level: 3
+level: 2
 ---
 
 # Reliability
@@ -34,7 +34,7 @@ level: 3
 [^1]: see the _Standards for Educational and Psychological Testing_
 
 ---
-level: 3
+level: 2
 ---
 
 # Validity

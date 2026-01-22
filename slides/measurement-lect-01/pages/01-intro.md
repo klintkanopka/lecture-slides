@@ -11,6 +11,7 @@ transition: fade
 ---
 level: 2
 layout: section
+hideInToc: true
 ---
 
 # Modern Approaches in (Psychological) Measurement
