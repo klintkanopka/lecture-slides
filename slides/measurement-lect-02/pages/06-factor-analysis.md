@@ -241,3 +241,17 @@ level: 3
 - Factor loadings can be used to interpreted and describe the factors
 - Individual scores on these factors can be recovered
 - Generally, the use and interpretation are the same as in PCA
+
+---
+level: 1
+---
+
+# PCA and EFA Practice
+
+- In a group of $3 \pm 1$:
+  - Download [machivallianism_test_main.csv](https://github.com/klintkanopka/lecture-slides/blob/main/slides/measurement-lect-02/public/machivallianism_test_main.csv)
+  - Download [machivallianism_codebook.txt](https://github.com/klintkanopka/lecture-slides/blob/main/slides/measurement-lect-02/public/machivallianism_codebook.txt)
+  - Fit a PCA or EFA
+  - Select a number of dimensions or factors
+  - Interpret each dimension
+  - Make a scatter plot of respondents projected onto the first two factors

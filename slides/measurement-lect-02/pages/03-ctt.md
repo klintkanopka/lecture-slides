@@ -12,7 +12,8 @@ hideInToc: true
 
 # More Item Response Data
 
-- The dataset `animalfights_clean.rds` (downloadable [here](https://raw.githubusercontent.com/klintkanopka/lecture-slides/refs/heads/main/slides/measurement-lect-01/public/frac20_noq.csv)) is a pre-cleaned version of the data from PS0. 
+- The dataset `animalfights_clean.rds` (downloadable [here](https://github.com/klintkanopka/lecture-slides/blob/main/slides/measurement-lect-02/public/animalfights_clean.rds)) is a pre-cleaned version of the data from PS0. 
+- Code used in todays lecture is downloadable [here](https://github.com/klintkanopka/lecture-slides/blob/main/slides/measurement-lect-02/public/lect-02.R)
 - In a group of $3 \pm 1$ take ten minutes to:
   1. Compute the ability (sum score) for each respondent and plot a distribution
   2. Compute the difficulty ($p$-value) for each item and plot them in order of difficulty
