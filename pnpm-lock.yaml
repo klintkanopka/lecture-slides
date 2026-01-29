@@ -67,6 +67,24 @@ importers:
         specifier: ^0.5.5
         version: 0.5.5
 
+  slides/measurement-lect-02:
+    dependencies:
+      '@slidev/cli':
+        specifier: 'catalog:'
+        version: 52.0.0(@babel/parser@7.28.4)(@nuxt/kit@3.17.7)(@types/markdown-it@14.1.2)(@types/node@22.16.3)(@vue/compiler-sfc@3.5.22)(lightningcss@1.30.2)(markdown-it-async@2.2.0)(playwright-chromium@1.56.1)(postcss@8.5.6)(react@18.3.1)(tsx@4.20.5)
+      '@slidev/theme-default':
+        specifier: 'catalog:'
+        version: 0.25.0
+      '@slidev/theme-seriph':
+        specifier: 'catalog:'
+        version: 0.25.0
+      vue:
+        specifier: 'catalog:'
+        version: 3.5.17(typescript@5.9.3)
+      webr:
+        specifier: ^0.5.5
+        version: 0.5.5
+
   slides/statcomp-lect-01:
     dependencies:
       '@slidev/cli':
