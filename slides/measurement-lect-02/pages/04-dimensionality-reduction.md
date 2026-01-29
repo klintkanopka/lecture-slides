@@ -3,11 +3,26 @@ level: 1
 layout: section
 ---
 
-# Dimensionality Reduction
+# Multidimensionality
 
 ---
 level: 2
 hideInToc: true
+---
+
+# Multidimensionality 
+
+- Sometimes when you build a full survey or test with the aim of measuring one thing, you end up measuring multiple things
+  - We call this "multidimensionality" in general; it can be planned and a good thing!
+  - It can also be a source of construct irrelevant variance
+  - Distinguishing between the two is important!
+  - When might this occur?
+- We want statistical tools to try to identify and classify multidimensionality
+  - Broadly, we'll lean on techniques of _dimensionality reduction_
+  - The two we'll focus on here are PCA and Factor Analysis
+
+---
+level: 2
 ---
 
 # Dimensionality Reduction (Conceptually)
