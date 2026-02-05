@@ -13,11 +13,15 @@ hideInToc: true
 
 # A Familiar Dataset
 
+- Data are available [here](https://github.com/klintkanopka/lecture-slides/raw/refs/heads/main/slides/measurement-lect-03/public/animalfights_clean.rds)
+- Lecture code is available [here](https://github.com/klintkanopka/lecture-slides/blob/main/slides/measurement-lect-03/public/lect-03.R)
+
 ```r
 d <- read_rds('animalfights_clean.rds')
 
 # Isolate the item response matrix
-resp <- d |> select(starts_with('d_'))
+resp <- d |> 
+  select(starts_with('d_'))
 ```
 ---
 level: 3
@@ -26,24 +30,28 @@ level: 3
 # Fitting a 1PL
 
 ```r
+# Estimate the model
 m_1pl <- mirt(resp, 1, itemtype='Rasch')
 
 # Check default item parameterization
 coef(m_1pl)
 
-# Extract something less stupid
+# Extract something in a better form
 params_1pl <- coef(m_1pl, IRTpars = TRUE, simplify = TRUE)
 
 # Generate ability estimates for each person
 thetas_1pl <- fscores(m_1pl)
-
 ```
+
+1. What do these objects look like? What components do they have?
+2. What is the difference between the output from `coef(m_1pl)` and the output when `IRTpars=TRUE`?
+3. What comes out of the `fscores()` function?
 
 ---
 level: 3
 ---
 
-# Fitting a 1PL
+# Fitting a 2PL
 
 ```r
 m_2pl <- mirt(resp, 1, itemtype='2PL')
@@ -57,6 +65,9 @@ params_2pl <- coef(m_2pl, IRTpars = TRUE, simplify = TRUE)
 # Generate ability estimates for each person
 thetas_2pl <- fscores(m_2pl)
 ```
+
+1. What is different between the output from the 1PL and 2PL?
+2. What is the difference between the output from `coef(m_2pl)` and the output when `IRTpars=TRUE`?
 
 ---
 level: 3
