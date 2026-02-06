@@ -180,31 +180,36 @@ data.frame(theta = seq(-4, 4,
 level: 3
 ---
 
-# Important IRT estimation stuff
+# Scale Identification
 
-- We will use the package `mirt`
-  - Short for "multidimensional item response theory"
-  - Absolutely the best IRT package in `R`
 - The scale that everything gets projected to is not _identified_
-- There are lots of different ways to enforce identification, `mirt` does two things:
-  - $\bar{b}_j = 0$
-  - $a_1 = 1$
-- `mirt` also does one other weird thing...
+  - This means there are an infinite number of possible item parameters and person abilities that will produce the same predicted probabilities
+- There are generally two approaches to enforcing identification in IRT models:
+  
+  1. Fix something about the ability distribution
+      - For a 1PL, fix $\bar{\theta} = 0$ and estimate the variance:
+        - $\theta \sim \mathcal{N}(0,\sigma^2)$
+      - Otherwise fix the ability distribution to be standard normal:
+        - $\theta \sim \mathcal{N}(0,\sigma^2)$
+2. Fix some item parameters:
+      - $\bar{b}_j = 0$
+      - $a_1 = 1$
 
 ---
 level: 3
 ---
 
-# Extracting item parameters from a `mirt` model
+# Estimation Odds and Ends
 
-- What `mirt` actually estimates for a 2PL is this:
+- We will use the package `mirt`
+  - Short for "multidimensional item response theory"
+  - Absolutely the best IRT package in `R`
+- `mirt` does one weird thing, however! It writes models like this:
 
   $$P(X_{ij} = 1 | \theta_i) = \frac{1}{1 + e^{-a_j\theta_i + b_j}}$$
 
-- Note that instead of $-a_j(\theta_i - b_j)$, it is using $(-a_j\theta_i + b_j)$
-  - Called a _slope-intercept_ paramterization
-  - This is because `mirt` is designed to be flexible with multidimensional (i.e., multiple $\theta$s per person) models
+- Observe that instead of $-a_j(\theta_i - b_j)$, it is using $(-a_j\theta_i + b_j)$
+  - Called a _slope-intercept_ parameterization
+  - This is because `mirt` is designed for multidimensional (i.e., multiple $\theta$s per person) models
   - This means we interpret the default display of the $b$ parameter from `mirt` as an _easiness_ parameter
-- This is awful, so you can get the parameters in a nicer form
   - Try `params <- coef(model, IRTpars = TRUE, simplify = TRUE)`
-  - `IRTpars=TRUE` is doing most of the work here

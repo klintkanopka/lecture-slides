@@ -204,7 +204,7 @@ level: 3
 
 # PCA vs. Factor Analysis
 
-- The point of PCA is rotate your coordinates so that you can capture most of your data's information on a smaller number of variables
+- The point of PCA is to rotate your coordinates so that you can capture most of your data's information on a smaller number of variables
   - Sometimes we say we are _projecting_ our data onto fewer dimensions
 - Factor analysis does basically the same job, but in a _really_ different way
   - A factor is like a dimension or a principal component, it's a new axis to project your higher dimensional data onto
