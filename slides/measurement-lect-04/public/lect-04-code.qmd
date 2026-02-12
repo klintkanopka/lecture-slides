@@ -1,0 +1,128 @@
+---
+title: "Lecture 4 Code"
+format: pdf
+---
+
+# Lecture 4: Using more complex IRT models
+
+We will apply item response theory to something you may not think of as item responses: Supreme Court voting records.
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(mirt)
+library(psych)
+
+setwd('~/courses/apsta-2094/wk04')
+load('data/SCDB_2022_01_justiceCentered_Citation.Rdata')
+```
+
+This activity is heavily inspired by work done by Andrew Martin and Kevin Quinn. Data come from the Washington University Law Supreme Court Database Codebook available here: http://scdb.wustl.edu/documentation.php
+
+This data requires some pre-preparation. Specifically we are going to only consider cases after 2000. Additionally we recode majority opinion/concurrence as 1 and dissent at 0, dropping everything else. We also drop court cases where there is no disagreement.
+
+```{r}
+
+d <- SCDB_2022_01_justiceCentered_Citation |> 
+  filter(year(dateDecision) >= 2000) |> 
+  select(caseId, justiceName, vote) |> 
+  mutate(vote = case_when(vote %in% c(1, 3) ~ 1,
+                          vote == 2 ~ 0,
+                          TRUE ~ NA_real_)) |> 
+  na.omit() |>
+  group_by(caseId) |> 
+  mutate(var=var(vote, na.rm=T)) |> 
+  filter(var != 0) |> 
+  pivot_wider(id_cols=justiceName, names_from=caseId, values_from=vote)
+
+```
+
+We are going to talk about two models today:
+
+1.  A 1PL (or Rasch) model
+2.  A 2PL model
+
+Let's start by trying to fit these three models and then go talk about other stuff while they fit. Note that the 2PL will throw a warning, because it has some convergence issues! We can fix this by specifying more quadrature points using the `quadpts` argument, increasing the number of EM cycles using `NCYCLES` inside of the `technical` argument, or putting priors on the item parameters and moving to Bayesian estimation. We won't do any of that here because the model is slow to fit and the difference in the solution is quite small!
+
+```{r}
+resp <- select(d, -justiceName) # mirt doesn't want respondent ids
+m1 <- mirt(resp, model=1, itemtype='Rasch')
+m2 <- mirt(resp, model=1, itemtype='2PL')
+```
+
+Let's estimate $\theta$s for each justice from the 1PL model, put them on a scale, and then interpret it:
+
+```{r}
+
+d$onepl_score <- fscores(m1) # estimate scores for justices and append it
+
+
+ggplot(d, aes(x=onepl_score, y=reorder(justiceName, onepl_score))) +
+  geom_point(size=2, color='darkorchid') +
+  theme_minimal()
+```
+
+Next let's compare model fit for 1PL and 2PL models, estimate $\theta$s from the 2PL, and then interpret them:
+
+```{r}
+anova(m1, m2) 
+
+d$twopl_score <- fscores(m2)
+
+ggplot(d, aes(x=twopl_score, y=reorder(justiceName, twopl_score))) +
+  geom_point(size=2, color='darkorchid') +
+  theme_minimal()
+
+```
+
+Let's look at cases themselves. We can start with a (better) way to pull out item parameters and attach some case names.
+
+```{r}
+
+case_names <- SCDB_2022_01_justiceCentered_Citation |> 
+  select(caseId, caseName) |> 
+  distinct()
+
+items <- data.frame(coef(m2, simplify=TRUE)$items) |> 
+  select(-g, -u) |> 
+  rownames_to_column('caseId') |> 
+  left_join(case_names, by='caseId') |> 
+  mutate(d = -1*d) # mirt uses "easiness" instead of "difficulty," so we flip it
+
+ggplot(items, aes(x=d, y=a1)) +
+  geom_point() +
+  theme_bw()
+
+```
+
+What is the relationship between the item parameters we estimated? What do these IRFs look like?
+
+```{r}
+# Top 5 extreme "positive" cases
+
+items |> 
+  arrange(-d) |> 
+  head(5) |> 
+  pull(caseName)
+
+# Top 5 extreme "negative" cases
+
+items |> 
+  arrange(d) |> 
+  head(5) |> 
+  pull(caseName)
+
+# Cases with small difficulties
+
+items |>
+  filter(abs(d) < 1) |> 
+  arrange(d)
+```
+
+For the extreme cases, who votes with the majority opinion? Who votes with the majority in the cases with difficulties near zero?
+
+Do we really think this data is unidimensional model, however? Let's fit a factor analysis and investigate. Note that typically, we would do this first!
+
+```{r}
+
+```
