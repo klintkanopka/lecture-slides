@@ -18,7 +18,7 @@ hideInToc: true
   - We can model multiple latent traits simultaneously
   - We can include covariates that we believe are related to the response process
 - Assignment reminders:
-  - PS1 due tonight
+  - PS1 due tomorrow
   - PS2 posted! It contains multidimensional IRT and explanatory modeling
 
 ---
