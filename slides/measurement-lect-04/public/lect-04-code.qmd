@@ -12,6 +12,7 @@ library(tidyverse)
 library(lubridate)
 library(mirt)
 library(psych)
+library(see)
 
 setwd('~/courses/apsta-2094/wk04')
 load('data/SCDB_2022_01_justiceCentered_Citation.Rdata')
@@ -56,10 +57,9 @@ Let's estimate $\theta$s for each justice from the 1PL model, put them on a scal
 
 d$onepl_score <- fscores(m1) # estimate scores for justices and append it
 
-
 ggplot(d, aes(x=onepl_score, y=reorder(justiceName, onepl_score))) +
-  geom_point(size=2, color='darkorchid') +
-  theme_minimal()
+  geom_point(size=2, color=okabeito_colors(3)) +
+  theme_bw()
 ```
 
 Next let's compare model fit for 1PL and 2PL models, estimate $\theta$s from the 2PL, and then interpret them:
@@ -70,9 +70,8 @@ anova(m1, m2)
 d$twopl_score <- fscores(m2)
 
 ggplot(d, aes(x=twopl_score, y=reorder(justiceName, twopl_score))) +
-  geom_point(size=2, color='darkorchid') +
-  theme_minimal()
-
+  geom_point(size=2, color=okabeito_colors(3)) +
+  theme_bw()
 ```
 
 Let's look at cases themselves. We can start with a (better) way to pull out item parameters and attach some case names.
@@ -83,16 +82,10 @@ case_names <- SCDB_2022_01_justiceCentered_Citation |>
   select(caseId, caseName) |> 
   distinct()
 
-items <- data.frame(coef(m2, simplify=TRUE)$items) |> 
+items <- data.frame(coef(m2, IRTpars=TRUE, simplify=TRUE)$items) |> 
   select(-g, -u) |> 
   rownames_to_column('caseId') |> 
-  left_join(case_names, by='caseId') |> 
-  mutate(d = -1*d) # mirt uses "easiness" instead of "difficulty," so we flip it
-
-ggplot(items, aes(x=d, y=a1)) +
-  geom_point() +
-  theme_bw()
-
+  left_join(case_names, by='caseId')
 ```
 
 What is the relationship between the item parameters we estimated? What do these IRFs look like?
@@ -101,22 +94,22 @@ What is the relationship between the item parameters we estimated? What do these
 # Top 5 extreme "positive" cases
 
 items |> 
-  arrange(-d) |> 
+  arrange(-b) |> 
   head(5) |> 
   pull(caseName)
 
 # Top 5 extreme "negative" cases
 
 items |> 
-  arrange(d) |> 
+  arrange(b) |> 
   head(5) |> 
   pull(caseName)
 
 # Cases with small difficulties
 
 items |>
-  filter(abs(d) < 1) |> 
-  arrange(d)
+  filter(abs(b) < 1) |> 
+  arrange(b)
 ```
 
 For the extreme cases, who votes with the majority opinion? Who votes with the majority in the cases with difficulties near zero?
