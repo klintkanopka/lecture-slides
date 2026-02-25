@@ -1,5 +1,10 @@
 baseUrl: /lecture-slides
+
 hero:
-  title: Lecture Slides
+  title: Klint Kanopka
   description: >
     A searchable and interactive repository of slides for courses I've taught and talks I've given.
+
+sidebar:
+  title: "Lecture Slides"
+  githubUrl: "https://github.com/klintkanopka/lecture-slides"
