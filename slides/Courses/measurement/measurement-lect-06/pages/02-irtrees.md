@@ -51,7 +51,7 @@ level: 3
   - I am a hard worker. (_Strongly Disagree, Disagree, Agree, Strongly Agree_)
   - What is your gender? (_Male, Female_)
 
-<v-click>
+<v-clicks>
 
 - Let's write down the data structure
   - Follow an individual's response through the decision tree

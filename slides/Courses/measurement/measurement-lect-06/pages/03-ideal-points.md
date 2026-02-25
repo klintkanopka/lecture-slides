@@ -25,13 +25,13 @@ level: 3
 ---
  
 ## Buying Jeans: Too Small
-![Skinny Jeans](img/skinny-jeans.jpg)
+[Skinny Jeans](img/skinny-jeans.jpg)
 
 ## Buying Jeans: Too Big
-![JNCO Jeans](img/jnco.png)
+[JNCO Jeans](img/jnco.png)
 
 ## Buying Jeans: Just Right (for me)
-![Reasonable Jeans](img/middle.jpg)
+[Reasonable Jeans](img/middle.jpg)
 
 ## Buying Jeans
 
