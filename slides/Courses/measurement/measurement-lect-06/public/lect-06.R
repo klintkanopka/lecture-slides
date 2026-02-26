@@ -1,9 +1,65 @@
 library(tidyverse)
 library(mirt)
+library(see)
 
 setwd(
-  '~/projects/lecture-slides/slides/Courses/measurement/measurement-lect-05/public'
+  '~/projects/lecture-slides/slides/Courses/measurement/measurement-lect-06/public'
 )
+
+# IRT models
+
+d <- read_csv('empathizing_systemizing.csv')
+
+unique(d$resp)
+
+# [1]  1  2  3  4 NA
+
+resp <- d |>
+  pivot_wider(
+    id_cols = id,
+    names_prefix = 'item_',
+    names_from = item,
+    values_from = resp
+  ) |>
+  select(-id)
+
+tree_resp_node_1 <- resp
+tree_resp_node_1[is.na(resp)] <- 0
+tree_resp_node_1[!is.na(resp)] <- 1
+colnames(tree_resp_node_1) <- paste0('F1_', colnames(tree_resp_node_1))
+
+tree_resp_node_2 <- resp
+tree_resp_node_2[resp <= 2] <- 0
+tree_resp_node_2[resp >= 3] <- 1
+colnames(tree_resp_node_2) <- paste0('F2_', colnames(tree_resp_node_2))
+
+tree_resp_node_3 <- resp
+tree_resp_node_3[resp == 2] <- 0
+tree_resp_node_3[resp == 3] <- 0
+tree_resp_node_3[resp == 1] <- 1
+tree_resp_node_3[resp == 4] <- 1
+colnames(tree_resp_node_3) <- paste0('F3_', colnames(tree_resp_node_3))
+
+
+tree_resp <- bind_cols(tree_resp_node_1, tree_resp_node_2, tree_resp_node_3)
+
+rm('tree_resp_node_1', 'tree_resp_node_2', 'tree_resp_node_3')
+
+s <- 'RESPOND = F1_item_1-F1_item_120
+      AGREE = F2_item_1-F2_item_120
+      STRONG = F3_item_1-F3_item_120'
+
+tree_model <- mirt.model(s, itemnames = names(tree_resp))
+
+system.time(m <- mirt(tree_resp, tree_model, itemtype = 'Rasch'))
+
+system.time(thetas <- fscores(m))
+
+tree_pars <- coef(m, IRTpars = TRUE, simplify = TRUE)
+tree_pars
+
+
+# Elo Models
 
 GenSquashData <- function(n_matches = 100, n_players = 10, seed = 8675309) {
   set.seed(seed)
@@ -53,11 +109,6 @@ cor(sol$par, true_theta)
 plot(sol$par, true_theta)
 
 
-setwd('~/courses/apsta-2094-s2425/wk06')
-saveRDS(d, 'data/squash_matches.rds')
-saveRDS(true_theta, 'data/true_squash_theta.rds')
-
-
 tmp <- d |>
   mutate(win = if_else(result == 1, player_1, player_2)) |>
   mutate(loss = if_else(result == 0, player_1, player_2))
@@ -71,15 +122,19 @@ losses <- tmp |>
   select(player = loss, losses = n)
 
 
-tot <- full_join(wins, losses, by = 'player')
+tot <- full_join(wins, losses, by = 'player') |>
+  arrange(player)
 
 tot[is.na(tot)] <- 0
 
 tot <- tot |>
-  mutate(p = wins / (wins + losses)) |>
-  mutate(theta = true_theta)
+  mutate(p = wins / (wins + losses), theta = sol$par, n = wins + losses)
 
-ggplot(tot, aes(x = p, y = theta)) +
-  geom_point()
+ggplot(tot, aes(x = p, y = theta, color = n)) +
+  scale_color_viridis_c() +
+  geom_point() +
+  theme_bw()
+
+ggsave('elo-output.svg', height = 4.5, width = 4)
 
 cor(tot$p, tot$theta)

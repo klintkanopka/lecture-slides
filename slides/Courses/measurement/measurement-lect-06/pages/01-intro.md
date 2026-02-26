@@ -21,6 +21,7 @@ level: 2
 
 # Announcements
 
+- Old slide `.pdf` links are currently broken, since I reorganized the github repo I host my slides from
 - PS2 is due tomorrow (2.13 @ 11.59p)
 - PS0 and PS1 grades are posted
     - These were good

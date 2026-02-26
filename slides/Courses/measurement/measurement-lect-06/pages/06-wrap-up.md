@@ -13,14 +13,16 @@ hideInToc: true
 
 # Recap
 
-- If you have questions tied to your own research/work, please reach out
-- Core idea: polytomous models imply fundamental dichotomizations
-  - Adjacent categories
-  - Thresholding
-  - One-vs-all
-- These are all estimable in `mirt`
-  - The model you select implies how strongly you believe in response ordering
-  - For polytomous items, parameters need to be interpreted together
+- IRTrees are _incredibly_ flexible and useful for way more than you'd expect
+- Unfolding models can be useful for expressing preferences with the Goldilocks property
+- Elo-like systems can be useful for head-to-head competition
+- This was our last lecture on vanilla-ish IRT!
+- Next week we'll take a detour into topic models
+  - Or, as we civilized folk say, "factor analysis for words"
+- After next week, we'll bust into _categorical_ latent variables
+  - We'll start with clustering, then get kinda weird
+- PS3 is out! 
+  - Polytomous IRT, IRTrees, and a fun surprise!
 
 
 ---
