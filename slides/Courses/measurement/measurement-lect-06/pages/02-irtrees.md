@@ -196,9 +196,9 @@ tree_resp_node_3[resp %in% c(1, 4)] <- 1
 colnames(tree_resp_node_3) <- paste0('F3_', colnames(tree_resp_node_3))
 
 ```
-
 ````
 
+---
 level: 3
 ---
 
