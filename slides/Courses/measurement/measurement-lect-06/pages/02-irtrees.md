@@ -79,7 +79,7 @@ level: 3
   - (2) slightly disagree
   - (3) slightly agree
   - (4) strongly agree
-- Download the data [here](http://github.com/klintkanopka/lecture-slides/slides/Courses/measurement/measurement-lect-06/public/empathizing_systemizing.csv) (redistributed from the Item Response Warehouse)
+- Download the data [here](https://github.com/klintkanopka/lecture-slides/blob/main/slides/Courses/measurement/measurement-lect-06/public/empathizing_systemizing.csv) (redistributed from the Item Response Warehouse)
 
 ```r
 d <- read_csv('empathizing_systemizing.csv')

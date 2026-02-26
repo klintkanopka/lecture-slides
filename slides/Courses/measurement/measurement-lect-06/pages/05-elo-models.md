@@ -5,16 +5,31 @@ level: 2
 # Elo Models
 
 - Used in chess and other competitive sports
+
+<v-click>
+
 - We think the probability of winning is related to the difference in two players' abilities
 
 $$P(A \text{ defeats }B|\theta_A,\theta_B) = \frac{1}{1+\exp\big(-k(\theta_A - \theta_B)\big)}$$
 
+</v-click>
+<v-click>
+
 - Here, $k$ is just a scaling factor that is preselected to work with the desired $\theta$ scale
+
+</v-click>
+<v-click>
+
 - This functional form allows for making updates to individual abilities after each competition like this:
 
 $$ \theta_A^{i+1} = \theta_A^i + k\big(X_{AB} - P(x_{AB}=1)\big) $$
 
-- Note adjustments to abilities are small if the win was a "sure thing" and huge if the win was an upset!
+</v-click>
+<v-click>
+
+- Note that $k$ sets the scale and adjustments to abilities are small if the win was a "sure thing" and huge if the win was an upset!
+
+</v-click>
 
 ---
 level: 3
@@ -27,7 +42,7 @@ level: 3
 - The plan:
     - Write out a log likelihood function
     - Use `optim()` to find the solutions
-    - Feel free to download my code [here]()
+    - Feel free to download my code [here](https://github.com/klintkanopka/lecture-slides/blob/main/slides/Courses/measurement/measurement-lect-06/public/lect-06.R)
 
 ````md magic-move
 ```r

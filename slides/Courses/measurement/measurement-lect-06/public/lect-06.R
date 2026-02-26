@@ -1,6 +1,7 @@
 library(tidyverse)
 library(mirt)
 library(see)
+library(viridis)
 
 setwd(
   '~/projects/lecture-slides/slides/Courses/measurement/measurement-lect-06/public'
