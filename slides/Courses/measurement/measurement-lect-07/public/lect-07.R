@@ -294,3 +294,15 @@ tf_idf |>
   theme_bw()
 
 ggsave('tf-idf.svg', height = 4.5, width = 4)
+
+
+library(stm)
+
+food <- textProcessor(documents = food_text$Text, onlycharacter = TRUE)
+
+food <- prepDocuments(food$documents, food$vocab, food$meta, lower.thresh = 3)
+
+search <- searchK(food$documents, food$vocab, K = 0)
+out <- searchK(food$documents, food$vocab, K = 3:8)
+
+plot(out)

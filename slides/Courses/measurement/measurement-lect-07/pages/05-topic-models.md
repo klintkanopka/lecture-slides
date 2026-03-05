@@ -31,9 +31,9 @@ food_tokens <- food_tokens |>
   anti_join(stop_words)
 
 food_counts <- food_tokens |>
+  mutate(stem = wordStem(word)) |>
   group_by(review, word) |>
-  summarize(n = n(), .groups = 'drop')|>
-  mutate(stem = wordStem(word))
+  summarize(n = n(), .groups = 'drop')
 ```
 
 ---

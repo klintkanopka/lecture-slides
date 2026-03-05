@@ -30,7 +30,7 @@ $$ \text{tf}(t, d) = \frac{f_{t,d}}{\sum_{t'\in d} f_{t',d}} $$
 <v-click>
 
 - We can look at how common tokens are across documents (often _inverse document frequency_)
-$$ \text{idf}(t, D) = \ln \frac{N}{d\in D: t\in D} $$ 
+$$ \text{idf}(t, D) = \ln \frac{N}{d\in D: t\in d} $$ 
 
 </v-click>
 <v-click>
