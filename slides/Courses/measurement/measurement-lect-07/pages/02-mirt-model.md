@@ -98,18 +98,24 @@ level: 3
 
 # The `pars` argument in `mirt()`
 
-- The `mirt()` function has an argument called `pars` that allows a data frame to specify names, starting values, and whether or not individual parameters are estimated
+- The `mirt()` function has an argument called `pars` that allows a dataframe to specify names, starting values, and whether or not individual parameters are estimated
   - If you set `pars='values'` and run a `mirt()` call, it won't actually fit a model, it will just output this data frame
   - You can then _modify_ this data frame however you like
   - Pass it back to the `pars=` argument and `mirt()` will use it
-- Why is this helpful?
-  - Factor structure is entirely specified by the discrimination parameters!
-  - A three factor model looks like: $\sigma \big (a_1\theta_1 + a_2 \theta_2 + a_3 \theta_3 + b \big )$
-  - To enforce a Rasch structure with only the second factor, we can set $a_2 =1$ and $a_1 = a_3 = 0$
-  - The `pars` data frame has a column called `est` that takes a logical value
-    - For a parameter, if `est == TRUE`, `mirt()` will use MLE to estimate the parameter
-    - If `est == FALSE`, `mirt()` will fix it to its starting value
-  - We set the `value` all of the `a1, a2, a3` parameters to either `1` or `0` _and_ `est==FALSE` to manually specify the factor structure
+
+---
+level: 3
+---
+
+# Why is the `pars` dataframe useful?
+
+- Factor structure is entirely specified by the discrimination parameters!
+- A three factor model looks like: $\sigma \big (a_1\theta_1 + a_2 \theta_2 + a_3 \theta_3 + b \big )$
+- To enforce a Rasch structure with only the second factor, we can set $a_2 =1$ and $a_1 = a_3 = 0$
+- The `pars` data frame has a column called `est` that takes a logical value
+  - For a parameter, if `est == TRUE`, `mirt()` will use MLE to estimate the parameter
+  - If `est == FALSE`, `mirt()` will fix it to its starting value
+- We set the `value` all of the `a1, a2, a3` parameters to either `1` or `0` _and_ `est==FALSE` to manually specify the factor structure
 
 
 
@@ -117,7 +123,7 @@ level: 3
 level: 3
 ---
 
-# The `pars` argument in `mirt()`
+# Using the `pars` argument in `mirt()`
 
 - First extract your `pars` matrix: 
   - `parmat <- mirt(resp, 3, pars='values')`

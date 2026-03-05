@@ -21,12 +21,6 @@ level: 2
 
 # Announcements
 
-- Old slide `.pdf` links are currently broken, since I reorganized the github repo I host my slides from
-- PS2 is due tomorrow (2.13 @ 11.59p)
-- PS0 and PS1 grades are posted
-    - These were good
-    - If I made mistakes, submit a regrade request through Gradescope
-- PS0 and PS1 solutions are posted
-    - These are available on the Problem Sets tab on Brightspace
-- PS3 is posted (due 3.20 @ 11.59p)
-- PS4 will be due 4.3 @ 11.59p
+- We have Measurement class next week
+- If you are in my GLM course in the second half of the semester, **we do not have class next week**
+- PS3 is due after spring break

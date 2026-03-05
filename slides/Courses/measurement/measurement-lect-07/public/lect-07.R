@@ -119,7 +119,9 @@ food_counts <- food_tokens |>
 
 tf_idf <- bind_tf_idf(food_counts, stem, review, n)
 
-food_text$Text[target]
+target <- 212418
+
+food_text$Text[food_text$Id == target]
 
 tf_idf |>
   filter(review == target) |>
@@ -133,7 +135,9 @@ tf_idf |>
 
 # the document-term matrix and topic modeling
 
-dtm <- cast_dtm(food_counts, review, stem, n)
+dtm <- food_counts |>
+  filter(!stem %in% c('br')) |>
+  cast_dtm(review, stem, n)
 
 food_lda <- LDA(dtm, k = 2)
 
@@ -152,7 +156,32 @@ food_top_terms |>
   facet_wrap(. ~ topic, scales = 'free') +
   scale_y_reordered() +
   scale_fill_okabeito() +
+  labs(y = NULL) +
   theme_bw()
+
+ggsave('lda-2-topics.svg', height = 4.5, width = 4)
+
+food_lda <- LDA(dtm, k = 4)
+
+food_topics <- tidy(food_lda, matrix = 'beta')
+
+food_top_terms <- food_topics |>
+  group_by(topic) |>
+  slice_max(beta, n = 10) |>
+  ungroup() |>
+  arrange(topic, -beta)
+
+food_top_terms |>
+  mutate(term = reorder_within(term, beta, topic)) |>
+  ggplot(aes(x = beta, y = term, fill = as.character(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(. ~ topic, scales = 'free') +
+  scale_y_reordered() +
+  scale_fill_okabeito() +
+  labs(y = NULL) +
+  theme_bw()
+
+ggsave('lda-4-topics.svg', height = 4.5, width = 4)
 
 
 food_reviews <- tidy(food_lda, matrix = 'gamma')
@@ -164,6 +193,7 @@ food_reviews <- food_reviews |>
     values_from = 'gamma'
   )
 
+food_reviews
 
 # let's try a 6 topic model
 
@@ -185,6 +215,8 @@ food_top_terms |>
   scale_y_reordered() +
   theme_bw()
 
+ggsave('lda-6-topics.svg', height = 4.5, width = 4)
+
 
 food_reviews <- tidy(food_lda, matrix = 'gamma')
 food_reviews <- food_reviews |>
@@ -194,3 +226,71 @@ food_reviews <- food_reviews |>
     names_prefix = 'topic_',
     values_from = 'gamma'
   )
+
+# Figures
+
+food_text <- read_csv('food-reviews-small.csv')
+
+food_tokens <- food_text |>
+  select(review = Id, text = Text) |>
+  unnest_tokens('word', text)
+
+data(stop_words)
+
+food_tokens <- food_tokens |>
+  anti_join(stop_words)
+
+food_counts <- food_tokens |>
+  group_by(review, word) |>
+  summarize(n = n(), .groups = 'drop') |>
+  mutate(stem = wordStem(word))
+
+
+food_counts |>
+  group_by(stem) |>
+  summarize(n = sum(n)) |>
+  arrange(-n) |>
+  head(20) |>
+  ggplot(aes(x = n, y = reorder(stem, n))) +
+  geom_col(fill = okabeito_colors(3)) +
+  labs(y = NULL) +
+  theme_bw()
+
+ggsave('common-terms.svg', height = 4.5, width = 4)
+
+food_counts |>
+  group_by(review) |>
+  summarize(n = sum(n)) |>
+  ggplot(aes(x = n)) +
+  geom_histogram(fill = okabeito_colors(3)) +
+  theme_bw()
+
+ggsave('review-length.svg', height = 4.5, width = 4)
+
+food_counts |>
+  group_by(review) |>
+  summarize(n = sum(n)) |>
+  filter(n <= 200) |>
+  ggplot(aes(x = n)) +
+  geom_histogram(fill = okabeito_colors(3)) +
+  theme_bw()
+
+ggsave('review-length-zoom.svg', height = 4.5, width = 4)
+
+
+tf_idf <- bind_tf_idf(food_counts, stem, review, n)
+
+target <- 212418
+
+food_text$Text[food_text$Id == target]
+
+tf_idf |>
+  filter(review == target) |>
+  arrange(tf_idf) |>
+  head(25) |>
+  ggplot(aes(x = tf_idf, y = reorder(stem, tf_idf))) +
+  geom_col(fill = okabeito_colors(3)) +
+  labs(y = NULL) +
+  theme_bw()
+
+ggsave('tf-idf.svg', height = 4.5, width = 4)

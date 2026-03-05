@@ -1,5 +1,6 @@
 ---
 level: 1
+layout: section
 ---
 
 # Natural Language Processing with Deep Learning

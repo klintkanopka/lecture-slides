@@ -60,6 +60,13 @@ level: 3
 - **Stop words** are super common words 
   - e.g., a, an, the
   - Typically non-informative about the actual content of text, so we remove them
+
+---
+level: 3
+---
+
+# Preprocessing
+
 - Sometimes the "same" word can appear in a different form
   - Singular and plural words (dog and dogs)
   - Adjectives and adverbs (quick, quicker, quickly)

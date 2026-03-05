@@ -14,12 +14,32 @@ hideInToc: true
 
 - Does the DTM remind you of any objects we've worked with in this course already?
 - Any thoughts on what we could do with a DTM to learn about the collection of documents?
+
+<v-click>
+
 - We can look at the most common tokens in the corpus
-- We can look at the most common tokens in a document, or _term frequency_ \pause
-$$ \text{tf}(t, d) = \frac{f_{t,d}}{\sum_{t'\in d} f_{t',d}} $$ \pause
-- We can look at how many documents a word appears in, or _inverse document frequency_ \pause
-$$ \text{idf}(t, D) = \ln \frac{N}{d\in D: t\in D} $$ \pause
-- A common way to weight is tf-idf $\big(\text{tf}(t,d)\cdot\text{idf}(t,D)\big)$
+
+</v-click>
+<v-click>
+
+- We can look at how common tokens are within a document (often _term frequency_)
+
+$$ \text{tf}(t, d) = \frac{f_{t,d}}{\sum_{t'\in d} f_{t',d}} $$
+
+</v-click>
+<v-click>
+
+- We can look at how common tokens are across documents (often _inverse document frequency_)
+$$ \text{idf}(t, D) = \ln \frac{N}{d\in D: t\in D} $$ 
+
+</v-click>
+<v-click>
+
+- A common way to weight tokens is: $\text{tf-idf}(t,d,D) =\big(\text{tf}(t,d)\cdot\text{idf}(t,D)\big)$
+  - When is tf-idf high?
+  - When is tf-idf low?
+
+</v-click>
 
 ---
 level: 3
@@ -68,15 +88,21 @@ level: 3
 - Interpreting:
   - Higher probability words are more associated with their topics
   - Higher probability topics are more associated with their documents
-- There are lots of types of topic models
-  - LDA, implemented in the `topicmodels` package in `R`
-    - Topics in LDA are modeled as independent
-    - The Alvero, et al. (2021) paper uses a version of LDA that allows for correlated topics
-  - Structural topic models
-    - Allow for topic mixtures to vary as a function of other covariates
-    - You'll use these in the `stm` package in PS3
-  - Embedding-based topic models exist
-    - BERTopic is the most common 
-    - Last I checked it was kind of horrible
-    - These are also harder to interpret
-    
+
+---
+level: 3
+---
+
+# Lots of Topic Models
+
+- LDA, implemented in the `topicmodels` package in `R`
+  - Topics in LDA are modeled as independent
+  - The Alvero, et al. (2021) paper uses a version of LDA that allows for correlated topics
+- Structural topic models
+  - Allow for topic mixtures to vary as a function of other covariates
+  - You'll use these in the `stm` package in PS3
+- Embedding-based topic models exist
+  - BERTopic is the most common 
+  - Last I checked it was kind of horrible
+  - These are also harder to interpret
+  
