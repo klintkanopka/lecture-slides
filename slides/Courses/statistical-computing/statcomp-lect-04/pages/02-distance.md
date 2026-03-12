@@ -20,10 +20,10 @@ level: 3
 
 - If you want to talk about how "close together" two things are, you need some notion of distance
 - Distances are _dissimilarity_ metrics
-  - Larger magnitudes mean less similar (or farther apart) objects
+  - Larger values mean less similar (or farther apart) objects
   - Assign a value of 0 to identical objects
 - Contrast these with _similarity_ metrics
-  - Larger magnitudes mean more similar (or closer together) objects
+  - Larger values mean more similar (or closer together) objects
   - Assign maximal values (sometimes 1) to identical objects
 
 ---

@@ -306,3 +306,5 @@ search <- searchK(food$documents, food$vocab, K = 0)
 out <- searchK(food$documents, food$vocab, K = 3:8)
 
 plot(out)
+
+m_search <- stm(food$documents, food$vocab, K = 0)
