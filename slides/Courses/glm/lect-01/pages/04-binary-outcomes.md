@@ -27,13 +27,13 @@ level: 2
 level: 2
 ---
 
-# Logistic Regression
+# Building a Binary GLM
 
 <v-clicks depth=2>
 
 - Recall the three parts of a GLM:
-  - We model the outcome as $Y \sim \text{Bernoulli}(\mu)$
-  - We have a linear predictor, $\eta$, that is a linear combination of coefficients
+  - We model the outcome as $Y_i \sim \text{Bernoulli}(\mu_i)$
+  - We have a linear predictor, $\eta$, that is a linear combination of observed data, weighted by coefficients
   - We need a _link function_; here we use the _logit_
 
 </v-clicks>
@@ -43,13 +43,124 @@ $$ \eta_i = g\big(\mathbb{E}(Y_i \mid X_i)\big) = g(\mu_i) = \ln \bigg( \frac{\m
 
 </v-click>
 
+---
+level: 3
+layout: image-right
+image: /logit.svg
+---
+
+# The logit function
+
+$$ \eta_i = \ln \bigg( \frac{\mu_i}{1 - \mu_i} \bigg) $$
+
+```r
+d_logit <-
+  data.frame(mu = seq(0, 1, by = 1e-3))
+d_logit$eta <-
+  log(d_logit$mu / (1 - d_logit$mu))
+
+ggplot(d_logit, aes(x = mu, y = eta)) +
+  geom_line(color = okabeito_colors(3),
+            linewidth = 1) +
+  theme_bw()
+
+```
+
+- You can apply the logit in `R` using the `qlogis()` function
+- What does the inverse, $\mu_i = g^{-1}(\eta_i)$ look like?
+
+
+---
+level: 3
+layout: image-right
+image: /logistic.svg
+---
+
+# The inverse logit function
+
+$$ \mu_i = g^{-1}(\eta_i) $$
+
+```r
+d_logit <-
+  data.frame(mu = seq(0, 1, by = 1e-3))
+d_logit$eta <-
+  log(d_logit$mu / (1 - d_logit$mu))
+
+ggplot(d_logit, aes(x = eta, y = mu)) +
+  geom_line(color = okabeito_colors(3),
+            linewidth = 1) +
+  theme_bw()
+
+```
+
+- What is the functional form of the inverse logit?
+
+---
+level: 3
+---
+
+# The inverse logit function
+
+- We can start from the logit and solve for $\mu_i$:
+
+$$ \eta_i = \ln \bigg( \frac{\mu_i}{1 - \mu_i} \bigg) $$
+
 <v-clicks>
 
-- This setup lets each observation be a draw from a Bernoulli distribution with its own $\mu_i$
-- We express $\mu_i$ as a function of the covariates we care about
-- We estimate the parameters that make observing the data most likely under the model
+$$e^{\eta_i} = \frac{\mu_i}{1-\mu_i}$$
+$$e^{\eta_i}(1-\mu_i) = \mu_i$$
+$$e^{\eta_i}-\mu_i e^{\eta_i} = \mu_i$$
+$$e^{\eta_i} = \mu_i+\mu_i e^{\eta_i}$$
+$$e^{\eta_i} = \mu_i(1+e^{\eta_i})$$
+$$\frac{e^{\eta_i}}{1+e^{\eta_i}} = \mu_i$$
 
 </v-clicks>
+
+---
+level: 3
+layout: image-right
+image: /logistic.svg
+---
+
+# The Logistic Function
+
+- The inverse logit is also called the _logistic_ function
+- Two common ways to write it:
+
+$$ \mu_i = \frac{e^{\eta_i}}{1+e^{\eta_i}} = \frac{1}{1+e^{-\eta_i}} $$
+
+- Also called the _sigmoid_ function:
+
+$$ \sigma(x) =  \frac{1}{1+e^{-x}} $$
+
+- Squashes its input to be on the interval $(0,1)$, making it great for converting unbounded inputs into probabilities
+- Applied in `R` using the `plogis()` function
+
+
+---
+level: 3
+---
+
+# Logistic Regression
+
+- Putting it all together, this is logistic regression:
+
+<v-clicks>
+
+$$Y_i \sim \text{Bernoulli}(\mu_i)$$
+$$ \mathbb{E}\big[Y_i | X_i\big] = \mu_i $$
+$$ \eta_i = \beta_0 + \beta_1 X_{1i} + \cdots + \beta_K X_{Ki}$$
+$$  \eta_i = \frac{\mu_i}{1-\mu_i} $$
+$$ \mu_i = \frac{1}{1+e^{-\eta_i}}  $$
+$$  \mathbb{E}\big[Y_i | X_i\big] = \frac{1}{1+e^{-\big(\beta_0 + \beta_1 X_{1i} + \cdots + \beta_K X_{Ki}\big)}}  $$
+
+</v-clicks>
+
+<v-click>
+
+- Finally you use numerical optimization to estimate the $\beta$ values that make the data you observed most likely under the distributional assumption in the first step!
+
+</v-click>
 
 ---
 level: 2
@@ -275,6 +386,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 Residual deviance: 127882  on 94651  degrees of freedom
 AIC: 127886
 Number of Fisher Scoring iterations: 4
+
 ```
 
 </v-click>
@@ -289,6 +401,7 @@ image: /score-logistic.svg
 # What does this look like?
 
 ```r
+
 m_glm <- glm(
   critical ~ score,
   data = d,

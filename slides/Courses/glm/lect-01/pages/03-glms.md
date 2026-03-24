@@ -44,7 +44,7 @@ GLMs in three parts:
 <v-clicks>
 
 2. A linear predictor:
-  $$\eta_i = \beta_0 + \beta_1 X_{1i} + \cdots + \beta_k X_{ki}$$
+  $$\eta_i = \beta_0 + \beta_1 X_{1i} + \cdots + \beta_K X_{Ki}$$
 
 3. An invertible link function, $g(\cdot)$, such that:
   $$\mathbb{E}(Y_i \mid X_i) = \mu_i = g^{-1}(\eta_i)$$
