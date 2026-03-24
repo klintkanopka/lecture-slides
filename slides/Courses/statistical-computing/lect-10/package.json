@@ -1,0 +1,19 @@
+{
+  "name": "statcomp-lect-10",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --base /statcomp-lect-10/",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "catalog:",
+    "@slidev/theme-default": "catalog:",
+    "@slidev/theme-seriph": "catalog:",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "vue": "catalog:",
+    "webr": "^0.5.8"
+  }
+}
