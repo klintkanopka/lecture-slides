@@ -83,7 +83,7 @@ level: 2
 # Working with GLMs (and break time)
 
 - We'll look at data from Manhattan restaurant inspections
-  - Download the the data for class [here](http://github.com/klintkanopka/lecture-slides)
+  - Download the the data for class [here](https://raw.githubusercontent.com/klintkanopka/lecture-slides/refs/heads/main/slides/Courses/glm/lect-01/public/manhattan_restaurants.csv)
   - Data are sourced from [NYC OpenData](https://opendata.cityofnewyork.us/)
 - Variables included should be _fairly_ obvious, except for two:
   - `score` is the score on a health inspection
@@ -328,3 +328,4 @@ m_glm_2 <- glm(
   - Which cuisines have significant coefficients? Of these, which are most likely to have had critical violations? Which are least likely?
   - Why are many of these coefficients negative?
   - Fit a linear regression with the same formula. How many of these coefficients are significant? Why?
+- Note that all of the code from lecture is available [here](https://github.com/klintkanopka/lecture-slides/blob/main/slides/Courses/glm/lect-01/public/lect-01.R)
