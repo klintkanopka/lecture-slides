@@ -1,113 +1,133 @@
 library(tidyverse)
 library(see)
+library(fpc)
 library(mclust)
+library(factoextra)
+library(ggdendro)
+library(GGally)
+library(svglite)
 
-set.seed(242424)
 
-setwd(
-  '~/projects/lecture-slides/slides/Courses/measurement/measurement-lect-09/public'
-)
+setwd('~/projects/lecture-slides/slides/Courses/measurement/lect-09/public/')
+d <- read_csv('country-data.csv')
 
-#kmeans
-#hclust
-#diana
-#dbscan
-
-#### Applied clustering with real data!
-
-d <- read_csv('drug_use_personality.csv')
-
-d_clust <- select(d, neuroticism:sensation_seeking) |>
+d_std <- d |>
+  select(-country) |>
   mutate(across(everything(), ~ scale(.x)[, 1]))
 
-d_clust |>
-  pivot_longer(everything(), names_to = 'var', values_to = 'value') |>
-  ggplot(aes(x = value, fill = var)) +
-  geom_density(show.legend = FALSE) +
-  facet_grid(var ~ .) +
+ks <- 1:10
+wcss <- vector('numeric', length(ks))
+
+for (k in ks) {
+  wcss[k] <- kmeans(d_std, k, iter.max = 1e4, nstart = 1e4)$tot.withinss
+}
+
+data.frame(k = ks, wcss = wcss) |>
+  ggplot(aes(x = k, y = wcss)) +
+  geom_point(color = okabeito_colors(3)) +
+  geom_line(color = okabeito_colors(3)) +
+  theme_bw()
+
+ggsave('k-means-elbow.svg', width = 4, height = 4.5)
+
+clust_sol <- kmeans(d_std, 4, iter.max = 1e4, nstart = 1e4)
+
+clust_sol$centers
+
+d$cluster <- clust_sol$cluster
+
+d$country[d$cluster == 1]
+d$country[d$cluster == 2]
+d$country[d$cluster == 3]
+d$country[d$cluster == 4]
+
+# hclust version
+
+d_euc <- dist(d_std)
+
+hc_complete <- hclust(d_euc, method = 'complete')
+hc_single <- hclust(d_euc, method = 'single')
+
+ggdendrogram(hc_single) +
+  theme_bw()
+
+ggsave('single-dendro.svg', height = 4.5, width = 4)
+
+
+single_linkage <- data.frame(
+  k = 1:length(hc_single$height),
+  height = rev(hc_single$height)
+)
+
+ggplot(single_linkage, aes(x = k, y = height)) +
+  geom_point(color = okabeito_colors(3)) +
+  geom_line(color = okabeito_colors(3)) +
+  theme_bw()
+
+ggsave('single-height.svg', height = 4.5, width = 4)
+
+
+d$clust_single <- cutree(hc_single, k = 7)
+
+d$country[d$clust_single == 1]
+d$country[d$clust_single == 2]
+d$country[d$clust_single == 3]
+d$country[d$clust_single == 4]
+d$country[d$clust_single == 5]
+d$country[d$clust_single == 6]
+d$country[d$clust_single == 7]
+
+ggpairs(
+  d,
+  mapping = aes(
+    color = as.character(cluster),
+    fill = as.character(cluster),
+    alpha = 0.3
+  ),
+  columns = 2:10
+) +
+  scale_color_okabeito() +
   scale_fill_okabeito() +
   theme_bw()
 
-ggsave('personality-dist.svg', height = 4.5, width = 4)
-
-fviz_nbclust(d_clust, kmeans, 'wss')
-
-ggsave('clust-wss.svg', height = 4.5, width = 4)
-
-fviz_nbclust(d_clust, kmeans, 'silhouette')
-
-ggsave('clust-silhouette.svg', height = 4.5, width = 4)
-
-fviz_nbclust(d_clust, kmeans, 'gap')
-
-ggsave('clust-gap.svg', height = 4.5, width = 4)
+ggsave('pairs-plot.svg', height = 9, width = 8)
 
 
-c <- kmeans(d_clust, 3, nstart = 100)
+clust_dbscan <- dbscan(d_std, MinPts = 5, eps = 1)
+clust_dbscan
+d$cluster_dbscan <- clust_dbscan$cluster
 
-c$centers
-
-data.frame(c$centers) |>
-  rownames_to_column('cluster') |>
-  pivot_longer(-cluster, names_to = 'trait', values_to = 'mean') |>
-  ggplot(aes(x = mean, y = trait, fill = cluster)) +
-  geom_col(show.legend = FALSE) +
-  facet_grid(cluster ~ .) +
-  scale_fill_okabeito() +
-  labs(y = NULL) +
-  theme_bw()
-
-ggsave('clust-centroids.svg', height = 4.5, width = 4)
-
-
-d$cluster <- c$cluster
-d$cluster
-
-
-ggplot(d, aes(x = age, fill = as.character(cluster))) +
-  geom_bar(show.legend = FALSE) +
-  facet_wrap(cluster ~ ., nrow = 3, ncol = 1) +
-  scale_fill_okabeito() +
-  theme_bw()
-
-ggsave('clust-age.svg', height = 4.5, width = 4)
-
+table(d$cluster, d$cluster_dbscan)
 
 d |>
-  select(cluster, ends_with('ever'), ends_with('year'), ends_with('week')) |>
-  group_by(cluster) |>
-  summarize(across(everything(), mean)) |>
-  pivot_longer(-cluster, names_to = 'drug', values_to = 'p') |>
-  ggplot(aes(y = drug, x = p, fill = as.character(cluster))) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(cluster ~ ., ncol = 1) +
-  scale_fill_okabeito() +
-  labs(y = NULL) +
+  dplyr::count(cluster, cluster_dbscan) |>
+  ggplot(aes(x = cluster, y = cluster_dbscan, size = n)) +
+  geom_point(color = okabeito_colors(3)) +
   theme_bw()
 
-ggsave('clust-drugs.svg', height = 4.5, width = 4)
+ggsave('dbscan-count.svg', height = 4.5, width = 4)
 
 
-d_dist <- dist(d_clust, method = 'euclidean')
+# model based clustering
 
-c_complete <- hclust(d_dist, method = 'complete')
-c_single <- hclust(d_dist, method = 'single')
+d_quant <- d[, 2:10]
+gmm <- Mclust(d_quant)
 
-plot(c_complete)
-plot(c_single)
-
-fviz_dend(c_complete)
-ggsave('hclust-complete.svg', height = 9, width = 8)
+gmm$classification
 
 
-fviz_dend(c_single)
-ggsave('hclust-single.svg', height = 18, width = 16)
+svglite("gmm-bic.svg", width = 4, height = 4.5)
+plot(gmm, what = 'BIC')
+dev.off()
 
+svglite("gmm-class.svg", width = 4, height = 4.5)
+plot(gmm, what = 'classification')
+dev.off()
 
-plot(c_complete)
-plot(c_single)
+svglite("gmm-uncertainty.svg", width = 4, height = 4.5)
+plot(gmm, what = 'uncertainty')
+dev.off()
 
-
-c_test <- hclust(d_dist, method = 'ward.D2')
-
-plot(c_test)
+svglite("gmm-density.svg", width = 4, height = 4.5)
+plot(gmm, what = 'density')
+dev.off()

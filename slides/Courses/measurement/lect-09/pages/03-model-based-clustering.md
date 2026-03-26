@@ -22,7 +22,7 @@ $$p(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\bigg[ - \frac{(x-\mu)^2}{2\sigma^2}\bi
 $$p(x|\theta=k) = \mathcal{N}(x;\mu_k, \sigma_k^2)$$
 
 ---
-level: 2
+level: 3
 ---
 
 # Finite Mixture Models
@@ -71,10 +71,8 @@ level: 2
   - 'I' is just a placeholder
 
 ---
-level: 2
-showInToc: false
+level: 3
+layout: center
 ---
 
-# GMM Structure
-
-![](img/gmm.jpg)
+![](/gmm.jpg)
