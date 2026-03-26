@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "slidev build",
-    "dev": "slidev --base /measurement-lect-06/",
+    "dev": "slidev --base /lect-06/",
     "export": "slidev export"
   },
   "dependencies": {
