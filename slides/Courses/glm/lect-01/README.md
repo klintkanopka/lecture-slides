@@ -1,8 +1,7 @@
-# APSTA-GE 2094 / APSY-GE 2524: Modern Approaches in Measurement
+# APSTA-GE 2044: Generalized Linear Models and Extensions
 
 ## Lecture 1
 
-- What is measurement?
-- What is psychometrics?
-- Classical Test Theory
-- Reliability
+- Course Business
+- Introduction to GLMs
+- Logistic Regression
