@@ -50,7 +50,7 @@ level: 2
 - The mixture weights tell us how certain (or uncertain) the model is of each possible assignment
 - That is why model-based clustering is called "soft" clustering
   - Each $\pi_{ki} \in (0,1)$; none of the assignments are certain!
-  - $k$-means, hierarchical clustering, and DBscan are "hard" clustering methods
+  - $k$-means, hierarchical clustering, and DBSCAN are "hard" clustering methods
 
 </v-clicks>
 

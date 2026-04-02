@@ -13,8 +13,8 @@ level: 2
 
 - [Citywide Mobility Survey - October 2020](https://data.cityofnewyork.us/Transportation/Citywide-Mobility-Survey-October-2020/3mpc-kqwk/about_data)
 - NYC Open Data survey on demographics and transportation attitudes
-- Data are available [here]()
-- Codebook is available [here]()
+- Data are available [here](https://github.com/klintkanopka/lecture-slides/blob/main/slides/Courses/measurement/lect-10/public/citywide-mobility-survey.csv)
+- Codebook is available [here](https://github.com/klintkanopka/lecture-slides/blob/main/slides/Courses/measurement/lect-10/public/Open_Data_Dictionary_CMS_2020_10.xlsx)
 - We will use it to look for latent classes based on transportation preferences
 
 ---

@@ -2,8 +2,8 @@
 
 ## Lecture 10
 
-- Quantification of text
-- Measurement with text
-- Classical text analysis
-- Topic models (LDA)
+- More Model Based Clustering
+- Mixture Distributions
+- Latent Class Analysis
+- Reviewing the course so far
 

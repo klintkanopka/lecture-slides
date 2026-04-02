@@ -385,8 +385,8 @@ level: 2
 - Specificity is the true negative rate
   - Of the actually negative cases, how many did we classify as negative?
 - Changing the classification threshold away from 0.5 trades these off against each other
-  - Increasing the threshold toward 1 increases sensitivity and decreases specificity
-  - Decreasing the threshold toward 0 decreases sensitivity and increases specificity
+  - Increasing the threshold toward 1 decreases sensitivity and increases specificity
+  - Decreasing the threshold toward 0 increases sensitivity and decreases specificity
 
 </v-clicks>
 

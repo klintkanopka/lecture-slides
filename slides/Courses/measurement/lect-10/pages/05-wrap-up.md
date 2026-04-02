@@ -51,7 +51,7 @@ layout: two-cols-header
 - **Methods:**
   - $k$-means
   - Hierarchical clustering
-  - DBscan
+  - DBSCAN
   - Gaussian mixture models (GMMs)
   - Latent class analysis (LCA)
 
