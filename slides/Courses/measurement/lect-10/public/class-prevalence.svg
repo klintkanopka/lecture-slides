@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='600.00pt' height='337.50pt' viewBox='0 0 600.00 337.50'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw2MDAuMDB8MC4wMHwzMzcuNTA='>
+    <rect x='0.00' y='0.00' width='600.00' height='337.50' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw2MDAuMDB8MC4wMHwzMzcuNTA=)'>
+<rect x='77.96' y='166.35' width='102.80' height='118.50' style='stroke-width: 0.75; fill: #4D4D4D;' />
+<rect x='201.32' y='59.04' width='102.80' height='225.80' style='stroke-width: 0.75; fill: #969696;' />
+<rect x='324.68' y='133.45' width='102.80' height='151.39' style='stroke-width: 0.75; fill: #C3C3C3;' />
+<rect x='448.04' y='207.26' width='102.80' height='77.59' style='stroke-width: 0.75; fill: #E6E6E6;' />
+<text x='129.36' y='313.02' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='40.02px' lengthAdjust='spacingAndGlyphs'>Class 1</text>
+<text x='252.72' y='313.02' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='40.02px' lengthAdjust='spacingAndGlyphs'>Class 2</text>
+<text x='376.08' y='313.02' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='40.02px' lengthAdjust='spacingAndGlyphs'>Class 3</text>
+<text x='499.44' y='313.02' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='40.02px' lengthAdjust='spacingAndGlyphs'>Class 4</text>
+<text x='314.40' y='34.67' text-anchor='middle' style='font-size: 14.40px; font-weight: bold; font-family: "Arial";' textLength='126.38px' lengthAdjust='spacingAndGlyphs'>Class Prevalences</text>
+<line x1='59.04' y1='284.84' x2='59.04' y2='112.86' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='284.84' x2='51.84' y2='284.84' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='227.51' x2='51.84' y2='227.51' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='170.19' x2='51.84' y2='170.19' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='112.86' x2='51.84' y2='112.86' style='stroke-width: 0.75;' />
+<text x='44.64' y='289.14' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.67px' lengthAdjust='spacingAndGlyphs'>0.0</text>
+<text x='44.64' y='231.81' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.67px' lengthAdjust='spacingAndGlyphs'>0.1</text>
+<text x='44.64' y='174.49' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.67px' lengthAdjust='spacingAndGlyphs'>0.2</text>
+<text x='44.64' y='117.16' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.67px' lengthAdjust='spacingAndGlyphs'>0.3</text>
+</g>
+</g>
+</svg>
