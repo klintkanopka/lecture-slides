@@ -1,5 +1,6 @@
 ---
 level: 1
+transition: fade
 layout: section
 ---
 

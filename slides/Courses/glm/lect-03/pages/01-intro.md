@@ -14,7 +14,7 @@ level: 3
 # Fitting a GLM
 
 
-- Download this (simulated) data file [`logistic-data.rds`](HECK-YEAH)
+- Download this (simulated) data file [`logistic-data.rds`](https://github.com/klintkanopka/lecture-slides/blob/main/slides/Courses/glm/lect-03/public/logistic-data.rds)
 - Fit a logistic regression
 - Interpret the significance and magnitude of the estimated coefficients of $x_1, x_2, x_3$
 - Construct 95% confidence intervals around each of these coefficient estimates

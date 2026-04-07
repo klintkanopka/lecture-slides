@@ -92,7 +92,7 @@ level: 2
 
 # Fitting Count GLMs
 
-1. Download the file [`count-data.rds`]()
+1. Download the file [`count-data.rds`](https://github.com/klintkanopka/lecture-slides/blob/main/slides/Courses/glm/lect-03/public/count-data.rds)
 2. Plot a histogram of $y$
 3. Plot $y$ vs $x$ with a LOESS best-fit line
 4. Fit a Poisson regression of `y~x` with log link
