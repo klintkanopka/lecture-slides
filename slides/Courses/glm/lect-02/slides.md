@@ -8,7 +8,7 @@ info: |
   Lecture 2
   Exponential Distributions; Maximum Likelihood Estimation (MLE);
   Link Functions for Binary Data; Model Evaluation
-date: 2026-04-02
+date: 2026-03-31
 class: text-center
 routerMode: hash
 lineNumbers: true
