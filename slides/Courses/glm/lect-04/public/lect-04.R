@@ -130,6 +130,85 @@ ggplot() +
 ggsave('invgaussian-mu.svg', height = 4.5, width = 4)
 
 
+# fun activity
+
+d <- read_csv('lect-04-warmup-data.csv')
+
+lm1 <- lm(y1 ~ x + z, data = d)
+lm2 <- lm(y2 ~ x + z, data = d)
+lm3 <- lm(y3 ~ x + z, data = d)
+lm4 <- lm(y4 ~ x + z, data = d)
+
+glm1 <- glm(y1 ~ x + z, family = binomial(link = 'logit'), data = d)
+glm2 <- glm(y2 ~ x + z, family = Gamma(link = 'log'), data = d)
+glm3 <- glm(y3 ~ x + z, family = gaussian(), data = d)
+glm4 <- glm(y4 ~ x + z, family = poisson(), data = d)
+
+
+d_residuals <- data.frame(
+  r1_lm = d$y1 - predict(lm1),
+  r2_lm = d$y2 - predict(lm2),
+  r3_lm = d$y3 - predict(lm3),
+  r4_lm = d$y4 - predict(lm4),
+  r1_glm = d$y1 - predict(glm1, type = 'response'),
+  r2_glm = d$y2 - predict(glm2, type = 'response'),
+  r3_glm = d$y3 - predict(glm3, type = 'response'),
+  r4_glm = d$y4 - predict(glm4, type = 'response')
+)
+
+
+d_residuals |>
+  select(starts_with('r1')) |>
+  pivot_longer(everything(), names_to = 'model', values_to = 'residual') |>
+  ggplot(aes(x = residual, fill = model)) +
+  geom_histogram() +
+  scale_fill_okabeito() +
+  facet_grid(model ~ .) +
+  theme_bw() +
+  theme(legend.position = 'bottom')
+
+ggsave('resid-r1.svg', width = 4, height = 4.5)
+
+
+d_residuals |>
+  select(starts_with('r2')) |>
+  pivot_longer(everything(), names_to = 'model', values_to = 'residual') |>
+  ggplot(aes(x = residual, fill = model)) +
+  geom_histogram() +
+  scale_fill_okabeito() +
+  facet_grid(model ~ .) +
+  theme_bw() +
+  theme(legend.position = 'bottom')
+
+ggsave('resid-r2.svg', width = 4, height = 4.5)
+
+
+d_residuals |>
+  select(starts_with('r3')) |>
+  pivot_longer(everything(), names_to = 'model', values_to = 'residual') |>
+  ggplot(aes(x = residual, fill = model)) +
+  geom_histogram() +
+  scale_fill_okabeito() +
+  facet_grid(model ~ .) +
+  theme_bw() +
+  theme(legend.position = 'bottom')
+
+ggsave('resid-r3.svg', width = 4, height = 4.5)
+
+
+d_residuals |>
+  select(starts_with('r4')) |>
+  pivot_longer(everything(), names_to = 'model', values_to = 'residual') |>
+  ggplot(aes(x = residual, fill = model)) +
+  geom_histogram() +
+  scale_fill_okabeito() +
+  facet_grid(model ~ .) +
+  theme_bw() +
+  theme(legend.position = 'bottom')
+
+ggsave('resid-r4.svg', width = 4, height = 4.5)
+
+
 # simulate data for individuals, assign to groups
 set.seed(242424)
 

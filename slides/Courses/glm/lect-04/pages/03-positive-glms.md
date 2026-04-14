@@ -66,7 +66,7 @@ level: 1
 
 
 - Download [`lect-04-warmup-data.csv`](https://github.com/klintkanopka/lecture-slides/blob/main/slides/Courses/glm/lect-04/public/lect-04-warmup-data.csv)
-  - Five predictor variables: $x_1, x_2, x_3, x_4, x_5$
+  - Two predictor variables: $x, z$
   - Four outcome variables: $y_1, y_2, y_3, y_4$
 - For each outcome:
   1. Fit a linear regression with `lm()`
@@ -75,3 +75,136 @@ level: 1
   4. Plot histograms of residuals from the `glm()` and `lm()` fits
 - Compare the residual distributions across outcomes
 
+---
+level: 3
+layout: image-right
+image: /resid-r1.svg
+---
+
+ # $y_1 \sim x + z$
+
+```r
+lm1 <- lm(y1 ~ x + z, data = d)
+glm1 <- glm(
+  y1 ~ x + z,
+  family = binomial(link = 'logit'),
+  data = d)
+
+d_resid <- data.frame(
+  r1_lm = d$y1 - predict(lm1),
+  r1_glm = d$y1 - predict(glm1,
+                          type = 'response')
+)
+
+d_resid |>
+  select(starts_with('r1')) |>
+  pivot_longer(everything(),
+               names_to = 'model',
+               values_to = 'residual') |>
+  ggplot(aes(x = residual, fill = model)) +
+  geom_histogram() +
+  scale_fill_okabeito() +
+  facet_grid(model ~ .) +
+  theme_bw() +
+  theme(legend.position = 'bottom')
+```
+
+
+---
+level: 3
+layout: image-right
+image: /resid-r2.svg
+---
+
+ # $y_2 \sim x + z$
+
+```r
+lm2 <- lm(y2 ~ x + z, data = d)
+glm2 <- glm(
+  y2 ~ x + z,
+  family = Gamma(link = 'log'),
+  data = d)
+
+
+d_resid$r2_lm <- d$y2 - predict(lm2)
+d_resid$r2_glm = d$y2 - predict(glm2,
+                          type = 'response')
+
+d_resid |>
+  select(starts_with('r2')) |>
+  pivot_longer(everything(),
+               names_to = 'model',
+               values_to = 'residual') |>
+  ggplot(aes(x = residual, fill = model)) +
+  geom_histogram() +
+  scale_fill_okabeito() +
+  facet_grid(model ~ .) +
+  theme_bw() +
+  theme(legend.position = 'bottom')
+```
+
+
+---
+level: 3
+layout: image-right
+image: /resid-r3.svg
+---
+
+ # $y_3 \sim x + z$
+
+```r
+lm3 <- lm(y3 ~ x + z, data = d)
+glm3 <- glm(
+  y3 ~ x + z,
+  family = gaussian(),
+  data = d)
+
+d_resid$r3_lm <- d$y4 - predict(lm3),
+d_resid$r3_glm = d$y4 - predict(glm3,
+                          type = 'response')
+
+d_resid |>
+  select(starts_with('r3')) |>
+  pivot_longer(everything(),
+               names_to = 'model',
+               values_to = 'residual') |>
+  ggplot(aes(x = residual, fill = model)) +
+  geom_histogram() +
+  scale_fill_okabeito() +
+  facet_grid(model ~ .) +
+  theme_bw() +
+  theme(legend.position = 'bottom')
+```
+
+
+---
+level: 3
+layout: image-right
+image: /resid-r4.svg
+---
+
+ # $y_4 \sim x + z$
+
+```r
+lm4 <- lm(y4 ~ x + z, data = d)
+glm4 <- glm(
+  y4 ~ x + z,
+  family = poisson(),
+  data = d)
+
+d_residuals$r4_lm <- d$y4 - predict(lm4),
+d_residuals$r4_glm = d$y4 - predict(glm4,
+                          type = 'response')
+
+d_residuals |>
+  select(starts_with('r4')) |>
+  pivot_longer(everything(),
+               names_to = 'model',
+               values_to = 'residual') |>
+  ggplot(aes(x = residual, fill = model)) +
+  geom_histogram() +
+  scale_fill_okabeito() +
+  facet_grid(model ~ .) +
+  theme_bw() +
+  theme(legend.position = 'bottom')
+```
