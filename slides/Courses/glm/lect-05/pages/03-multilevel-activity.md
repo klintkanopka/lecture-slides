@@ -11,7 +11,7 @@ level: 2
 
 # Exploring the Data
 
-- Download [`lect-05-data.csv`]()
+- Download [`lect-05-data.csv`](https://github.com/klintkanopka/lecture-slides/blob/main/slides/Courses/glm/lect-05/public/lect-05-data.csv)
 - First:
   1. How many students are there?
   2. How many teachers are there?
@@ -36,8 +36,9 @@ image: /mlm-1.svg
 d |>
   count(teacher_id) |>
   ggplot(aes(x = n)) +
-  geom_histogram(bins = 20,
-                 fill = okabeito_colors(3)) +
+  geom_histogram(
+    bins = 20,
+    fill = okabeito_colors(3)) +
   theme_bw()
 ```
 
@@ -54,8 +55,9 @@ image: /mlm-2.svg
 d |>
   count(school_id) |>
   ggplot(aes(x = n)) +
-  geom_histogram(bins = 20,
-                 fill = okabeito_colors(3)) +
+  geom_histogram(
+    bins = 20,
+    fill = okabeito_colors(3)) +
   theme_bw()
 ```
 
@@ -74,8 +76,9 @@ d |>
   distinct() |>
   count(school_id) |>
   ggplot(aes(x = n)) +
-  geom_histogram(bins = 10,
-                 fill=okabeito_colors(3)) +
+  geom_histogram(
+    bins = 10,
+    fill = okabeito_colors(3)) +
   theme_bw()
 ```
 
@@ -169,8 +172,9 @@ d |>
   select(school_id, pct_frl) |>
   distinct() |>
   ggplot(aes(x = pct_frl)) +
-  geom_histogram(bins = 15,
-                 fill = okabeito_colors(3)) +
+  geom_histogram(
+    bins = 15,
+    fill = okabeito_colors(3)) +
   theme_bw()
 ```
 
@@ -187,8 +191,9 @@ d |>
   select(school_id, pct_ell) |>
   distinct() |>
   ggplot(aes(x = pct_ell)) +
-  geom_histogram(bins = 15,
-                 fill = okabeito_colors(3)) +
+  geom_histogram(
+    bins = 15,
+    fill = okabeito_colors(3)) +
   theme_bw()
 ```
 
@@ -202,8 +207,9 @@ image: /mlm-11.svg
 
 ```r
 ggplot(d, aes(x = pretest)) +
-  geom_histogram(bins = 20,
-                 fill = okabeito_colors(3)) +
+  geom_histogram(
+    bins = 20,
+    fill = okabeito_colors(3)) +
   theme_bw()
 ```
 
@@ -217,8 +223,9 @@ image: /mlm-12.svg
 
 ```r
 ggplot(d, aes(x = posttest)) +
-  geom_histogram(bins = 20,
-                 fill = okabeito_colors(3)) +
+  geom_histogram(
+    bins = 20,
+    fill = okabeito_colors(3)) +
   theme_bw()
 ```
 
