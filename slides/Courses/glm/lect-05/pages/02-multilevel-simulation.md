@@ -161,9 +161,9 @@ d_sim$study_time <- sample(0:5, 9*30, replace=T)
 set.seed(242424)
 
 # simulate data for individuals, assign to groups
-d <- data.frame(student_id = 1:(9*30))
-d$classroom <- rep(1:9, each=30)
-d$study_time <- sample(0:5, 9*30, replace=T)
+d_sim <- data.frame(student_id = 1:(9*30))
+d_sim$classroom <- rep(1:9, each=30)
+d_sim$study_time <- sample(0:5, 9*30, replace=T)
 
 # make a dataframe for group characteristics
 ```
@@ -232,7 +232,7 @@ d_classroom$teacher_effect <- rnorm(9, mean = 30, sd = 20)
 d_classroom$teacher_factor <- rnorm(9, 1, 2)
 
 # join them together - left join group to individuals
-d_sim <- left_join(d, d_classroom, by = 'classroom')
+d_sim <- left_join(d_sim, d_classroom, by = 'classroom')
 
 ```
 ```r
@@ -271,7 +271,9 @@ d_classroom$teacher_factor <- rnorm(9, 1, 2)
 d_sim <- left_join(d_sim, d_classroom, by = 'classroom')
 
 # generate your outcome variable, don't forget to add noise!
-d_sim$score <- d_sim$teacher_effect + 10*d_sim$teacher_factor*d_sim$study_time + rnorm(nrow(d_sim), mean = 0, sd = 10)
+d_sim$score <- d_sim$teacher_effect +
+  10*d_sim$teacher_factor*d_sim$study_time +
+  rnorm(nrow(d_sim), mean = 0, sd = 10)
 ```
 ````
 
