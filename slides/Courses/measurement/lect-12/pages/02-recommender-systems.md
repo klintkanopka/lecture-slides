@@ -27,6 +27,18 @@ hideInToc: true
   - Most popular
   - Trending
   - Recent uploads
+
+</v-clicks>
+
+---
+level: 3
+---
+
+# Recommendation
+
+
+<v-clicks depth="2">
+
 - Personalized recommendations are, well, _personalized_
   - Suggestions from friends
   - Algorithmic recommendations
@@ -120,6 +132,10 @@ level: 2
 4. Try to code up a couple of test cases or mild proof-of-concepts
 5. Start with something _very_ simple and then add complexity!
 
+
+```r
+d <- read_delim('u.data', col_names=c('user', 'movie', 'rating', 'timestamp'))
+```
 
 
 ---

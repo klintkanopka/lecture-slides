@@ -37,7 +37,7 @@ src: ./pages/02-recommender-systems.md
 ---
 
 ---
-src: ./pages/03-collaborative-filtering.md
+src: ./pages/03-latent-variable-recommendation.md
 ---
 
 ---
