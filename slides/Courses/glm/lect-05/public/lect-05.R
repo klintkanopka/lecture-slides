@@ -47,14 +47,17 @@ d_sim$score <- d_sim$teacher_effect +
 
 summary(lm(score ~ study_time, data = d_sim))
 
-summary(lm(score ~ study_time + as.character(classroom), data = d_sim))
+summary(lm(score ~ 0 + study_time + as.character(classroom), data = d_sim))
 
-summary(lmer(score ~ study_time + (1 | classroom) + study_time, data = d_sim))
+summary(lmer(score ~ (1 | classroom) + study_time, data = d_sim))
 
 summary(lm(score ~ as.character(classroom) * study_time, data = d_sim))
 
 summary(lmer(score ~ study_time + (1 + study_time | classroom), data = d_sim))
 
+m <- lmer(score ~ study_time + (1 + study_time | classroom), data = d_sim)
+
+ranef(m)
 
 # fun stuff, new data!
 
@@ -174,3 +177,11 @@ ggsave('mlm-12.svg', height = 4.5, width = 4)
 
 m_0 <- lm(posttest ~ pretest, data = d)
 summary(m_0)
+
+m_1 <- lm(posttest ~ pretest + years_experience, data = d)
+m_1a <- lmer(
+  posttest ~ pretest + years_experience + (years_experience | school_id),
+  data = d
+)
+
+summary(m_2)
