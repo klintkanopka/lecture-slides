@@ -1,10 +1,10 @@
 {
-  "name": "measurement-lect-12",
+  "name": "measurement-lect-13",
   "type": "module",
   "private": true,
   "scripts": {
     "build": "slidev build",
-    "dev": "slidev --base /lect-12/",
+    "dev": "slidev --base /lect-13/",
     "export": "slidev export"
   },
   "dependencies": {
