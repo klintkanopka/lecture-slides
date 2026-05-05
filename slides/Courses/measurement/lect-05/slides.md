@@ -4,12 +4,13 @@ background: /winter-park.jpg
 title: Measurement - Week 5
 author: Klint Kanopka
 info: |
-  ## APSTA-GE 2094 / APSY-GE 2524: Modern Approaches in Measurement 
+  ## APSTA-GE 2094 / APSY-GE 2524: Modern Approaches in Measurement
   Lecture 5
   Polytomous IRT; Generalized Partial Credit Model (GPCM); Graded Response Model (GRM); Nominal Response Model (NRM)
 date: 2026-02-19
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false

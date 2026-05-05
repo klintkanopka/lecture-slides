@@ -10,6 +10,7 @@ info: |
 date: 2026-03-26
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false

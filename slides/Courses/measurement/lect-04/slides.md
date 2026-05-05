@@ -4,12 +4,13 @@ background: /winter-park.jpg
 title: Measurement - Week 4
 author: Klint Kanopka
 info: |
-  ## APSTA-GE 2094 / APSY-GE 2524: Modern Approaches in Measurement 
+  ## APSTA-GE 2094 / APSY-GE 2524: Modern Approaches in Measurement
   Lecture 4
   IRT Extensions; Multidimensional IRT; Explanatory IRT
 date: 2026-02-12
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false

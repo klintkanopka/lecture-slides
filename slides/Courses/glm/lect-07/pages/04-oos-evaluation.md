@@ -3,28 +3,36 @@ level: 1
 layout: section
 ---
 
-# Generalized Additive Models
+# Evaluation Theory
 
 ---
 level: 2
 ---
 
-# Motivating Idea
+# Model Evaluation
 
-<v-clicks depth="3">
+<v-clicks depth="2">
 
-- You want to run the regression:
-  - $Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i$
-  - You don't think the relationship between $X_i, Y_i$ is linear
-  - What can you do?
-    - Polynomial transformations
-    - ML specifications
-    - Something else?
-- What about if you have three variables?
-  - $Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \beta_3 X_{3i}+ \varepsilon_i$
-- Generalized Additive Models (GAMs) allow you to replace coefficients with _smooth functions_ of variables that best fit your data
-  - $Y_i = \beta_0 + f_{1}\big(X_{1i}\big) + f_{2}\big(X_{2i}\big) + f_{3}\big(X_{3i}\big) + \varepsilon_i$
-  - The model estimates each $f_k (\cdot)$ to best predict the data
+- How do we know that we have a model that's any good?
+- There exists a litany of retrospective fit statistics, metrics, and statistical tests
+  - These are sometimes specific to certain types of models
+  - These are often not comparable between model types or across datasets
+  - These all have one killer flaw, however
+
+</v-clicks>
+
+---
+level: 3
+---
+
+# Model Evaluation
+
+<v-clicks depth="2">
+
+
+- The fatal flaw of traditional model evaluation is that it only uses the data in hand and tells you nothing about if your model will generalize to new data or is overfitting to the data you used to fit it
+- When fitting models, we typically only have the data in hand and the common wisdom is to use as much of it as humanly possible!
+- Implementing one of these evaluation schemes requires splitting up the data you have, so you don't use all of it to fit models. We call these _sets_
 
 </v-clicks>
 
@@ -32,250 +40,20 @@ level: 2
 level: 2
 ---
 
-# Generalized Additive Models in Practice
+# Data Splitting
 
-<v-clicks depth="3">
-
-- The library that holds all the functions you'll need for GAMs is `mgcv`
-- The main workhorse functions are going to be `gam()` and `s()`
-  - `gam()` takes a formula, data, and an optional `family=` argument, so it handles GLMs natively
-  - `s()` is a "smoother" function that fits a flexible curve to your data using _splines_
-    - There are a _bunch_ of arguments for `s()`, but today we'll use `k`
-    - Higher values of `k` allow for more flexible functions
-  - Usage examples:
-    - `gam(y ~ x + z, data = d)` fits a standard linear regression, estimating coefficients for $x,z$
-    - `gam(y ~ s(x) + z, data = d)` fits a GAM with splines on $x$ and a coefficient on $z$
-    - `gam(y ~ s(x) + s(z), data = d)` fits a GAM with (separate) spline functions on $x,z$
-    - `gam(y ~ s(x, k=3) + s(z, k=5), data = d)` fits a GAM with (separate) spline functions on $x,z$ where the fit on $z$ is more flexible (wiggly) than the fit on $x$
-
-</v-clicks>
-
----
-level: 3
----
-
-# Simulating Some Data
-
-- Let's simulate something that we'd expect a linear regression to do a bad job with:
+<v-clicks depth="2">
 
 
-```r
-set.seed(777)
-
-N <- 1000
-
-d <- data.frame(
-  x = rnorm(N),
-  z = rnorm(N)
-)
-
-d$y <- -8 + 2 * d$x^3 + d$x + 2 * exp(d$z) + rnorm(N)
-```
-
----
-level: 3
-layout: image-right
-image: /gam-1.svg
----
-
-# What does the DGP look like?
-
-```r
-ggplot(d, aes(x = x, y = y, color = z)) +
-  geom_point(alpha=0.5) +
-  scale_color_viridis() +
-  theme_bw()
-```
-
----
-level: 3
-layout: image-right
-image: /gam-2.svg
----
-
-# How well does a linear model predict $y$?
-
-```r
-m <- lm(y ~ x + z, data = d)
-
-d$y_hat_lm <- predict(m)
-
-ggplot(d, aes(x = y, y = y_hat_lm)) +
-  geom_point(alpha=0.2) +
-  geom_abline(aes(intercept = 0,
-                  slope = 1),
-              lty = 2) +
-  theme_bw()
-```
-
-<v-click>
-
-- Not great in the tails!
-
-</v-click>
-
----
-level: 3
----
-
-# Looking at GAM Output
-
-- Let's start with just an OLS using the `gam()` function:
-
-````md magic-move
-```r
-m1 <- gam(y ~ x + z, data = d)
-summary(m1)
-```
-```r
-m1 <- gam(y ~ x + z, data = d)
-summary(m1)
-
-Family: gaussian
-Link function: identity
-
-Formula:
-y ~ x + z
-
-Parametric coefficients:
-            Estimate Std. Error t value Pr(>|t|)
-(Intercept)  -4.6969     0.2049  -22.93   <2e-16 ***
-x             7.2214     0.2057   35.10   <2e-16 ***
-z             3.3351     0.2110   15.80   <2e-16 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-
-R-sq.(adj) =  0.602   Deviance explained = 60.3%
-GCV = 42.087  Scale est. = 41.96     n = 1000
-```
-````
-
----
-level: 3
----
-
-# Looking at More GAM Output
-
-- Now let's add a smoothing function to $x$:
-
-````md magic-move
-```r
-m2 <- gam(y ~ s(x) + z, data = d)
-summary(m2)
-```
-```r
-m2 <- gam(y ~ s(x) + z, data = d)
-summary(m2)
-
-Formula:
-y ~ s(x) + z
-
-Parametric coefficients:
-            Estimate Std. Error t value Pr(>|t|)
-(Intercept)  -4.6833     0.1050  -44.61   <2e-16 ***
-z             3.3986     0.1087   31.28   <2e-16 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-Approximate significance of smooth terms:
-       edf Ref.df     F p-value
-s(x) 8.685  8.972 834.4  <2e-16 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-R-sq.(adj) =  0.895   Deviance explained = 89.6%
-GCV = 11.138  Scale est. = 11.019    n = 1000
-```
-````
-
----
-level: 3
-layout: image-right
-image: /gam-3.svg
----
-
-# How well does this GAM with a smoother on $x$ predict $y$?
-
-```r
-d$y_hat_gam_x <- predict(m2)
-
-ggplot(d, aes(x = y, y = y_hat_gam_x)) +
-  geom_point(alpha = 0.2) +
-  geom_abline(aes(intercept = 0,
-                  slope = 1),
-              lty = 2) +
-  theme_bw()
-```
-
-<v-click>
-
-- Way better!
-
-</v-click>
-
-
----
-level: 3
----
-
-# Looking at More GAM Output
-
-- Now let's add a smoothing function to $z$:
-
-````md magic-move
-```r
-m3 <- gam(y ~ x + s(z), data = d)
-summary(m3)
-```
-```r
-m3 <- gam(y ~ x + s(z), data = d)
-summary(m3)
-
-Formula:
-y ~ x + s(z)
-
-Parametric coefficients:
-            Estimate Std. Error t value Pr(>|t|)
-(Intercept)  -4.6624     0.1753  -26.59   <2e-16 ***
-x             7.1789     0.1768   40.61   <2e-16 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-Approximate significance of smooth terms:
-       edf Ref.df     F p-value
-s(z) 6.921  8.036 87.43  <2e-16 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-R-sq.(adj) =  0.708   Deviance explained = 71.1%
-GCV = 31.018  Scale est. = 30.741    n = 1000
-```
-````
-
----
-level: 3
-layout: image-right
-image: /gam-4.svg
----
-
-# How well does this GAM with a smoother on $z$ predict $y$?
-
-```r
-d$y_hat_gam_z <- predict(m3)
-
-ggplot(d, aes(x = y, y = y_hat_gam_z)) +
-  geom_point(alpha = 0.2) +
-  geom_abline(aes(intercept = 0,
-                  slope = 1),
-              lty = 2) +
-  theme_bw()
-```
-
-<v-clicks>
-
-- Worse than the smoother on $x$, but better than no smoothers at all!
-- Turns out the nonlinearity in $x$ is more important than the nonlinearity in $z$
+- The _training set_ is the set of data points used to fit the model. This should **always** be your largest subset of data
+- The _testing set_ (or _test set_ or _holdout set_) is the set of data points used to make your final evaluation
+  - The model fit on the training set makes new predictions for the OOS data in the testing set
+  - Then you compute some fit metric (like MSE or accuracy)
+  - The test set should be as small as possible while still giving you a sample of points to evaluate on
+  - If you have model parameters to tune, like regularization parameters or decisions between which model to use, you can't make that selection based on test set performance, because then it becomes in sample data!
+- The _validation set_ (or _eval set_, _development set_, or _dev set_) is not used to train the model, but used to pick the best values for user-tunable parameters
+  - Things like learning rates in gradient descent, or amounts of regularization, or balance between LASSO and Ridge regularization
+  - Should be the same size as your test set
 
 </v-clicks>
 
@@ -284,382 +62,102 @@ ggplot(d, aes(x = y, y = y_hat_gam_z)) +
 level: 3
 ---
 
-# Looking at Even More GAM Output
+# In Practice
 
-- Now let's add a smoothing function to $x$ and $z$:
+<v-clicks depth="2">
 
-````md magic-move
-```r
-m4 <- gam(y ~ s(x) + s(z), data = d)
-summary(m4)
-```
-```r
-m4 <- gam(y ~ s(x) + s(z), data = d)
-summary(m4)
+- The gold standard when you don't have any tunable model parameters is a train/test split, often 80\% of data in the training set and 20\% in the testing set (called an 80/20 split)
+  - If you have a huge amount of data, you can push this to a 90/10 split or even smaller for the test set
+- If you have tunable model parameters or modeling decisions, the gold standard is a train/dev/test split
+  - Often this is 80/10/10
+- The problem is that you want to have as much data as possible inside your model
+  - This is especially true of more flexible machine learning models!
+- There is another way...
 
-Formula:
-y ~ s(x) + s(z)
+</v-clicks>
 
-Parametric coefficients:
-            Estimate Std. Error t value Pr(>|t|)
-(Intercept) -4.64823    0.03312  -140.4   <2e-16 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-Approximate significance of smooth terms:
-       edf Ref.df    F p-value
-s(x) 8.978  9.000 8092  <2e-16 ***
-s(z) 8.932  8.999 2087  <2e-16 ***
+level: 1
+layout: section
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-R-sq.(adj) =   0.99   Deviance explained =   99%
-GCV = 1.1179  Scale est. = 1.0968    n = 1000
-```
-````
+
+# Cross Validation
 
 ---
 level: 3
-layout: image-right
-image: /gam-5.svg
+hideInToc: true
 ---
 
-# How well does this GAM with a smoother on $x$ and $z$ predict $y$?
+# Cross Validation
 
-```r
-d$y_hat_gam_xz <- predict(m4)
+<v-clicks depth="2">
 
-ggplot(d, aes(x = y, y = y_hat_gam_xz)) +
-  geom_point(alpha = 0.2) +
-  geom_abline(aes(intercept = 0,
-                  slope = 1),
-              lty = 2) +
-  theme_bw()
-```
+- Big idea: What if, instead of holding out your dev set, you divide your train set into chunks, and use those chunks to make your modeling decisions?
+- This is worse than holding out a dev set, but _much_ better than not using a dev set at all!
+- Once you've made your modeling decision based upon the cross validated (CV) performance, you fit a final model using those parameters on your training set and then test
+- If there are no modeling decisions, you can also use CV instead of a test set
+  - This is worse than using a test set
+  - Only provides an estimate of OOS performance
+  - Might be your best bet in low data situations
 
-<v-click>
-
-- Turns out, pretty damn well!
-
-</v-click>
-
+</v-clicks>
 
 ---
 level: 2
 ---
 
-# Visualizing Model Response
+# $k$-Fold Cross Validation in Practice
 
-<v-clicks depth="3">
+<v-clicks depth="2">
 
-- When you break into really flexible models, it can be hard to understand what your model is doing
-- A good technique to help visualize what your model is doing is to pick a focal variable, $X$, then:
-  - Generate a grid of values for $X$ that covers the values in your data
-  - Fix the other variables in your dataset to some value (mean, median, some variable of interest, etc)
-  - Use the `predict()` function on your model to generate $Y$ values for this new dataset
-  - Plot a line for $Y$ vs $X$
-- You can also pick two variables and do the same thing
-  - Instead of plotting a line, you plot $X_1$ vs $X_2$ and make a heatmap that varies color by $Y$
-  - This can help to understand interactions in complex models
+1. Divide your training set into $k$ buckets, called _folds_ (5 or 10 are commonly used)
+2. For each fold, $i \in \{1, \ldots, k\}$:
+  - Fit the model to the data **not** in fold $i$
+  - Use the model to predict outcomes for the data in fold $i$
+3. Evaluate performance on these CV predictions
+4. Fit a model to the entire training set
+5. Test performance
 
 </v-clicks>
 
-
 ---
-level: 3
-layout: image-right
-image: /gam-1.svg
+level: 2
 ---
 
-# Recall the data:
+# Selecting $k$ and Tradeoffs
 
-```r
-ggplot(d, aes(x = x, y = y, color = z)) +
-  geom_point(alpha=0.5) +
-  scale_color_viridis() +
-  theme_bw()
-```
+<v-clicks depth="2">
 
-<v-click>
 
-- Let's visualize what the GAM learned from this:
+- Higher values of $k$ put fewer observations into each test fold, and more observations into each model
+- This requires fitting $k+1$ models, however! If model fitting is slow, you want to balance that in your selection of $k$
+- If you have $N$ observations, what happens if $k=N$?
+  - This is called _Leave One Out Cross Validation (LOO-CV)_
+  - Each model is fit on $N-1$ data points to predict an outcome for $1$ observation
+  - Requires fitting $N$ models
+- **In the final Problem Set, you'll implement parallelized LOO-CV!**
 
-</v-click>
-
-<v-click>
-
-````md magic-move
-```r
-d_grid <- data.frame(x = seq(from = -4, to = 4,
-                             length.out = 1000))
-```
-```r
-d_grid <- data.frame(x = seq(from = -4, to = 4,
-                             length.out = 1000))
-d_grid$z <- median(d$z)
-```
-```r
-d_grid <- data.frame(x = seq(from = -4, to = 4,
-                             length.out = 1000))
-d_grid$z <- median(d$z)
-
-d_grid$y_pred <- predict(m4, newdata = d_grid)
-```
-````
-
-</v-click>
-
+</v-clicks>
 
 ---
-level: 3
-layout: image-right
-image: /gam-6.svg
+level: 2
 ---
 
-# The Response Function:
-
-- Here's how $y$ varies as a function of $x$ when $z$ is held at its median value:
-
-```r
-ggplot(d_grid, aes(x = x, y = y_pred)) +
-  geom_line(color = okabeito_colors(3)) +
-  theme_bw()
-```
-
-<v-click>
-
-- Looks cubic!
-
-</v-click>
-
----
-level: 3
-layout: image-right
-image: /gam-7.svg
----
-
-# Let's do the same thing for $z$:
-
-```r
-ggplot(d, aes(x = z, y = y, color = x)) +
-  geom_point(alpha=0.5) +
-  scale_color_viridis() +
-  theme_bw()
-```
-
-<v-click>
-
-- Let's visualize what the GAM learned from this:
-
-</v-click>
-
-<v-click>
-
-````md magic-move
-```r
-d_grid <- data.frame(z = seq(from = -4, to = 4,
-                             length.out = 1000))
-```
-```r
-d_grid <- data.frame(z = seq(from = -4, to = 4,
-                             length.out = 1000))
-d_grid$x <- median(d$x)
-```
-```r
-d_grid <- data.frame(z = seq(from = -4, to = 4,
-                             length.out = 1000))
-d_grid$x <- median(d$x)
-
-d_grid$y_pred <- predict(m4, newdata = d_grid)
-```
-````
-
-</v-click>
-
-
----
-level: 3
-layout: image-right
-image: /gam-8.svg
----
-
-# The Response Function:
-
-- Here's how $y$ varies as a function of $z$ when $x$ is held at its median value:
-
-```r
-ggplot(d_grid, aes(z = z, y = y_pred)) +
-  geom_line(color = okabeito_colors(3)) +
-  theme_bw()
-```
-
-<v-click>
-
-- Looks exponential!
-
-</v-click>
-
-
----
-level: 3
----
-
-# A New DGP
-
-- Just a sum of inverted quadratics!
-
-```r
-d_new <- data.frame(
-  x = rnorm(N),
-  z = rnorm(N)
-)
-
-d_new$y <- 2 * (d_new$x^2) - 2 * (d_new$z^2) + rnorm(N)
-m5 <- gam(y ~ s(x) + s(z), data = d_new)
-```
-
-
----
-level: 3
-layout: image-right
-image: /new-gam-1.svg
----
-
-# Visualizing, starting with $x$
-
-```r
-ggplot(d_new, aes(x = x, y = y)) +
-  geom_point(alpha = 0.5) +
-  theme_bw()
-```
-
-<v-click>
-
-- As before!
-
-</v-click>
-
-<v-click>
-
-```r
-d_grid <- data.frame(
-  x = seq(from = -4,
-          to = 4,
-          length.out = 1000))
-d_grid$z <- median(d$z)
-
-d_grid$y_pred <- predict(m5,
-                         newdata = d_grid)
-```
-</v-click>
-
-
----
-level: 3
-layout: image-right
-image: /new-gam-2.svg
----
-
-# The GAM response for $x$ at the median value of $z$
-
-```r
-ggplot(d_grid, aes(x = x, y = y_pred)) +
-  geom_line(color = okabeito_colors(3)) +
-  theme_bw()
-```
-
----
-level: 3
-layout: image-right
-image: /new-gam-3.svg
----
-
-# Visualizing for $z$
-
-```r
-ggplot(d, aes(x = z, y = y)) +
-  geom_point(alpha = 0.5) +
-  theme_bw()
-```
-
-<v-click>
-
-- One more time!
-
-</v-click>
-
-<v-click>
-
-```r
-d_grid <- data.frame(
-  z = seq(from = -4,
-          to = 4,
-          length.out = 1000))
-d_grid$x <- median(d$x)
-
-d_grid$y_pred <- predict(m5,
-                         newdata = d_grid)
-```
-</v-click>
-
-
----
-level: 3
-layout: image-right
-image: /new-gam-4.svg
----
-
-# The GAM response for $z$ at the median value of $x$
-
-```r
-ggplot(d_grid, aes(x = z, y = y_pred)) +
-  geom_line(color = okabeito_colors(3)) +
-  theme_bw()
-```
-
-
----
-level: 3
----
-
-# Visualizing $y$ as a function of $x$ and $z$
-
-- Here the strategy is to create a grid of $x$ and $z$ values and predict $y$ across them:
-
-````md magic-move
-```r
-x <- z <- seq(-4, 4, length.out = 100)
-```
-```r
-x <- z <- seq(-4, 4, length.out = 100)
-
-d_grid <- expand.grid(list(x = x, z = z))
-
-```
-
-```r
-x <- z <- seq(-4, 4, length.out = 100)
-
-d_grid <- expand.grid(list(x = x, z = z))
-
-d_grid$y_pred <- predict(m5, newdata = d_grid)
-```
-````
-
----
-level: 3
-layout: image-right
-image: /new-gam-5.svg
----
-
-# The GAM response as a function of both $x$ and $z$
-
-```r
-ggplot(d_grid, aes(x = x,
-                   y = z,
-                   fill = y_pred)) +
-  geom_tile() +
-  coord_equal() +
-  scale_fill_viridis() +
-  theme_bw()
-```
+# OOS Evaluation with GAMs
+
+<v-clicks depth="3">
+
+- What tunable model parameters do we have with GAMs?
+  - What terms get smoothing
+  - Do you use tensor smoothers
+  - What kind of splines?
+  - Values of hyperparameters like `k`
+- What evaluation metrics might we want to use with GAMs?
+  - Mean squared error (MSE)
+    - $MSE(y, \hat{y}) = \frac{1}{N} \sum_i (y_i - \hat{y}_i)^2$
+  - Classification accuracy
+  - Log likelihood
+  - Whatever you want, really!
+
+</v-clicks>

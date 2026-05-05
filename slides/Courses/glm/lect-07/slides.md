@@ -1,7 +1,7 @@
 ---
 theme: seriph
 background: /winter-park.jpg
-title: Generalized Linear Models - Week 6
+title: Generalized Linear Models - Week 7
 author: Klint Kanopka
 info: |
   ## APSTA-GE 2044: Generalized Linear Models

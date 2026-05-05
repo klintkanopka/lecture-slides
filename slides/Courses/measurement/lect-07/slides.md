@@ -4,12 +4,13 @@ background: /winter-park.jpg
 title: Measurement - Week 7
 author: Klint Kanopka
 info: |
-  ## APSTA-GE 2094 / APSY-GE 2524: Modern Approaches in Measurement 
+  ## APSTA-GE 2094 / APSY-GE 2524: Modern Approaches in Measurement
   Lecture 7
   Classical Text Analysis; Topic Models; Natural Language Processing
 date: 2026-03-05
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false

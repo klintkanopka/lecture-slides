@@ -4,12 +4,13 @@ background: /winter-park.jpg
 title: Measurement - Week 8
 author: Klint Kanopka
 info: |
-  ## APSTA-GE 2094 / APSY-GE 2524: Modern Approaches in Measurement 
+  ## APSTA-GE 2094 / APSY-GE 2524: Modern Approaches in Measurement
   Lecture 8
   Categorical Latent Variables; Model Free Clustering; Distance Measures; k-Means; Hierarchical Clustering; Density Based Clustering; DBSCAN
 date: 2026-03-12
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false
