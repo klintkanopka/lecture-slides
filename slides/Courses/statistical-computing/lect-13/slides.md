@@ -4,12 +4,13 @@ background: /nyu-header.jpg
 title: Statistical Computing - Week 13
 author: Klint Kanopka
 info: |
-  ## APSTA-GE 2352: StatComp 
+  ## APSTA-GE 2352: StatComp
   Lecture 13
   Model Evaluation; Cross Validation; Out of Sample Metrics
 date: 2025-12-04
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false

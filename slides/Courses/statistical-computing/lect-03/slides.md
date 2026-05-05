@@ -4,12 +4,13 @@ background: /nyu-header.jpg
 title: Statistical Computing - Week 3
 author: Klint Kanopka
 info: |
-  ## APSTA-GE 2352: StatComp 
+  ## APSTA-GE 2352: StatComp
   Lecture 3
   Indexing; Conditional Statements; Control Flow; for Loops; Selection Sort
 date: 2025-09-18
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false
@@ -42,11 +43,11 @@ src: ./pages/03-conditionals.md
 ---
 src: ./pages/04-for-loops.md
 ---
-  
+
 ---
 src: ./pages/05-sorting.md
 ---
-  
+
 ---
 src: ./pages/06-wrap-up.md
 ---

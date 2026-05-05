@@ -4,12 +4,13 @@ background: /nyu-header.jpg
 title: Statistical Computing - Week 5
 author: Klint Kanopka
 info: |
-  ## APSTA-GE 2352: StatComp 
+  ## APSTA-GE 2352: StatComp
   Lecture 5
   Randomization; Sampling; Simulations; Monte Carlo Methods
 date: 2025-10-02
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false

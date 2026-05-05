@@ -12,6 +12,7 @@ info: |
 date: 2025-09-11
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false

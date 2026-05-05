@@ -4,12 +4,13 @@ background: /nyu-header.jpg
 title: Statistical Computing - Week 6
 author: Klint Kanopka
 info: |
-  ## APSTA-GE 2352: StatComp 
+  ## APSTA-GE 2352: StatComp
   Lecture 6
   Rejection Sampling; Matrix Computation; Principal Component Analysis
 date: 2025-10-09
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false

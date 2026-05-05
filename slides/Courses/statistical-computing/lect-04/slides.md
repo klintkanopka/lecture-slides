@@ -4,12 +4,13 @@ background: /nyu-header.jpg
 title: Statistical Computing - Week 4
 author: Klint Kanopka
 info: |
-  ## APSTA-GE 2352: StatComp 
+  ## APSTA-GE 2352: StatComp
   Lecture 4
   Indexing; while Loops; Distance Metrics; k-Means Clustering
 date: 2025-09-25
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false
@@ -42,7 +43,7 @@ src: ./pages/03-while-loops.md
 ---
 src: ./pages/04-k-means.md
 ---
-  
+
 ---
 src: ./pages/05-k-means-gen.md
 ---

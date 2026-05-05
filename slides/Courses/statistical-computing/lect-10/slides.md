@@ -4,12 +4,13 @@ background: /nyu-header.jpg
 title: Statistical Computing - Week 10
 author: Klint Kanopka
 info: |
-  ## APSTA-GE 2352: StatComp 
+  ## APSTA-GE 2352: StatComp
   Lecture 10
   Matrix factorization; The Singular Value Decomposition (SVD); The quantification of text; Similarity metrics for text; Latent Semantic Analysis
 date: 2025-11-06
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false

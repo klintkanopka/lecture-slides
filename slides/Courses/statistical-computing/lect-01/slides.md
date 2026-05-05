@@ -12,6 +12,7 @@ info: |
 date: 2025-09-04
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false
@@ -66,8 +67,8 @@ level: 2
 # Wrapping up
 
 - We covered a lot of kinda bland introductory material, with not a lot of context!
-- Your lab on Wednesday is devoted to practicing `tidyverse` and `ggplot2` 
+- Your lab on Wednesday is devoted to practicing `tidyverse` and `ggplot2`
 - Lab is also a place where you'll go over homework-related problems and can ask questions. Use Ruiting as a resource!
 - Ask questions on Slack!
 - PS0 is posted and due before class next week
-- PS1 will post tonight or tomorrow and be due in two weeks 
+- PS1 will post tonight or tomorrow and be due in two weeks

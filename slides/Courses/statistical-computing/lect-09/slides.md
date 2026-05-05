@@ -4,12 +4,13 @@ background: /nyu-header.jpg
 title: Statistical Computing - Week 9
 author: Klint Kanopka
 info: |
-  ## APSTA-GE 2352: StatComp 
+  ## APSTA-GE 2352: StatComp
   Lecture 9
   Non-Convex Optimization; Markov Chain Monte Carlo; MCMC
 date: 2025-10-30
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false

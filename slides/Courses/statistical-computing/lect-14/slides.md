@@ -4,12 +4,13 @@ background: /nyu-header.jpg
 title: Statistical Computing - Week 14
 author: Klint Kanopka
 info: |
-  ## APSTA-GE 2352: StatComp 
+  ## APSTA-GE 2352: StatComp
   Lecture 14
   Course Wrap Up, Final Review
 date: 2025-12-11
 class: text-center
 routerMode: hash
+download: true
 lineNumbers: true
 drawings:
   persist: false
