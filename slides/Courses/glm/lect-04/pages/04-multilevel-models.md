@@ -176,9 +176,9 @@ $$
 <v-clicks depth="2">
 
 - If most of the variation is _within_ groups, $\sigma^2_\alpha \gg \sigma^2_\varepsilon$:
-  - $ICC \rightarrow 0$
-- If most of the variation is _between_ groups, $\sigma^2_\varepsilon \gg \sigma^2_\alpha$:
   - $ICC \rightarrow 1$
+- If most of the variation is _between_ groups, $\sigma^2_\varepsilon \gg \sigma^2_\alpha$:
+  - $ICC \rightarrow 0$
 
 </v-clicks>
 

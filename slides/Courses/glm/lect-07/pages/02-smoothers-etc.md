@@ -74,7 +74,7 @@ level: 2
 - These are ways to set up more flexible interactions!
 - In general, you supply multiple comma separated variable names to `te()` to get a more flexible smooth:
   - `y ~ te(x, z)`
-- If you'd prefer to separate out the different main effects and interaction effects (for, say, model comparions), instead use _tensor interactions_:
+- If you'd prefer to separate out the different main effects and interaction effects (for, say, model comparisons), instead use _tensor interactions_:
   - `y ~ ti(x) + ti(z) + ti(x, z)`
 - All of the same arguments we used with `s()` (and more) can be supplied to the tensor smoothers
 

@@ -182,7 +182,7 @@ $$
 
 - Smaller values are better
 - BIC imposes a harsher complexity penalty than AIC
-- These are often called _parisomony penalties_, as they tend to favor simpler models when likelihoods are similar
+- These are often called _parsimony penalties_, as they tend to favor simpler models when likelihoods are similar
 
 </v-clicks>
 
@@ -398,7 +398,7 @@ level: 2
 
 <v-clicks depth="2">
 
-- A Reciever Operating Characteristic (ROC) curve plots sensitivity against the false positive rate (1 - specificity)
+- A Receiver Operating Characteristic (ROC) curve plots sensitivity against the false positive rate (1 - specificity)
 - Each point corresponds to a different classification threshold
 - The area under the curve (AUC) summarizes classification performance
   - $0.5$ is random guessing

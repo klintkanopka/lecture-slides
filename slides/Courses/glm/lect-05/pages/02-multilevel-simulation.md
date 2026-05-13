@@ -295,7 +295,7 @@ lm(score ~ study_time, data = d_sim)
 
 lm(score ~ study_time + as.character(classroom), data = d_sim)
 
-lmer(score ~ study_time + (1|classroom) + study_time, data = d_sim)
+lmer(score ~ study_time + (1|classroom), data = d_sim)
 
 lm(score ~ as.character(classroom)*study_time, data=d_sim)
 

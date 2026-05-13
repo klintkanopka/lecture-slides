@@ -33,7 +33,7 @@ image: /mlm-1.svg
 # Students per Teacher
 
 ```r
-d |>
+d_sim |>
   count(teacher_id) |>
   ggplot(aes(x = n)) +
   geom_histogram(
@@ -49,10 +49,10 @@ layout: image-right
 image: /mlm-2.svg
 ---
 
-# Teachers per School
+# Students per School
 
 ```r
-d |>
+d_sim |>
   count(school_id) |>
   ggplot(aes(x = n)) +
   geom_histogram(
@@ -68,10 +68,10 @@ layout: image-right
 image: /mlm-3.svg
 ---
 
-# Students per School
+# Teachers per School
 
 ```r
-d |>
+d_sim |>
   select(teacher_id, school_id) |>
   distinct() |>
   count(school_id) |>
@@ -92,7 +92,7 @@ image: /mlm-4.svg
 # Debate Team
 
 ```r
- ggplot(d, aes(x = debate_team)) +
+ ggplot(d_sim, aes(x = debate_team)) +
   geom_bar(fill = okabeito_colors(3)) +
   theme_bw()
 ```
@@ -106,7 +106,7 @@ image: /mlm-5.svg
 # Basketball Team
 
 ```r
- ggplot(d, aes(x = basketball_team)) +
+ ggplot(d_sim, aes(x = basketball_team)) +
   geom_bar(fill = okabeito_colors(3)) +
   theme_bw()
 ```
@@ -120,7 +120,7 @@ image: /mlm-6.svg
 # Only Child
 
 ```r
- ggplot(d, aes(x = only_child)) +
+ ggplot(d_sim, aes(x = only_child)) +
   geom_bar(fill = okabeito_colors(3)) +
   theme_bw()
 ```
@@ -134,7 +134,7 @@ image: /mlm-7.svg
 # Years of Experience
 
 ```r
-d |>
+d_sim |>
   select(teacher_id, years_experience) |>
   distinct() |>
   ggplot(aes(x = years_experience)) +
@@ -151,7 +151,7 @@ image: /mlm-8.svg
 # Class Size
 
 ```r
-d |>
+d_sim |>
   select(teacher_id, class_size) |>
   distinct() |>
   ggplot(aes(x = class_size)) +
@@ -168,7 +168,7 @@ image: /mlm-9.svg
 # Percent Free/Reduced Price Lunch
 
 ```r
-d |>
+d_sim |>
   select(school_id, pct_frl) |>
   distinct() |>
   ggplot(aes(x = pct_frl)) +
@@ -187,7 +187,7 @@ image: /mlm-10.svg
 # Percent English Language Learners
 
 ```r
-d |>
+d_sim |>
   select(school_id, pct_ell) |>
   distinct() |>
   ggplot(aes(x = pct_ell)) +
@@ -206,7 +206,7 @@ image: /mlm-11.svg
 # Pretest Score
 
 ```r
-ggplot(d, aes(x = pretest)) +
+ggplot(d_sim, aes(x = pretest)) +
   geom_histogram(
     bins = 20,
     fill = okabeito_colors(3)) +
@@ -222,7 +222,7 @@ image: /mlm-12.svg
 # Posttest Score
 
 ```r
-ggplot(d, aes(x = posttest)) +
+ggplot(d_sim, aes(x = posttest)) +
   geom_histogram(
     bins = 20,
     fill = okabeito_colors(3)) +

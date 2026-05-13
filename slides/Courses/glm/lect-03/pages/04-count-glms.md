@@ -78,7 +78,7 @@ hideInToc: true
   - For a normal Poisson regression, $\phi=1$
   - Implemented by passing `family=quasipoisson(link='log')` to the `glm()` function
   - Allows for the same link functions as `poisson()`
-- The difference between Quasi-Poisson and Negative Binomal is the mean-variance structure
+- The difference between Quasi-Poisson and Negative Binomial is the mean-variance structure
   - For Quasi-Poisson, $\text{Var}[\mu] = \phi \mu$
   - For Negative Binomial, $\text{Var}[\mu] = \mu + \frac{\mu^2}{k}$
   - Which is "better" depends on your data!
