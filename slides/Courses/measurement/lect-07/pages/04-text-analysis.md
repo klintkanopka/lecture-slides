@@ -9,7 +9,7 @@ layout: section
 level: 2
 hideInToc: true
 ---
-  
+
 # Classical text analysis
 
 - Does the DTM remind you of any objects we've worked with in this course already?
@@ -30,7 +30,7 @@ $$ \text{tf}(t, d) = \frac{f_{t,d}}{\sum_{t'\in d} f_{t',d}} $$
 <v-click>
 
 - We can look at how common tokens are across documents (often _inverse document frequency_)
-$$ \text{idf}(t, D) = \ln \frac{N}{d\in D: t\in d} $$ 
+$$ \text{idf}(t, D) = \ln \frac{N}{d\in D: t\in d} $$
 
 </v-click>
 <v-click>
@@ -58,7 +58,7 @@ level: 3
 - You can also develop your own dictionaries for specific purposes
   - This can be really time consuming to do well
   - Take a look at _The Development and Psychometric Properties of LIWC-22_ technical report for more information on how to do this
-  
+
 ---
 level: 3
 ---
@@ -81,7 +81,7 @@ level: 3
 ---
 
 # Topic Models
-  
+
 - Each topic has a probability associated with each word, and higher probability words are more likely to be used by documents that contain higher levels of the topic
 - These probabilities across words sum to one within each topic
 - Each document has a probability associated with each topic, and these also sum to one in each document
@@ -102,7 +102,6 @@ level: 3
   - Allow for topic mixtures to vary as a function of other covariates
   - You'll use these in the `stm` package in PS3
 - Embedding-based topic models exist
-  - BERTopic is the most common 
+  - BERTopic is the most common
   - Last I checked it was kind of horrible
   - These are also harder to interpret
-  

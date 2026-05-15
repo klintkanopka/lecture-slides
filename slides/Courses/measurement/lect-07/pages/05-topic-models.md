@@ -102,19 +102,19 @@ image: /tf-idf.svg
 # tf-idf
 
 ```r
-tf_idf <- bind_tf_idf(food_counts, 
+tf_idf <- bind_tf_idf(food_counts,
   stem, review, n)
 target <- 212418
 food_text$Text[food_text$Id == target]
 ```
 ```
-"Very bad buy on my side. first of all i had misstaken these for the candy bubble gum 
-cigarrets. When i got my package i was quite happy with the shipping time, 3 days but 
-when i opened the package it was just the candybox inside of an amazon box. The candy 
-box was not sealed and it was all dusty on the outside, and when you opened it the 
-ciggarete individual boxes were all dusty. I opened one of the individual cases and 
-there were like 5 or 6. I opened another box and there was 5. I tried one of the candy 
-sticks and it tasted horrible! not a good buy at all. WARNING THESE ARE JUST STICKS OF 
+"Very bad buy on my side. first of all i had misstaken these for the candy bubble gum
+cigarrets. When i got my package i was quite happy with the shipping time, 3 days but
+when i opened the package it was just the candybox inside of an amazon box. The candy
+box was not sealed and it was all dusty on the outside, and when you opened it the
+ciggarete individual boxes were all dusty. I opened one of the individual cases and
+there were like 5 or 6. I opened another box and there was 5. I tried one of the candy
+sticks and it tasted horrible! not a good buy at all. WARNING THESE ARE JUST STICKS OF
 CHALK PRETTY MUCH, DO NOT MISTAKE FOR BUBBLE GUM CIGS."
 ```
 
@@ -123,7 +123,7 @@ tf_idf |>
   filter(review == target) |>
   arrange(tf_idf) |>
   head(25) |>
-  ggplot(aes(x = tf_idf, 
+  ggplot(aes(x = tf_idf,
              y = reorder(stem, tf_idf))) +
   geom_col(fill = okabeito_colors(3)) +
   labs(y = NULL) +
@@ -143,7 +143,7 @@ dtm <- food_counts |>
   filter(!stem %in% c('br')) |>
   cast_dtm(review, stem, n)
 
-as.matrix(dtm[1:10, 1:10])
+as.matrix(dtm[1:15, 1:15])
 ```
 ```
      Terms
@@ -188,8 +188,8 @@ food_top_terms |>
   mutate(
     term = reorder_within(term, beta, topic)
     ) |>
-  ggplot(aes(x = beta, 
-             y = term, 
+  ggplot(aes(x = beta,
+             y = term,
              fill = as.character(topic))) +
   geom_col(show.legend = FALSE) +
   facet_wrap(. ~ topic, scales = 'free') +
@@ -222,8 +222,8 @@ food_top_terms |>
   mutate(
     term = reorder_within(term, beta, topic)
     ) |>
-  ggplot(aes(x = beta, 
-             y = term, 
+  ggplot(aes(x = beta,
+             y = term,
              fill = as.character(topic))) +
   geom_col(show.legend = FALSE) +
   facet_wrap(. ~ topic, scales = 'free') +
@@ -258,8 +258,8 @@ food_top_terms |>
   mutate(
     term = reorder_within(term, beta, topic)
     ) |>
-  ggplot(aes(x = beta, 
-             y = term, 
+  ggplot(aes(x = beta,
+             y = term,
              fill = as.character(topic))) +
   geom_col(show.legend = FALSE) +
   facet_wrap(. ~ topic, scales = 'free') +

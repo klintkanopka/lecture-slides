@@ -261,18 +261,14 @@ image: /pca-plot.svg
 # Principal Component Projection
 
 ```r
-library(GGally)
+library(factoextra)
 
-ggpairs(
-  d,
-  mapping = aes(
-    color = as.character(cluster),
-    fill = as.character(cluster),
-    alpha = 0.3
-  ),
-  columns = 2:10
-) +
-  scale_color_okabeito() +
-  scale_fill_okabeito() +
-  theme_bw()
+fviz_cluster(
+  clust_sol,
+  data = d[, 2:9],
+  palette = unname(okabeito_colors(1:4)),
+  geom = "point",
+  ellipse.type = "convex",
+  ggtheme = theme_bw()
+)
 ```

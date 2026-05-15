@@ -32,20 +32,20 @@ level: 3
 - Then the object returned by `mirt.model()` gets passed as the second argument to `mirt()`
 - For setting factor structures, you can use item numbers or item names
   - You can reference items directly or item ranges
-  
-  
+
+
 ---
 level: 3
 ---
 
 # `mirt.model()` syntax (example 1)
-  
+
 For ten items and two factors, we can use item number to specify factor structure and fit a model like this:
 
 ```r
 s <- 'F1 = 1-5
       F2 = 6-10'
-      
+
 F2_model <- mirt.model(s)
 
 m <- mirt(resp, F2_model, itemtype = '2PL')
@@ -63,7 +63,7 @@ We are totally allowed to name the factors as we like and reference items direct
 s <- 'ARITHMETIC = 1,3,5
       GEOMETRY = 2,4,6
       PROBABILITY = 7-10'
-      
+
 F3_model <- mirt.model(s)
 
 m <- mirt(resp, F3_model, itemtype = '2PL')
@@ -82,7 +82,7 @@ We can also use item names. Here we assume the item names are the column names i
 s <- 'A = item_1,item_3,item_5
       B = item_2,item_4,item_6
       C = item_3-item_5'
-      
+
 F3_model <- mirt.model(s, itemnames = names(resp))
 
 m <- mirt(resp, F3_model, itemtype = '2PL')
@@ -115,7 +115,7 @@ level: 3
 - The `pars` data frame has a column called `est` that takes a logical value
   - For a parameter, if `est == TRUE`, `mirt()` will use MLE to estimate the parameter
   - If `est == FALSE`, `mirt()` will fix it to its starting value
-- We set the `value` all of the `a1, a2, a3` parameters to either `1` or `0` _and_ `est==FALSE` to manually specify the factor structure
+- We set the `value` of all the `a1, a2, a3` parameters to either `1` or `0` _and_ `est==FALSE` to manually specify the factor structure
 
 
 
@@ -125,11 +125,11 @@ level: 3
 
 # Using the `pars` argument in `mirt()`
 
-- First extract your `pars` matrix: 
+- First extract your `pars` matrix:
   - `parmat <- mirt(resp, 3, pars='values')`
 - Focus on the columns: `item, name, value, est`
   - `item` is the item name
-  - `name` is the name of the parameter - `a1,a2,a3` are the discriminations 
+  - `name` is the name of the parameter - `a1,a2,a3` are the discriminations
   - `value` is the starting value of the parameter you want to set to `0` or `1` for the discriminations
   - `est` is set to `TRUE` for the discriminations, but we need to set it to `FALSE`
 - Pass the modified `parmat` back to the `mirt()` call:

@@ -6,8 +6,8 @@ author: Klint Kanopka
 info: |
   ## APSTA-GE 2094 / APSY-GE 2524: Modern Approaches in Measurement
   Lecture 13
-  Recommender Systems; Collaborative Filtering; Dating Apps
-date: 2026-04-30
+  Causal Inference and Measurement; Guest Lecture; Course Wrap-Up
+date: 2026-05-07
 class: text-center
 routerMode: hash
 download: true

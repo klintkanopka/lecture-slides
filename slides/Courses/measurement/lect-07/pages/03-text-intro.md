@@ -57,7 +57,7 @@ level: 3
 - Raw text is kind of a mess!
 - At the most basic level, we want to strip punctuation and convert words to lowercase
   - What other problems can arise from just counting words?
-- **Stop words** are super common words 
+- **Stop words** are super common words
   - e.g., a, an, the
   - Typically non-informative about the actual content of text, so we remove them
 
@@ -75,4 +75,3 @@ level: 3
   - More important in classical methods
   - Not needed for deep methods
   - Often you'll have domain-specific words you also want to drop
-  

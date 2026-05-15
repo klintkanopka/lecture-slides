@@ -54,7 +54,7 @@ level: 2
   - Means of each Gaussian that are interpretable as centers
   - The ability to have non-spherical clusters
 - What's the downside?
-  - If we don't restrict the covariance matrix, a solution with $N$ observations and $M$ variables and $G$ Gaussians has $G(M+M^2) + N(G-1) $ parameters
+  - If we don't restrict the covariance matrix, a solution with $N$ observations and $M$ variables and $G$ Gaussians has $G(M+M^2) + N(G-1)$ parameters
   - A comparable $k$-means solution only estimates $kM$ parameters!
 
 ---

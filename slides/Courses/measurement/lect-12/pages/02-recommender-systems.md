@@ -226,7 +226,7 @@ level: 3
 <v-clicks depth="2">
 
 - For a user $x$ and item $s \in S$:
-  - Find the set of $K$ other items who have ratings most similar to $x$
+  - Find the set of $K$ other items who have ratings most similar to $s$
   - Estimate $x$'s rating of $s$ using the ratings of those $K$ items
 - This generally boils down to $k$-Nearest Neighbors (kNN) followed by a weighted average
 - Which version do you think works better? Why?

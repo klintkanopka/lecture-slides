@@ -92,6 +92,18 @@ ggpairs(
 
 ggsave('pairs-plot.svg', height = 9, width = 8)
 
+fviz_cluster(
+  clust_sol,
+  data = d[, 2:9],
+  palette = unname(okabeito_colors(1:4)),
+  geom = "point",
+  ellipse.type = "convex",
+  ggtheme = theme_bw()
+)
+
+
+ggsave('pca-plot.svg', height = 9, width = 8)
+
 
 clust_dbscan <- dbscan(d_std, MinPts = 5, eps = 1)
 clust_dbscan

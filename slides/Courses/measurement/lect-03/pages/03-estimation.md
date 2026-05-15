@@ -35,7 +35,7 @@ level: 2
 
 # Maximum Likelihood Estimation (MLE)
 
-- Let's start by saying describing heads as an individual observation $x_i = 1$ and we seek to estimate the parameter, $p$, that captures this probability
+- Let's start by describing "flipping heads" as an individual observation $x_i = 1$ and we seek to estimate the parameter, $p$, that captures this probability
 
 <v-click>
 
@@ -46,7 +46,7 @@ level: 2
 </v-click>
 <v-click>
 
-- We first write down the _likelihood function_, $P(\theta|X)$ 
+- We first write down the _likelihood function_, $P(\theta|X)$
   - Often written $\mathcal{L}(\theta|X)$
 
 </v-click>
@@ -175,7 +175,7 @@ level: 2
   - With these, the problem is _super_ easy
 - The strategy is to estimate both the parameters we care about, $p_A, p_B$, and the latent coin assignments, $\theta_1, \cdots, \theta_5$, _at the same time_
   - We do this using the Expectation-Maximization (EM) Algorithm
-- Iterative algorithm 
+- Iterative algorithm
   - Treats the latent assignments as a _probability distribution_
   - Allows us to create a weighted set of data that represents all possible coin assignments (E-step)
   - Then we estimate our parameters $\hat{p}_A, \hat{p}_B$ from that (M-step)
@@ -225,7 +225,7 @@ level: 3
 | $4, 6$ | $1.4H,2.1T$ | $2.6H,3.9T$ |
 | $7, 3$ | $4.5H,1.9T$ | $2.5H,1.1T$ |
 
-$$\hat{p}^{(1)}_A \approx \frac{21.3}{21.3 + 8.6} \approx 0.71;\ 
+$$\hat{p}^{(1)}_A \approx \frac{21.3}{21.3 + 8.6} \approx 0.71;\
 \hat{p}^{(1)}_B \approx \frac{11.7}{11.7 + 8.4} \approx 0.58$$
 
 ---
@@ -235,7 +235,7 @@ level: 3
 # Doing it in code
 
 ```r
-flips <- matrix(c(5, 9, 8, 4, 7, 5, 1, 2, 6, 3), 
+flips <- matrix(c(5, 9, 8, 4, 7, 5, 1, 2, 6, 3),
                 nrow=5, ncol=2, byrow=F)
 p_new <- c(0.6, 0.5)
 p_old <- c(0,0)
@@ -247,8 +247,8 @@ while(!identical(round(p_old,2), round(p_new,2))){
   theta <- likelihood / rowSums(likelihood)
   theta_A <- theta[,1]*flips
   theta_B <- theta[,2]*flips
-  p_new <- c(sum(theta_A[,1])/sum(theta_A), 
-             sum(theta_B[,1])/sum(theta_B)) 
+  p_new <- c(sum(theta_A[,1])/sum(theta_A),
+             sum(theta_B[,1])/sum(theta_B))
   print(round(p_new,2))
 }
 ```

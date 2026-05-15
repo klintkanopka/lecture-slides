@@ -13,9 +13,9 @@ level: 2
 
 <v-clicks>
 
-- **Factor analysis** and **PCA** are about finding relationships between items 
+- **Factor analysis** and **PCA** are about finding relationships between items
   - Think of this as _grouping columns_ in your data
-- **IRT** assumes a relationship between items and then projecting persons and items onto a common scale
+- **IRT** assumes a relationship between items and then projects persons and items onto a common scale
   - Often this relationship is unidimensional
   - Allows for comparisons between _rows_ and _columns_ in your data along the dimensions defined by the groups you've found/assumed
 - What about finding groups of people?
@@ -61,11 +61,11 @@ level: 3
 
 ```r
 set.seed(8675309)
-d <- data.frame(x = c(rnorm(250, 0, 0.25), 
+d <- data.frame(x = c(rnorm(250, 0, 0.25),
                       rnorm(100, 1, 0.25)),
-                y = c(rnorm(250, 1, 0.25), 
+                y = c(rnorm(250, 1, 0.25),
                       rnorm(100, 0, 0.25)),
-                cluster = c(rep('A', 250), 
+                cluster = c(rep('A', 250),
                             rep('B', 100)))
 ```
 
@@ -95,7 +95,7 @@ image: /k-means-no-labels.png
 ```r
 ggplot(d, aes(x=x, y=y)) +
   geom_point() +
-  theme_bw() 
+  theme_bw()
 ```
 
 
@@ -114,7 +114,7 @@ centroids <- data.frame(x = c(0,1),
 
 ggplot(d, aes(x=x, y=y)) +
   geom_point() +
-  geom_point(data=centroids, aes(x=x, y=y), 
+  geom_point(data=centroids, aes(x=x, y=y),
              color="black", size=4) +
   theme_bw()
 ```
@@ -129,7 +129,7 @@ level: 3
 ````md magic-move
 ```r
 GetDistances <- function(data, centroid){
-  # TODO: Compute distance from each point in data 
+  # TODO: Compute distance from each point in data
   #  to a single centroid
 
   return(distances)
@@ -137,10 +137,10 @@ GetDistances <- function(data, centroid){
 ```
 ```r
 GetDistances <- function(data, centroid){
-  # TODO: Compute distance from each point in data 
+  # TODO: Compute distance from each point in data
   #  to a single centroid
 
-  distances <- sqrt((data[['x']] - centroid[['x']])^2 + 
+  distances <- sqrt((data[['x']] - centroid[['x']])^2 +
                       (data[['y']] - centroid[['y']])^2)
 
   return(distances)
@@ -149,10 +149,10 @@ GetDistances <- function(data, centroid){
 
 ```r
 GetDistances <- function(data, centroid){
-  # TODO: Compute distance from each point in data 
+  # TODO: Compute distance from each point in data
   #  to a single centroid
 
-  distances <- sqrt((data[['x']] - centroid[['x']])^2 + 
+  distances <- sqrt((data[['x']] - centroid[['x']])^2 +
                       (data[['y']] - centroid[['y']])^2)
 
   return(distances)
@@ -163,10 +163,10 @@ GetDistances(d, centroids[2,])[1:5]
 
 ```r
 GetDistances <- function(data, centroid){
-  # TODO: Compute distance from each point in data 
+  # TODO: Compute distance from each point in data
   #  to a single centroid
 
-  distances <- sqrt((data[['x']] - centroid[['x']])^2 + 
+  distances <- sqrt((data[['x']] - centroid[['x']])^2 +
                       (data[['y']] - centroid[['y']])^2)
 
   return(distances)
@@ -187,19 +187,19 @@ image: /k-means-assign-1.png
 # Assign Each Point to the Nearest Centroid
 
 ```r
-d$assignment <- 
-  ifelse(GetDistances(d, centroids[1,]) <= 
-          GetDistances(d, centroids[2,]), 
+d$assignment <-
+  ifelse(GetDistances(d, centroids[1,]) <=
+          GetDistances(d, centroids[2,]),
          1, 2)
 
-ggplot(d, 
-       aes(x=x, 
-           y=y, 
+ggplot(d,
+       aes(x=x,
+           y=y,
            color=as.factor(assignment))) +
   geom_point() +
-  geom_point(data=centroids, 
-             aes(x=x, y=y), 
-             color="black", 
+  geom_point(data=centroids,
+             aes(x=x, y=y),
+             color="black",
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
@@ -216,20 +216,20 @@ image: /k-means-move-1.png
 # Move Centroids to the Mean of their Cluster
 
 ```r
-centroids <- 
+centroids <-
   data.frame(x = c(mean(d$x[d$assignment == 1]),
                    mean(d$x[d$assignment == 2])),
              y = c(mean(d$y[d$assignment == 1]),
                    mean(d$y[d$assignment == 2])))
 
-ggplot(d, 
-       aes(x=x, 
-           y=y, 
+ggplot(d,
+       aes(x=x,
+           y=y,
            color=as.factor(assignment))) +
   geom_point() +
-  geom_point(data=centroids, 
-             aes(x=x, y=y), 
-             color="black", 
+  geom_point(data=centroids,
+             aes(x=x, y=y),
+             color="black",
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
@@ -246,19 +246,19 @@ image: /k-means-assign-2.png
 # Second Iteration: Assign Points
 
 ```r
-d$assignment <- 
-  ifelse(GetDistances(d, centroids[1,]) <= 
-          GetDistances(d, centroids[2,]), 
+d$assignment <-
+  ifelse(GetDistances(d, centroids[1,]) <=
+          GetDistances(d, centroids[2,]),
          1, 2)
 
-ggplot(d, 
-       aes(x=x, 
-           y=y, 
+ggplot(d,
+       aes(x=x,
+           y=y,
            color=as.factor(assignment))) +
   geom_point() +
-  geom_point(data=centroids, 
-             aes(x=x, y=y), 
-             color="black", 
+  geom_point(data=centroids,
+             aes(x=x, y=y),
+             color="black",
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
@@ -275,20 +275,20 @@ image: /k-means-move-2.png
 # Second Iteration: Move Centroids
 
 ```r
-centroids <- 
+centroids <-
   data.frame(x = c(mean(d$x[d$assignment == 1]),
                    mean(d$x[d$assignment == 2])),
              y = c(mean(d$y[d$assignment == 1]),
                    mean(d$y[d$assignment == 2])))
 
-ggplot(d, 
-       aes(x=x, 
-           y=y, 
+ggplot(d,
+       aes(x=x,
+           y=y,
            color=as.factor(assignment))) +
   geom_point() +
-  geom_point(data=centroids, 
-             aes(x=x, y=y), 
-             color="black", 
+  geom_point(data=centroids,
+             aes(x=x, y=y),
+             color="black",
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
@@ -304,19 +304,19 @@ image: /k-means-assign-3.png
 # Third Iteration: Assign Points
 
 ```r
-d$assignment <- 
-  ifelse(GetDistances(d, centroids[1,]) <= 
-          GetDistances(d, centroids[2,]), 
+d$assignment <-
+  ifelse(GetDistances(d, centroids[1,]) <=
+          GetDistances(d, centroids[2,]),
          1, 2)
 
-ggplot(d, 
-       aes(x=x, 
-           y=y, 
+ggplot(d,
+       aes(x=x,
+           y=y,
            color=as.factor(assignment))) +
   geom_point() +
-  geom_point(data=centroids, 
-             aes(x=x, y=y), 
-             color="black", 
+  geom_point(data=centroids,
+             aes(x=x, y=y),
+             color="black",
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
@@ -333,20 +333,20 @@ image: /k-means-move-3.png
 # Third Iteration: Move Centroids
 
 ```r
-centroids <- 
+centroids <-
   data.frame(x = c(mean(d$x[d$assignment == 1]),
                    mean(d$x[d$assignment == 2])),
              y = c(mean(d$y[d$assignment == 1]),
                    mean(d$y[d$assignment == 2])))
 
-ggplot(d, 
-       aes(x=x, 
-           y=y, 
+ggplot(d,
+       aes(x=x,
+           y=y,
            color=as.factor(assignment))) +
   geom_point() +
-  geom_point(data=centroids, 
-             aes(x=x, y=y), 
-             color="black", 
+  geom_point(data=centroids,
+             aes(x=x, y=y),
+             color="black",
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
@@ -362,19 +362,19 @@ image: /k-means-assign-4.png
 # Fourth Iteration: Assign Points
 
 ```r
-d$assignment <- 
-  ifelse(GetDistances(d, centroids[1,]) <= 
-          GetDistances(d, centroids[2,]), 
+d$assignment <-
+  ifelse(GetDistances(d, centroids[1,]) <=
+          GetDistances(d, centroids[2,]),
          1, 2)
 
-ggplot(d, 
-       aes(x=x, 
-           y=y, 
+ggplot(d,
+       aes(x=x,
+           y=y,
            color=as.factor(assignment))) +
   geom_point() +
-  geom_point(data=centroids, 
-             aes(x=x, y=y), 
-             color="black", 
+  geom_point(data=centroids,
+             aes(x=x, y=y),
+             color="black",
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
@@ -391,20 +391,20 @@ image: /k-means-move-4.png
 # Fourth Iteration: Move Centroids
 
 ```r
-centroids <- 
+centroids <-
   data.frame(x = c(mean(d$x[d$assignment == 1]),
                    mean(d$x[d$assignment == 2])),
              y = c(mean(d$y[d$assignment == 1]),
                    mean(d$y[d$assignment == 2])))
 
-ggplot(d, 
-       aes(x=x, 
-           y=y, 
+ggplot(d,
+       aes(x=x,
+           y=y,
            color=as.factor(assignment))) +
   geom_point() +
-  geom_point(data=centroids, 
-             aes(x=x, y=y), 
-             color="black", 
+  geom_point(data=centroids,
+             aes(x=x, y=y),
+             color="black",
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
@@ -420,19 +420,19 @@ image: /k-means-assign-5.png
 # Fifth Iteration: Assign Points
 
 ```r
-d$assignment <- 
-  ifelse(GetDistances(d, centroids[1,]) <= 
-          GetDistances(d, centroids[2,]), 
+d$assignment <-
+  ifelse(GetDistances(d, centroids[1,]) <=
+          GetDistances(d, centroids[2,]),
          1, 2)
 
-ggplot(d, 
-       aes(x=x, 
-           y=y, 
+ggplot(d,
+       aes(x=x,
+           y=y,
            color=as.factor(assignment))) +
   geom_point() +
-  geom_point(data=centroids, 
-             aes(x=x, y=y), 
-             color="black", 
+  geom_point(data=centroids,
+             aes(x=x, y=y),
+             color="black",
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
@@ -449,20 +449,20 @@ image: /k-means-move-5.png
 # Fifth Iteration: Move Centroids
 
 ```r
-centroids <- 
+centroids <-
   data.frame(x = c(mean(d$x[d$assignment == 1]),
                    mean(d$x[d$assignment == 2])),
              y = c(mean(d$y[d$assignment == 1]),
                    mean(d$y[d$assignment == 2])))
 
-ggplot(d, 
-       aes(x=x, 
-           y=y, 
+ggplot(d,
+       aes(x=x,
+           y=y,
            color=as.factor(assignment))) +
   geom_point() +
-  geom_point(data=centroids, 
-             aes(x=x, y=y), 
-             color="black", 
+  geom_point(data=centroids,
+             aes(x=x, y=y),
+             color="black",
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
@@ -478,19 +478,19 @@ image: /k-means-assign-6.png
 # Sixth Iteration: Assign Points
 
 ```r
-d$assignment <- 
-  ifelse(GetDistances(d, centroids[1,]) <= 
-          GetDistances(d, centroids[2,]), 
+d$assignment <-
+  ifelse(GetDistances(d, centroids[1,]) <=
+          GetDistances(d, centroids[2,]),
          1, 2)
 
-ggplot(d, 
-       aes(x=x, 
-           y=y, 
+ggplot(d,
+       aes(x=x,
+           y=y,
            color=as.factor(assignment))) +
   geom_point() +
-  geom_point(data=centroids, 
-             aes(x=x, y=y), 
-             color="black", 
+  geom_point(data=centroids,
+             aes(x=x, y=y),
+             color="black",
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
@@ -507,20 +507,20 @@ image: /k-means-move-6.png
 # Sixth Iteration: Move Centroids
 
 ```r
-centroids <- 
+centroids <-
   data.frame(x = c(mean(d$x[d$assignment == 1]),
                    mean(d$x[d$assignment == 2])),
              y = c(mean(d$y[d$assignment == 1]),
                    mean(d$y[d$assignment == 2])))
 
-ggplot(d, 
-       aes(x=x, 
-           y=y, 
+ggplot(d,
+       aes(x=x,
+           y=y,
            color=as.factor(assignment))) +
   geom_point() +
-  geom_point(data=centroids, 
-             aes(x=x, y=y), 
-             color="black", 
+  geom_point(data=centroids,
+             aes(x=x, y=y),
+             color="black",
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
@@ -539,9 +539,9 @@ image: /k-means-true-final.png
 ```r
 ggplot(d, aes(x=x, y=y, color=cluster)) +
   geom_point() +
-  geom_point(data=centroids, 
-             aes(x=x, y=y), 
-             color="black", 
+  geom_point(data=centroids,
+             aes(x=x, y=y),
+             color="black",
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
