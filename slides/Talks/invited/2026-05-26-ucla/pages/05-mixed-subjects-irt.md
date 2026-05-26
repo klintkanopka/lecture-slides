@@ -122,7 +122,7 @@ level: 3
 - Bock and Aitkin (1981) show that the M-step is identical to a weighted probit (or logistic) regression of the proportion of correct responses at ability quadrature point $X_k$ on $X_k$
 - That is to say, we structure the model as:
   $$ \frac{\bar{r}_{jk}}{\bar{N}_k} = \frac{1}{1 + \text{exp}\big[\alpha_j + \beta_j X_k\big ]} $$
-  - Here the $\alpha_j$ and $\beta_j$ are the regression parameters that can be translated to item parameters
+  - Here the $\alpha_j$ and $\beta_j$ are the regression coefficients that can be translated to item parameters
 - We use the logistic likelihood weighted by $\bar{N}_k$ to estimate model parameters from the PPI++ loss:
   $$L^{PPI}(\alpha, \beta) = \frac{1}{n}\sum_i^n \ell_{\alpha,\beta} (X_i, Y_i) + \lambda\bigg[\frac{1}{N}\sum_i^N \ell_{\alpha,\beta} (\widetilde{X}_i, f(\widetilde{X}_i)) - \frac{1}{n}\sum_i^n \ell_{\alpha,\beta} (X_i, f(X_i))\bigg]$$
 - Here $X$'s are quadrature points and $Y$, $f(X)$ are the ratio $\frac{\bar{r}_{jk}}{\bar{N}_k}$ determined from human or LLM responses
