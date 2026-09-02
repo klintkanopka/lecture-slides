@@ -37,10 +37,17 @@ function isPrintMode() {
   return /[?&]print\b/.test(location.href) || /\/export\b/.test(location.href)
 }
 
-function imageToCanvas(image: ImageBitmap) {
+/**
+ * webR hands back a bitmap at device resolution (2x the requested size on a
+ * retina display), so pin the CSS width to the size the block asked for. Left
+ * to itself the canvas lays out at its intrinsic pixel width and runs straight
+ * off the bottom of the slide.
+ */
+function imageToCanvas(image: ImageBitmap, displayWidth: number) {
   const canvas = document.createElement('canvas')
   canvas.width = image.width
   canvas.height = image.height
+  canvas.style.width = `${displayWidth}px`
   canvas.style.maxWidth = '100%'
   canvas.style.height = 'auto'
   canvas.getContext('2d')!.drawImage(image, 0, 0)
@@ -51,7 +58,7 @@ export default defineCodeRunnersSetup(() => {
   return {
     async r(code, ctx) {
       if (isPrintMode())
-        return { text: '# Runs live in the browser — open the slides to try it', class: 'op50' }
+        return { text: '# This code is interactive when viewed in the browser', class: 'op50' }
 
       try {
         const { webR, shelter } = await getWebR()
@@ -64,12 +71,29 @@ export default defineCodeRunnersSetup(() => {
           missing.forEach(p => installed.add(p))
         }
 
+        // Plot size in slide pixels. Override per block with
+        // {runnerOptions:{plotWidth:720, plotHeight:300}}.
+        const plotWidth = Number(ctx.options.plotWidth ?? 640)
+        const plotHeight = Number(ctx.options.plotHeight ?? 400)
+
+        // With {runnerOptions:{plotTarget:'#some-id'}} the figures are rendered
+        // into that element instead of the output pane, so a two-cols slide can
+        // put the plot in one column and the console output in the other.
+        // Slidev keeps adjacent slides mounted, so write to every match and give
+        // each its own canvas rather than moving one node between parents.
+        const plotTarget = ctx.options.plotTarget as string | undefined
+        const targets = plotTarget
+          ? [...document.querySelectorAll<HTMLElement>(plotTarget)]
+          : []
+        // Clear before running: on an error the stale figure should not survive.
+        targets.forEach(t => t.replaceChildren())
+
         try {
           const result = await shelter.captureR(code, {
             withAutoprint: true,
             captureStreams: true,
             captureConditions: false,
-            captureGraphics: { width: 1000, height: 700, bg: 'transparent' },
+            captureGraphics: { width: plotWidth, height: plotHeight, bg: 'transparent' },
             env: webR.objs.globalEnv,
           })
 
@@ -79,8 +103,12 @@ export default defineCodeRunnersSetup(() => {
               ? { text: String(msg.data), class: 'text-red-500' }
               : { text: String(msg.data) })
 
-          for (const image of result.images)
-            outputs.push({ element: imageToCanvas(image) })
+          for (const image of result.images) {
+            if (targets.length)
+              targets.forEach(t => t.append(imageToCanvas(image, plotWidth)))
+            else
+              outputs.push({ element: imageToCanvas(image, plotWidth) })
+          }
 
           return outputs
         }
