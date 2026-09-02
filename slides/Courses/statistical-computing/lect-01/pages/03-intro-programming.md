@@ -451,3 +451,23 @@ level: 2
 - These functions produce deterministic sequences!
 - `set.seed()` takes a number as input and tells `R` "where to start" when doing things that involve randomness
 - Setting a seed allows you to run the same code twice and get the same results both times, even if it's generating random numbers!
+
+---
+level: 2
+---
+
+# Try it yourself
+
+```r {monaco-run} {autorun:false}
+set.seed(2352)
+
+x <- rnorm(n = 20, mean = 100, sd = 15)
+
+mean(x)
+sd(x)
+sort(x)[1:5]
+```
+
+- This is real `R`, running in your browser — no install required
+- Edit the code and hit ▶
+- Change the seed, change `n`, drop `set.seed()` entirely and run it twice
