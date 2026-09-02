@@ -59,7 +59,7 @@ level: 2
 level: 2
 ---
 
-# Prerequisites  
+# Prerequisites
 
 This course assumes some experience with the `R` programming language and probability. You may find prior experience with computer science fundamentals and `ggplot2` to be helpful. No previous exposure to the design and analysis of algorithms is assumed.
 
@@ -67,7 +67,7 @@ This course assumes some experience with the `R` programming language and probab
 level: 2
 ---
 
-# Student Learning Outcomes  
+# Student Learning Outcomes
 
 1. Students will implement literate programming to produce coherent and reproducible code.
 2. Students will verify code function through the implementation of unit tests.
@@ -82,10 +82,10 @@ level: 2
 # Meeting Times
 
 - Lecture: Th 4.55-6.35p
-- Lab (with Ruiting): W 3.45-4.35p
+- Lab (with David): W 3.45-4.35p
 - Office Hours:
   - Klint: T 2-3p
-  - Ruiting: W 9-10a
+  - David: TBD; likely Thursday in between Probability and StatComp
 
 
 ---
@@ -138,8 +138,8 @@ level: 2
 - Due on Thursdays before lecture @ 4.54p
 - PS0 is a one week assignment
 - PS1-PS7 are two week assignments
-- Submit both a .qmd **and** compiled .pdf files on Brightspace
+- Submit a compiled .pdf on Gradescope
   - Assignments are distributed as a .qmd template and a compiled .pdf, please use these
-  - If your document does not compile from your .qmd, we will not grade your assignment
+  - For your PS0 Gradescope submission, please submit early to get acquainted with the software; if you don't tag your answers correctly we won't grade them!
 - Do not call `install.packages()`
 - For more specifics, see syllabus
