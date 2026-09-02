@@ -9,7 +9,7 @@ layout: section
 level: 2
 ---
 
-# Data types 
+# Data types
 
 - Numeric
   - Numbers with decimals
@@ -27,9 +27,9 @@ level: 2
 ---
 level: 2
 ---
- 
+
 # Data types
-  
+
 - Character
   - Used to store text
   - Also called strings
@@ -42,11 +42,11 @@ level: 2
   - Take the values `TRUE` and `FALSE`
   - Can be abbreviated `T` and `F`
   - Under the hood, these take the value `1` and `0`
-  
+
 ---
 level: 2
 ---
- 
+
 # Data types
 
 - `class()` will tell you what type of thing an object is
@@ -144,7 +144,7 @@ y <- rnorm(10)
 <v-switch at='1'>
   <template #1>
 ```mermaid {scale: 0.6}
-stateDiagram-v2 
+stateDiagram-v2
   empty --> base
   base  --> stats
   stats --> global
@@ -152,7 +152,7 @@ stateDiagram-v2
   </template>
   <template #2>
 ```mermaid {scale: 0.6}
-stateDiagram-v2 
+stateDiagram-v2
   empty --> base
   base  --> stats
   stats --> tidyverse
@@ -161,7 +161,7 @@ stateDiagram-v2
   </template>
   <template #3>
 ```mermaid {scale: 0.6}
-stateDiagram-v2 
+stateDiagram-v2
   empty --> base
   base  --> stats
   stats --> tidyverse
@@ -171,7 +171,7 @@ stateDiagram-v2
   </template>
   <template #4>
 ```mermaid {scale: 0.6}
-stateDiagram-v2 
+stateDiagram-v2
   empty --> base
   base  --> stats
   stats --> tidyverse
@@ -182,7 +182,7 @@ stateDiagram-v2
   </template>
   <template #5>
 ```mermaid {scale: 0.6}
-stateDiagram-v2 
+stateDiagram-v2
   empty --> base
   base  --> stats
   stats --> tidyverse
@@ -194,7 +194,7 @@ stateDiagram-v2
   </template>
   <template #6>
 ```mermaid {scale: 0.6}
-stateDiagram-v2 
+stateDiagram-v2
   empty --> base
   base  --> stats
   stats --> tidyverse
@@ -274,27 +274,27 @@ level: 2
 - Usage:
 
 ````md magic-move {lines: true}
-```r 
+```r
 out <- rbinom(10, 1, 0.5)
 ```
 
 ```r
 out <- rbinom(
-  n = 10,    
-  size = 1, 
-  prob = 0.5  
-)
-```
-
-```r 
-out <- rbinom(
-  n = 10,     # number of observations
-  size = 1, 
+  n = 10,
+  size = 1,
   prob = 0.5
 )
 ```
 
-```r 
+```r
+out <- rbinom(
+  n = 10,     # number of observations
+  size = 1,
+  prob = 0.5
+)
+```
+
+```r
 out <- rbinom(
   n = 10,     # number of observations
   size = 1,   # number of draws per observation
@@ -302,7 +302,7 @@ out <- rbinom(
 )
 ```
 
-```r 
+```r
 out <- rbinom(
   n = 10,     # number of observations
   size = 1,   # number of draws per observation
@@ -314,7 +314,7 @@ out <- rbinom(
 <div v-click>
 
 - Output:
-  - A vector of length `n` with each element being the total number of successful draws out of `size` 
+  - A vector of length `n` with each element being the total number of successful draws out of `size`
 
 </div>
 
@@ -332,15 +332,15 @@ level: 2
 - Usage:
 
 ````md magic-move {lines: true}
-```r 
+```r
 out <- runif(10)
 ```
 
-```r 
+```r
 out <- runif(10, 0, 1)
 ```
 
-```r 
+```r
 out <- runif(
   n = 10,
   min = 0,
@@ -348,7 +348,7 @@ out <- runif(
 )
 ```
 
-```r 
+```r
 out <- runif(
   n = 10,   # number of observations
   min = 0,
@@ -356,7 +356,7 @@ out <- runif(
 )
 ```
 
-```r 
+```r
 out <- runif(
   n = 10,   # number of observations
   min = 0,  # minimum value
@@ -364,7 +364,7 @@ out <- runif(
 )
 ```
 
-```r 
+```r
 out <- runif(
   n = 10,   # number of observations
   min = 0,  # minimum value
@@ -387,21 +387,21 @@ level: 2
 # `rnorm()`
 
 - To read the documentation:
-```r 
+```r
 ?rnorm
 ```
 - Usage:
 
 ````md magic-move {lines: true}
-```r 
+```r
 out <- rnorm(10)
 ```
 
-```r 
+```r
 out <- rnorm(10, 0, 1)
 ```
 
-```r 
+```r
 out <- rnorm(
   n = 10,
   mean = 0,
@@ -409,7 +409,7 @@ out <- rnorm(
 )
 ```
 
-```r 
+```r
 out <- rnorm(
   n = 10,    # number of observations
   mean = 0,
@@ -417,7 +417,7 @@ out <- rnorm(
 )
 ```
 
-```r 
+```r
 out <- rnorm(
   n = 10,    # number of observations
   mean = 0,  # mean of the distribution
@@ -425,7 +425,7 @@ out <- rnorm(
 )
 ```
 
-```r 
+```r
 out <- rnorm(
   n = 10,    # number of observations
   mean = 0,  # mean of the distribution
@@ -454,11 +454,13 @@ level: 2
 
 ---
 level: 2
+layout: one-col-r
 ---
 
-# Try it yourself
+# Using `set.seed()`
 
-```r {monaco-run} {autorun:false}
+
+```r {monaco-run}
 set.seed(2352)
 
 x <- rnorm(n = 20, mean = 100, sd = 15)
@@ -468,6 +470,3 @@ sd(x)
 sort(x)[1:5]
 ```
 
-- This is real `R`, running in your browser — no install required
-- Edit the code and hit ▶
-- Change the seed, change `n`, drop `set.seed()` entirely and run it twice

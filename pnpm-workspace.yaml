@@ -1,5 +1,6 @@
 packages:
   - slides/**
+  - themes/*
 
 catalog:
   '@slidev/cli': ^52.12.0

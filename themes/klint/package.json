@@ -1,0 +1,30 @@
+{
+  "name": "slidev-theme-klint",
+  "version": "1.0.0",
+  "description": "Seriph with Fira Code. Shared theme for the lecture-slides decks.",
+  "private": true,
+  "license": "MIT",
+  "keywords": [
+    "slidev-theme",
+    "slidev"
+  ],
+  "engines": {
+    "slidev": ">=v0.47.0"
+  },
+  "slidev": {
+    "defaults": {
+      "fonts": {
+        "mono": "Fira Code",
+        "sans": "PT Serif",
+        "serif": "PT Serif",
+        "italic": true,
+        "weights": "400, 700"
+      }
+    }
+  },
+  "dependencies": {
+    "@slidev/theme-seriph": "catalog:",
+    "@slidev/types": "^52.12.0",
+    "webr": "^0.5.8"
+  }
+}

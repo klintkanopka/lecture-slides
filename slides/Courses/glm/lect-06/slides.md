@@ -1,6 +1,6 @@
 ---
-theme: seriph
-background: /winter-park.jpg
+theme: klint
+background: /theme/winter-park.jpg
 title: Generalized Linear Models - Week 6
 author: Klint Kanopka
 info: |

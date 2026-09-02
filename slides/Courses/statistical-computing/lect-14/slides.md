@@ -1,6 +1,6 @@
 ---
-theme: seriph
-background: /nyu-header.jpg
+theme: klint
+background: /theme/nyu-header.jpg
 title: Statistical Computing - Week 14
 author: Klint Kanopka
 info: |

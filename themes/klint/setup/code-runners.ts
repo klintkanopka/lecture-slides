@@ -71,22 +71,28 @@ export default defineCodeRunnersSetup(() => {
           missing.forEach(p => installed.add(p))
         }
 
-        // Plot size in slide pixels. Override per block with
-        // {runnerOptions:{plotWidth:720, plotHeight:300}}.
-        const plotWidth = Number(ctx.options.plotWidth ?? 640)
-        const plotHeight = Number(ctx.options.plotHeight ?? 400)
-
-        // With {runnerOptions:{plotTarget:'#some-id'}} the figures are rendered
-        // into that element instead of the output pane, so a two-cols slide can
-        // put the plot in one column and the console output in the other.
-        // Slidev keeps adjacent slides mounted, so write to every match and give
-        // each its own canvas rather than moving one node between parents.
-        const plotTarget = ctx.options.plotTarget as string | undefined
-        const targets = plotTarget
-          ? [...document.querySelectorAll<HTMLElement>(plotTarget)]
-          : []
+        // Figures are drawn into `plotTarget` when the slide provides one,
+        // instead of into the output pane below the editor. The default matches
+        // the pane in the `two-cols-r` layout, so a slide using that layout puts
+        // the figure in the right column and the console output on the left
+        // without setting any runner options. Override with
+        // {runnerOptions:{plotTarget:'#some-id'}}.
+        //
+        // Slidev keeps adjacent slides mounted but collapsed, so filter to the
+        // visible panes — otherwise a neighboring slide gets this slide's
+        // figure. Each pane gets its own canvas, since appending one node to
+        // several parents would just move it.
+        const plotTarget = (ctx.options.plotTarget as string | undefined) ?? '.r-figure-pane'
+        const targets = [...document.querySelectorAll<HTMLElement>(plotTarget)]
+          .filter(el => el.offsetWidth > 0 && el.offsetHeight > 0)
         // Clear before running: on an error the stale figure should not survive.
         targets.forEach(t => t.replaceChildren())
+
+        // Render at the pane's own size so the figure fills it exactly. These
+        // are layout pixels, unaffected by the slide's CSS transform scale.
+        // Without a pane, fall back to a reasonable inline size.
+        const plotWidth = Number(ctx.options.plotWidth ?? targets[0]?.offsetWidth ?? 640)
+        const plotHeight = Number(ctx.options.plotHeight ?? targets[0]?.offsetHeight ?? 400)
 
         try {
           const result = await shelter.captureR(code, {

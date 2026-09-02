@@ -179,12 +179,12 @@ ggplot(data, aes(x = day, y = steps, color = name)) +
 
 ---
 level: 2
-layout: two-cols
+layout: two-cols-r
 ---
 
-# Try it yourself
+# Using `ggplot()`
 
-```r {monaco-run} {autorun:false, height:'300px', editorOptions:{fontSize:12,lineHeight:17}, outputHeight:'120px', runnerOptions:{packages:['ggplot2'], plotWidth:490, plotHeight:551, plotTarget:'#output-figure'}}
+```r {monaco-run} {runnerOptions:{packages:['ggplot2']}}
 library(ggplot2)
 set.seed(2352)
 
@@ -199,30 +199,3 @@ ggplot(data, aes(x = day, y = steps, color = name)) +
   geom_line() +
   theme_minimal()
 ```
-
-::right::
-
-<div id="output-figure" class="figure-pane"></div>
-
-<style scoped>
-/* The runner draws its figures into #ggplot-demo-figure (see the plotTarget
-   runner option), so only console output stays in the left column.
-
-   The figure bleeds to the top, bottom and right edges of the slide: the
-   negative margins cancel the layout's 40px vertical and 56px horizontal
-   padding, and plotWidth/plotHeight are set to this pane's size so the rendered
-   aspect ratio matches it. */
-.figure-pane {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(100% + 80px);
-  margin: -40px -56px -40px 0;
-}
-
-/* The console pane is a fixed height, so scroll output that outgrows it rather
-   than letting it spill down the slide. */
-:deep(.slidev-runner-output) {
-  overflow-y: auto;
-}
-</style>

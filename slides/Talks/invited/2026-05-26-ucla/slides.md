@@ -1,6 +1,6 @@
 ---
-theme: seriph
-background: /winter-park.jpg
+theme: klint
+background: /theme/winter-park.jpg
 title: Data Augmentation for Psychometric Applications Using a Mixed Subjects Design
 author: Klint Kanopka
 info: |

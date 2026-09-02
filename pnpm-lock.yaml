@@ -42,21 +42,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/glm/lect-02:
     dependencies:
@@ -66,21 +63,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/glm/lect-03:
     dependencies:
@@ -90,21 +84,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/glm/lect-04:
     dependencies:
@@ -114,21 +105,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/glm/lect-05:
     dependencies:
@@ -138,21 +126,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/glm/lect-06:
     dependencies:
@@ -162,21 +147,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/glm/lect-07:
     dependencies:
@@ -186,21 +168,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/measurement/lect-01:
     dependencies:
@@ -210,21 +189,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/measurement/lect-02:
     dependencies:
@@ -234,21 +210,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/measurement/lect-03:
     dependencies:
@@ -258,21 +231,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/measurement/lect-04:
     dependencies:
@@ -282,21 +252,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/measurement/lect-05:
     dependencies:
@@ -306,21 +273,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/measurement/lect-06:
     dependencies:
@@ -330,21 +294,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/measurement/lect-07:
     dependencies:
@@ -354,21 +315,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/measurement/lect-08:
     dependencies:
@@ -378,21 +336,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/measurement/lect-09:
     dependencies:
@@ -402,21 +357,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/measurement/lect-10:
     dependencies:
@@ -426,21 +378,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/measurement/lect-11:
     dependencies:
@@ -450,21 +399,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/measurement/lect-12:
     dependencies:
@@ -474,21 +420,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/measurement/lect-13:
     dependencies:
@@ -498,21 +441,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/statistical-computing/lect-01:
     dependencies:
@@ -522,21 +462,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/statistical-computing/lect-02:
     dependencies:
@@ -546,21 +483,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/statistical-computing/lect-03:
     dependencies:
@@ -570,21 +504,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/statistical-computing/lect-04:
     dependencies:
@@ -594,21 +525,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/statistical-computing/lect-05:
     dependencies:
@@ -618,21 +546,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/statistical-computing/lect-06:
     dependencies:
@@ -642,21 +567,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/statistical-computing/lect-07:
     dependencies:
@@ -666,21 +588,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/statistical-computing/lect-08:
     dependencies:
@@ -690,21 +609,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/statistical-computing/lect-09:
     dependencies:
@@ -714,21 +630,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/statistical-computing/lect-10:
     dependencies:
@@ -738,21 +651,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/statistical-computing/lect-11:
     dependencies:
@@ -762,21 +672,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/statistical-computing/lect-12:
     dependencies:
@@ -786,21 +693,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/statistical-computing/lect-13:
     dependencies:
@@ -810,21 +714,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Courses/statistical-computing/lect-14:
     dependencies:
@@ -834,21 +735,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Talks/invited/2026-04-16-create:
     dependencies:
@@ -858,21 +756,18 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
-      webr:
-        specifier: ^0.5.8
-        version: 0.5.8
 
   slides/Talks/invited/2026-05-26-ucla:
     dependencies:
@@ -882,18 +777,27 @@ importers:
       '@slidev/theme-default':
         specifier: 'catalog:'
         version: 0.25.0
-      '@slidev/theme-seriph':
-        specifier: 'catalog:'
-        version: 0.25.0
       react:
         specifier: ^19.2.4
         version: 19.2.4
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      slidev-theme-klint:
+        specifier: workspace:*
+        version: link:../../../../themes/klint
       vue:
         specifier: 'catalog:'
         version: 3.5.29(typescript@5.9.3)
+
+  themes/klint:
+    dependencies:
+      '@slidev/theme-seriph':
+        specifier: 'catalog:'
+        version: 0.25.0
+      '@slidev/types':
+        specifier: ^52.12.0
+        version: 52.12.0(@nuxt/kit@3.21.1)(@vue/compiler-sfc@3.5.29)(markdown-it-async@2.2.0)(typescript@5.9.3)(vite@7.3.1(@types/node@22.19.11)(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)(yaml@2.8.2))
       webr:
         specifier: ^0.5.8
         version: 0.5.8
@@ -1931,6 +1835,7 @@ packages:
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
+    deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
   '@unhead/vue@2.1.7':
     resolution: {integrity: sha512-azD4x32BKBDMcKMcCeU+kCBowPFRFSSFJSHP+mr2P1TpPV/4b6UsmMPiTb+gSW8NZ6s0myJ/CaVMoeC5mGKhKg==}

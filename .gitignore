@@ -6,5 +6,5 @@ dist
 .remote-assets
 components.d.ts
 _gh-pages
-refresh.sh
+prepush.sh
 slides/Talks/invited/2026-04-16-create/*
