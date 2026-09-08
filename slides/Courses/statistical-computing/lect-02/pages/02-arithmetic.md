@@ -208,10 +208,10 @@ level: 2
 - Here, recycling happens along the columns
   - For matrices in `R`, things are usually applied along columns first
 - Under the hood:
-  1. The matrix is unrolled into a vector of the form `c(col1, col2, ...)`
+  1. The matrix is _unrolled_ into a vector of the form `c(col1, col2, ...)`
   2. Recycling happens as if two vectors were multiplied
   3. The output is reshaped back into the original dimensions of the matrix
-  
+
 ---
 level: 2
 ---
@@ -298,7 +298,7 @@ level: 2
   - `non-conformable arguments` or `non-conformable arrays`
   - No output is produced
   - Execution is halted
-  
+
 ---
 level: 2
 ---
@@ -384,7 +384,7 @@ level: 2
 
 # Matrix Multiplication
 
-- We want to multiply two matrices, $AB = C$ 
+- We want to multiply two matrices, $AB = C$
   - Here, $a_{ij}$ is the element of matrix $A$ in the $i$th row and $j$th column
   - And matrix $A$ is an $N \times K$ matrix and matrix $B$ is a $K \times M$ matrix
 - To construct the resultant $N \times M$ matrix, $C$:

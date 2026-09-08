@@ -9,7 +9,7 @@ info: |
   ## APSTA-GE 2352: StatComp
   Lecture 2
   Vector and Matrix Arithmetic; Functions
-date: 2025-09-11
+date: 2026-09-10
 class: text-center
 routerMode: hash
 download: true
@@ -75,10 +75,3 @@ level: 2
 - S3 and S4 objects contain both sub objects and code that controls how generic functions act on them!
 - Make sure to thoroughly test the different components of your code so that you can pinpoint where problems are coming from
 
----
-level: 2
----
-
-# Wrapping up
-
-- [PollEv.com/klintkanopka](https://PollEv.com/klintkanopka)
