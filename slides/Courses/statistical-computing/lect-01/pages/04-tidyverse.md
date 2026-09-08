@@ -146,8 +146,8 @@ data <- mutate(raw_data, mean_vars = (var_1 + var_2 + var_3)/3)
 
 # you can also create multiple new variables at once
 data <- mutate(
-    raw_data, 
-    max_var = max(var_1, var_2, var_3), 
+    raw_data,
+    max_var = max(var_1, var_2, var_3),
     min_var = min(var_1, var_2, var_3)
     )
 ```
@@ -243,7 +243,7 @@ level: 2
     - `%>%` is from a package called `magrittr`
     - `|>`, added later, is native `R` syntax
     - The native `R` pipe is faster and should be preferred
-    - That said, the `magrittr` pipe has more features (I don't use them) 
+    - That said, the `magrittr` pipe has more features (I don't use them)
 - The pipe takes the output on the left hand side and puts it into the first argument of the function on the right hand side
 
 ````md magic-move {lines:true}
@@ -277,7 +277,7 @@ out <- filter(out, var_3 != 0)
 out <- group_by(out, var_1)
 out <- summarize(out, mean_var = mean(var_2), sd_var = sd(var_2))
 out <- ungroup(out)
-out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var) 
+out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var)
 ```
 
 ```r
@@ -286,7 +286,7 @@ out <- read_csv('./file_path/data.csv') |>
 out <- group_by(out, var_1)
 out <- summarize(out, mean_var = mean(var_2), sd_var = sd(var_2))
 out <- ungroup(out)
-out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var) 
+out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var)
 ```
 
 ```r
@@ -295,37 +295,37 @@ out <- read_csv('./file_path/data.csv') |>
     group_by(var_1)
 out <- summarize(out, mean_var = mean(var_2), sd_var = sd(var_2))
 out <- ungroup(out)
-out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var) 
+out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var)
 ```
 ```r
 out <- read_csv('./file_path/data.csv') |>
     filter(var_3 != 0) |>
     group_by(var_1) |>
-    summarize(mean_var = mean(var_2), 
+    summarize(mean_var = mean(var_2),
               sd_var = sd(var_2))
 out <- ungroup(out)
-out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var) 
+out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var)
 ```
 
 ```r
 out <- read_csv('./file_path/data.csv') |>
     filter(var_3 != 0) |>
     group_by(var_1) |>
-    summarize(mean_var = mean(var_2), 
+    summarize(mean_var = mean(var_2),
               sd_var = sd(var_2)) |>
-    ungroup() 
-out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var) 
+    ungroup()
+out <- mutate(out, ci_lower = mean_var - 1.96*sd_var, ci_upper = mean_var + 1.96*sd_var)
 ```
 
 ```r
 out <- read_csv('./file_path/data.csv') |>
     filter(var_3 != 0) |>
     group_by(var_1) |>
-    summarize(mean_var = mean(var_2), 
+    summarize(mean_var = mean(var_2),
               sd_var = sd(var_2)) |>
     ungroup() |>
     mutate(ci_lower = mean_var - 1.96*sd_var,
-           ci_upper = mean_var + 1.96*sd_var) 
+           ci_upper = mean_var + 1.96*sd_var)
 ```
 
 ````
@@ -368,9 +368,9 @@ layout: two-cols-header
 
 | id | test_1 | test_2 |
 |----|--------|--------|
-| A  | 95     | 99     | 
-| B  | 86     | 92     | 
-| C  | 90     | 84     |  
+| A  | 95     | 99     |
+| B  | 86     | 92     |
+| C  | 90     | 84     |
 
 ::right::
 
@@ -403,16 +403,16 @@ level: 2
 
 ````md magic-move {lines: true}
 
-```r 
+```r
 data_long <- pivot_longer()
 ```
 
 ```r
 data_long <- pivot_longer(
-  data,    
-  cols, 
+  data,
+  cols,
   names_to,
-  values_to  
+  values_to
 )
 ```
 
@@ -421,7 +421,7 @@ data_long <- pivot_longer(
   data = data_wide,         # the data you want to pivot
   cols,
   names_to,
-  values_to 
+  values_to
 )
 
 ```
@@ -431,7 +431,7 @@ data_long <- pivot_longer(
   data = data_wide,         # the data you want to pivot
   cols = c(test_1, test_2), # the (unquoted) columns you want to make longer
   names_to,
-  values_to 
+  values_to
 )
 ```
 
@@ -449,7 +449,7 @@ data_long <- pivot_longer(
   data = data_wide,         # the data you want to pivot
   cols = c(test_1, test_2), # the (unquoted) columns you want to make longer
   names_to = 'test',        # the name of the new column that identifies each measurement
-  values_to = 'score'       # the name of the new column that contains the values of each measurement 
+  values_to = 'score'       # the name of the new column that contains the values of each measurement
 )
 ```
 ````
@@ -472,16 +472,16 @@ level: 2
 - Usage:
 
 ````md magic-move {lines: true}
-```r 
+```r
 data_wide <- pivot_wider()
 ```
 
 ```r
 data_wide <- pivot_wider(
-  data,    
-  id_cols, 
+  data,
+  id_cols,
   names_from,
-  values_from  
+  values_from
 )
 ```
 ```r
@@ -489,7 +489,7 @@ data_wide <- pivot_wider(
   data = data_long,    # the data you want to pivot
   id_cols,
   names_from,
-  values_from  
+  values_from
 )
 ```
 ```r
@@ -497,7 +497,7 @@ data_wide <- pivot_wider(
   data = data_long,    # the data you want to pivot
   id_cols = id,        # the column(s) that uniquely identify which row each measurement belongs to
   names_from,
-  values_from   
+  values_from
 )
 ```
 ```r
@@ -514,7 +514,7 @@ data_wide <- pivot_wider(
   data = data_long,    # the data you want to pivot
   id_cols = id,        # the column(s) that uniquely identify which row each measurement belongs to
   names_from = test,   # the column that identifies the measurements
-  values_from = score  # the column that contains the values of the measurements  
+  values_from = score  # the column that contains the values of the measurements
 )
 ```
 
@@ -523,9 +523,32 @@ data_wide <- pivot_wider(
   data = data_long,       # the data you want to pivot
   id_cols = id,           # the column(s) that uniquely identify which row each measurement belongs to
   names_from = test,      # the column that identifies the measurements
-  values_from = score,    # the column that contains the values of the measurements  
+  values_from = score,    # the column that contains the values of the measurements
   names_prefix = 'test_'  # a prefix that goes in front of the new column names
 )
 ```
 
 ````
+
+
+---
+level: 2
+layout: one-col-r
+---
+
+# Using `tidyverse`
+
+```r {monaco-run} {runnerOptions:{packages:['tidyverse']}}
+library(tidyverse)
+set.seed(2352)
+
+people <- c('klint', 'ravi', 'daphna', 'alex')
+data <- data.frame(
+  name = rep(people, each = 10),
+  day = rep(1:10, times = 4),
+  steps = round(c(rnorm(10, 7500, 1000), rnorm(10, 7000, 800), rnorm(10, 9000, 300), rnorm(10, 8000, 700)))
+)
+
+data
+
+```

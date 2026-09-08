@@ -184,16 +184,7 @@ layout: two-cols-r
 
 # Using `ggplot()`
 
-```r {monaco-run} {runnerOptions:{packages:['ggplot2']}}
-library(ggplot2)
-set.seed(2352)
-
-people <- c('klint', 'ravi', 'daphna', 'alex')
-data <- data.frame(
-  name = rep(people, each = 10),
-  day = rep(1:10, times = 4),
-  steps = round(rnorm(40, 8000, 2000))
-)
+```r {monaco-run} {runnerOptions:{packages:['tidyverse']}}
 
 ggplot(data, aes(x = day, y = steps, color = name)) +
   geom_line() +
