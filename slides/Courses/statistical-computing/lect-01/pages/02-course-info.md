@@ -134,8 +134,9 @@ level: 2
 
 # Problem Sets
 
-- Released on (or before) Thursday
-- Due on Thursdays before lecture @ 4.54p
+- Released on Mondays
+- Due on Friday nights @ 11.59p
+- Assignments may be submitted late until Monday @ 11.59p with a 10 point penalty per late day
 - PS0 is a one week assignment
 - PS1-PS7 are two week assignments
 - Submit a compiled .pdf on Gradescope

@@ -9,7 +9,7 @@ info: |
   ## APSTA-GE 2352: StatComp
   Lecture 1
   Introductions; Built-ins; Data Manipulation with the tidyverse; Visualization with ggplot2
-date: 2025-09-04
+date: 2026-09-03
 class: text-center
 routerMode: hash
 download: true
@@ -68,7 +68,7 @@ level: 2
 
 - We covered a lot of kinda bland introductory material, with not a lot of context!
 - Your lab on Wednesday is devoted to practicing `tidyverse` and `ggplot2`
-- Lab is also a place where you'll go over homework-related problems and can ask questions. Use Ruiting as a resource!
+- Lab is also a place where you'll go over homework-related problems and can ask questions. Use David as a resource!
 - Ask questions on Slack!
 - PS0 is posted and due before class next week
 - PS1 will post tonight or tomorrow and be due in two weeks

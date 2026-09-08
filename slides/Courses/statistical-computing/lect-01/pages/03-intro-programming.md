@@ -17,7 +17,7 @@ level: 2
   - Numbers are stored with 64 bits of data
   - 1 bit stores the sign: $\pm$
   - 11 bits store the exponent: between $-1022$ and $+1023$
-  - 52 bits store the significant: between 15-17 significant digits
+  - 52 bits store the significand: between 15-17 significant digits
 - Integer
   - Numbers without decimals
   - Can be exactly represented from $−9,007,199,254,740,992$ to $9,007,199,254,740,992$
