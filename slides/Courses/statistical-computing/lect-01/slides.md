@@ -1,5 +1,7 @@
 ---
 theme: klint
+addons:
+  - r-runner
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: /theme/nyu-header.jpg
