@@ -74,9 +74,9 @@ level: 2
 # Vectors, lists, and data frames
 
 - Vectors are combinations of objects stored in a single object
-  - we make them using the function `c()` (think: _combine_)
+  - We make them using the function `c()` (think: _combine_)
   - In `R`, vectors have the property that everything in them must be the same object type
-    - This not true of all programming languages
+    - This is not true of all programming languages
     - This means when you try to combine numbers and strings in a vector, everything is cast to a string
 - Lists are _also_ combinations of objects stored in a single object
   - Individual elements of a list can be named (and subsequently fished out using `$`)
