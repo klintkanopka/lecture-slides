@@ -7,7 +7,7 @@ info: |
   ## APSTA-GE 2352: StatComp
   Lecture 3
   Indexing; Conditional Statements; Control Flow; for Loops; Selection Sort
-date: 2025-09-18
+date: 2026-09-17
 class: text-center
 routerMode: hash
 download: true

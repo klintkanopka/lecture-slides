@@ -13,19 +13,15 @@ level: 2
 
 # Announcements
 
-- PS0 Grades have been released
-  - I am really pleased with the grade distribution!
+- Everyone submitted PS0!
+  - Mostly on time, too!
+  - Grades coming soon!
   - I do know that there were some growing pains and adjustments to the course (and my teaching style). If you have questions about your grades or your ability to stay on track in the course, please reach out.
-- PS1 is now late
-- PS2 is released. It's due two weeks from today before class.
+- PS1 is due tomorrow @11.59p
+  - Only submit it on Gradescope!
+  - Tag your problems in Gradescope!
+- PS2 is released. It's due two weeks from Friday.
 
----
-level: 2
----
-
-# Check-In
-
-- [PollEv.com/klintkanopka](https://PollEv.com/klintkanopka)
 
 ---
 level: 1
@@ -45,5 +41,6 @@ level: 2
   - Lists of numbers
   - Rows in a dataframe
   - Words
-- A key note is that we didn't specify _how_ these things are getting compared, just getting compared in some way! Different objects may require different types of comparisons
+- A key note is that we didn't specify _how_ these things are getting compared, just getting compared in some way! 
+- Different objects may require different types of comparisons
 - We need a few more tools to do sorting from scratch, however!

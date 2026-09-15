@@ -14,13 +14,13 @@ level: 3
 
 - Often we want to check if something is true, and then change the behavior of the code we write based upon that
 - We call these _conditional statements_, and they're the key way we handle choice in control flow
-- Three main conditional statements in `R`
+- Three main conditional statements in `R`:
   - `if` checks a condition and then executes some code if it evaluates to `TRUE`
   - `else` provides some code to execute if the previous `if` statement evaluates to `FALSE`
   - `else if` provides a secondary condition. Note that if you use `else if`, a final `else` statement will only execute if _all_ of the previous `if` conditions evaluate to `FALSE`
 - There are two ways to write these, single line and multiline
   - I prefer multiline in basically all situations (for readability)
-  
+
 ---
 level: 3
 ---
@@ -184,7 +184,6 @@ level: 3
 - `dplyr` has two related functions that are quite nice:
   - `if_else()` is like `ifelse()`, with better handling of missing data
   - `case_when()` is like a vectorized multi-case `if_else()`
-  - Use these in your life, but not in this course!
 
 ---
 level: 3
@@ -198,7 +197,7 @@ set.seed(8675309)
 A <- rnorm(4)
 A
 
-ifelse(A>0, 'positive', 'not positive')
+ifelse(A > 0, 'positive', 'not positive')
 ```
 
 ```r
@@ -208,7 +207,7 @@ A
 
 # [1] -0.9965824  0.7218241 -0.6172088  2.0293916
 
-ifelse(A>0, 'positive', 'not positive')
+ifelse(A > 0, 'positive', 'not positive')
 ```
 
 ```r
@@ -218,7 +217,7 @@ A
 
 # [1] -0.9965824  0.7218241 -0.6172088  2.0293916
 
-ifelse(A>0, 'positive', 'not positive')
+ifelse(A > 0, 'positive', 'not positive')
 
 # [1] "not positive" "positive"     "not positive" "positive"    
 ```
