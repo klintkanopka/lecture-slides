@@ -98,6 +98,6 @@ What do you think `d[2,]`, `d[,2]`, `d[2,2]`, and `d[2]` give you?
 - `d[2,]` gives you the second row (as a vector)
 - `d[,2]` gives you the second column (as a vector)
 - `d[2,2]` gives you the second element of the second row (as whatever data type it is)
-- `d[2]` gives you the second row (as a dataframe)
+- `d[2]` gives you the second column (as a dataframe)
 
 </v-clicks>
