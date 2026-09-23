@@ -25,7 +25,7 @@ level: 3
 
 - In `R`, a `while` loop has a few main components
   - The call: `while`
-  - The condition, specified in `( )` after the call and contain:
+  - The condition, specified in `( )` after the call and contains:
     - A logical statement that returns a single value
   - The code, wrapped in `{ }`: 
     - At the beginning of the loop, the condition is checked
@@ -34,14 +34,6 @@ level: 3
     - After this is done, the condition is checked again to decide if the loop should be repeated
     - This continues until the condition evaluates to `FALSE`
     
-
----
-level: 3
----
-
-# Example `while` Loops 1 and 2 
-
-- What will be the result of executing these loops?
 
 ---
 level: 3

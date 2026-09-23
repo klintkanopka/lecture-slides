@@ -31,11 +31,11 @@ image: /k-means-new-k-3.png
 # Visualize the Solution: $k=3$
 
 ```r
-ggplot(d, aes(x=x, 
-              y=y, 
+ggplot(d, aes(x=x,
+              y=y,
               color=as.factor(assignment))) +
   geom_point() +
-  geom_point(data=centroids, aes(x=x, y=y), 
+  geom_point(data=centroids, aes(x=x, y=y),
              color="black", size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
@@ -75,11 +75,11 @@ image: /k-means-new-k-4.png
 # Visualize the Solution: $k=4$
 
 ```r
-ggplot(d, aes(x=x, 
-              y=y, 
+ggplot(d, aes(x=x,
+              y=y,
               color=as.factor(assignment))) +
   geom_point() +
-  geom_point(data=centroids, aes(x=x, y=y), 
+  geom_point(data=centroids, aes(x=x, y=y),
              color="black", size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
@@ -90,7 +90,7 @@ ggplot(d, aes(x=x,
 level: 3
 ---
 
-# How Do You Decide What the Right Answer is?
+# How Do You Decide What the Right Answer Is?
 
 - You'll never know the right answer!
 - Look at some evaluation metric
@@ -98,8 +98,8 @@ level: 3
   - Other ones exist (like silhouette scores)
 - The problem is that adding an additional cluster always makes the evaluation metric go down
 - Ask "when does adding another cluster stop making a big difference in my evaluation metric?"
-  - This is a judgement call!
-  - Often we look at "scree plot" and try and identify the "elbow"
+  - This is a judgment call!
+  - Often we look at a "scree plot" and try to identify the "elbow"
   - Plot WCSS vs. $k$
   - Pick the "elbow," or the point where adding another cluster doesn't give much improvement
 
@@ -120,15 +120,15 @@ for (k in ks){
   old_centroids <- InitializeCentroids(d, k)
   while(!identical(old_centroids, centroids)){
     old_centroids <- centroids
-    assignment <- GetAssignments(d, 
-                                 centroids, 
+    assignment <- GetAssignments(d,
+                                 centroids,
                                  GetDistances)
-    centroids <- RecalculateCentroids(d, 
-                                      centroids, 
+    centroids <- RecalculateCentroids(d,
+                                      centroids,
                                       assignment)
   }
-  wcss[k] <- WithinClusterSumSquares(d, 
-                                     centroids, 
+  wcss[k] <- WithinClusterSumSquares(d,
+                                     centroids,
                                      assignment)
 }
 cluster_results <- data.frame(k=ks, wcss=wcss)

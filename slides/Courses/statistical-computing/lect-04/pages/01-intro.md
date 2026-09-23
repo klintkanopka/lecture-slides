@@ -14,12 +14,11 @@ level: 2
 
 # Announcements
 
-- PS1 Grades released
-  - Correlation between PS0 and PS1 grades was low $(r \approx 0.28)$
-  - Mean score was 7.7pts higher on PS1 than PS0
-  - Seems fine to me
-- Answer keys for both PS0 and PS1 are posted in the Week 1 materials
-- PS2 is due next week before class
+- PS0 Grades released
+  - Seemed mostly fine to me
+  - Please read your PDFs before you submit them
+- PS1 grades coming soon
+- PS2 is due next Friday @11.59p
 
 ---
 level: 2
@@ -35,14 +34,6 @@ level: 2
 |B     | 645      |
 
 _Note: this does not account for the final exam!_
-
----
-level: 2
----
-
-# Check-In
-
-- [PollEv.com/klintkanopka](https://PollEv.com/klintkanopka)
 
 ---
 level: 1
@@ -83,4 +74,4 @@ level: 3
   - You don't know that there really are groups
   - If there are groups, you don't know how many groups there should be
   - You don't even know that the groups you find are the "right" groups
-- This makes clustering really tricky task; you can't check your work!
+- This makes clustering a really tricky task; you can't check your work!

@@ -15,7 +15,7 @@ level: 3
 
 <v-clicks>
 
-  - *Output*: Dataframe of $k$ centroids
+  - *Output*: A dataframe of $k$ centroids
   - *Inputs*: The dataframe we are clustering and $k$
 
 </v-clicks>
@@ -337,7 +337,7 @@ ggplot(d, aes(x=x, y=y)) +
 level: 3
 ---
 
-# Putting it All Together
+# Putting It All Together
 
 ````md magic-move
 ```r

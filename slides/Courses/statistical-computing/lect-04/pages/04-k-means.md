@@ -29,7 +29,7 @@ level: 3
 
 # Iterative Clustering using $k$-Means
 
-- We follow a two step process:
+- We follow a two-step process:
   1. Assign each point to a cluster by finding the nearest centroid
   2. Move each centroid to the middle of the points assigned to it
 - Do this over and over until _convergence_
@@ -45,9 +45,9 @@ level: 3
 # The $k$-Means Algorithm
 
 1. Select a number of clusters, $k$, and initialize the center of each cluster to a different point in space
-2. Assign each observation from the dataset its nearest centroid using the Euclidean distance
+2. Assign each observation from the dataset to its nearest centroid using the Euclidean distance
 3. Move the center of each cluster to the mean value of the coordinates of the points assigned to it
-4. Repeat steps 2&3 until the centers stop moving
+4. Repeat steps 2 & 3 until the centers stop moving
 
 ---
 level: 3
@@ -209,7 +209,7 @@ layout: image-right
 image: /k-means-move-1.png
 ---
 
-# Move Centroids to the Mean of their Cluster
+# Move Centroids to the Mean of Their Cluster
 
 ```r
 centroids <- 
@@ -462,7 +462,7 @@ ggplot(d,
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
- theme_bw()
+  theme_bw()
 ```
 
 ---
@@ -490,7 +490,7 @@ ggplot(d,
              size=4) +
   labs(color='cluster') +
   scale_color_okabeito() +
- theme_bw()
+  theme_bw()
 ```
 
 

@@ -6,8 +6,8 @@ author: Klint Kanopka
 info: |
   ## APSTA-GE 2352: StatComp
   Lecture 4
-  Indexing; while Loops; Distance Metrics; k-Means Clustering
-date: 2025-09-25
+  while Loops; Distance Metrics; k-Means Clustering
+date: 2026-09-24
 class: text-center
 routerMode: hash
 download: true
