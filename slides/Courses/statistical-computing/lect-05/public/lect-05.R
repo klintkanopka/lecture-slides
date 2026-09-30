@@ -13,8 +13,8 @@ test_data <- data.frame(
     round(rnorm(10, mean = 75, sd = 15))
   )
 )
-true_diff <- mean(test_data$score[test_data == 'A']) -
-  mean(test_data$score[test_data == 'B'])
+true_diff <- mean(test_data$score[test_data$group == 'A']) -
+  mean(test_data$score[test_data$group == 'B'])
 
 true_diff
 
@@ -66,8 +66,8 @@ test_data <- data.frame(
     round(rnorm(1e4, mean = 75, sd = 15))
   )
 )
-true_diff <- mean(test_data$score[test_data == 'A']) -
-  mean(test_data$score[test_data == 'B'])
+true_diff <- mean(test_data$score[test_data$group == 'A']) -
+  mean(test_data$score[test_data$group == 'B'])
 
 true_diff
 
@@ -100,7 +100,7 @@ TossNeedle <- function(l, t) {
   # TODO: Simulate a needle toss on the floor
   left_edge <- runif(1, min = 0, max = t)
   theta <- runif(1, min = -pi / 2, max = pi / 2)
-  # TODO: Decide if it crosses a threshold
+  # TODO: Decide if it crosses a line
   right_edge <- left_edge + l * cos(theta)
   result <- right_edge > t
   # TODO: Return TRUE or FALSE depending

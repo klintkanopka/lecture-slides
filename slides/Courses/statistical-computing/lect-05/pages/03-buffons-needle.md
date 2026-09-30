@@ -37,7 +37,7 @@ level: 2
 ```r
 TossNeedle <- function(l, t){
   # TODO: Simulate a needle toss on the floor
-  # TODO: Decide if it crosses a threshold
+  # TODO: Decide if it crosses a line
   # TODO: Return TRUE or FALSE depending
   result <- FALSE
   return(result)
@@ -48,7 +48,7 @@ TossNeedle <- function(l, t){
   # TODO: Simulate a needle toss on the floor
   left_edge <- runif(1, min=0, max=t)
   theta <- runif(1, min=-pi/2, max=pi/2)
-  # TODO: Decide if it crosses a threshold
+  # TODO: Decide if it crosses a line
   # TODO: Return TRUE or FALSE depending
   result <- FALSE
   return(result)
@@ -59,7 +59,7 @@ TossNeedle <- function(l, t){
   # TODO: Simulate a needle toss on the floor
   left_edge <- runif(1, min=0, max=t)
   theta <- runif(1, min=-pi/2, max=pi/2)
-  # TODO: Decide if it crosses a threshold
+  # TODO: Decide if it crosses a line
   right_edge <- left_edge + l * cos(theta)
   result <- right_edge > t
   # TODO: Return TRUE or FALSE depending
@@ -71,7 +71,7 @@ TossNeedle <- function(l, t){
   # TODO: Simulate a needle toss on the floor
   left_edge <- runif(1, min=0, max=t)
   theta <- runif(1, min=-pi/2, max=pi/2)
-  # TODO: Decide if it crosses a threshold
+  # TODO: Decide if it crosses a line
   right_edge <- left_edge + l * cos(theta)
   result <- right_edge > t
   # TODO: Return TRUE or FALSE depending
@@ -85,7 +85,7 @@ TossNeedle <- function(l, t){
   # TODO: Simulate a needle toss on the floor
   left_edge <- runif(1, min=0, max=t)
   theta <- runif(1, min=-pi/2, max=pi/2)
-  # TODO: Decide if it crosses a threshold
+  # TODO: Decide if it crosses a line
   right_edge <- left_edge + l * cos(theta)
   result <- right_edge > t
   # TODO: Return TRUE or FALSE depending
@@ -101,7 +101,7 @@ TossNeedle <- function(l, t){
   # TODO: Simulate a needle toss on the floor
   left_edge <- runif(1, min=0, max=t)
   theta <- runif(1, min=-pi/2, max=pi/2)
-  # TODO: Decide if it crosses a threshold
+  # TODO: Decide if it crosses a line
   right_edge <- left_edge + l * cos(theta)
   result <- right_edge > t
   # TODO: Return TRUE or FALSE depending
@@ -119,7 +119,7 @@ TossNeedle <- function(l, t){
   # TODO: Simulate a needle toss on the floor
   left_edge <- runif(1, min=0, max=t)
   theta <- runif(1, min=-pi/2, max=pi/2)
-  # TODO: Decide if it crosses a threshold
+  # TODO: Decide if it crosses a line
   right_edge <- left_edge + l * cos(theta)
   result <- right_edge > t
   # TODO: Return TRUE or FALSE depending

@@ -14,7 +14,7 @@ level: 2
 
 # Announcements
 
-- PS2 is due tonight at 11.59p!
+- PS2 is due tomorrow at 11.59p!
 - PS3 is out!
   - It has six parts
   - They are not ordered by difficulty
@@ -28,28 +28,18 @@ level: 2
 level: 2
 ---
 
-# Check-In
-
-- [PollEv.com/klintkanopka](https://PollEv.com/klintkanopka)
-
-
-
----
-level: 2
----
-
 # A Note on Searching
 
-- Everything we really do is a search problem
+- Everything we do is really a search problem
 - The challenge is that the search spaces are often infinite
 - All of the models we pick and assumptions we make limit the size of the search space
 - The algorithms we use define how we carry out the search
-- Good choice of models/assumptions/algorithms allow us to take intractable problems and solve them relatively quickly and easily!
+- Good choices of models/assumptions/algorithms allow us to take intractable problems and solve them relatively quickly and easily!
 
 ---
 level: 1
 layout: section
---- 
+---
 
 # Motivating Problem
 
@@ -58,7 +48,7 @@ level: 2
 ---
 
 # Buffon's Needle
-  
+
   Suppose we have a floor made of parallel strips of wood, each with the same width, and we drop a needle onto the floor. What is the probability that the needle will lie across a line between two strips?
 
 <div v-click>
