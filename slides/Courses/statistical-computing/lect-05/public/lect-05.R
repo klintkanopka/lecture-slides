@@ -1,7 +1,22 @@
 library(ggplot2)
 library(see)
 
-setwd('~/projects/lecture-slides/slides/statcomp-lect-05/public/')
+setwd(
+  '~/projects/lecture-slides/slides/Courses/statistical-computing/lect-05/public/'
+)
+
+read_csv('~/Desktop/APSTA-GE_2352_F26_Fall_2026_grades.csv') |>
+  select('ps0' = `Problem Set 0`, 'ps1' = `Problem Set 1`) |>
+  cor(use = 'complete.obs')
+
+read_csv('~/Desktop/APSTA-GE_2352_F26_Fall_2026_grades.csv') |>
+  select('ps0' = `Problem Set 0`, 'ps1' = `Problem Set 1`) |>
+  ggplot(aes(x = ps0, y = ps1)) +
+  geom_point() +
+  geom_abline(aes(intercept = 0, slope = 1), lty = 2, alpha = 0.5) +
+  theme_bw()
+
+ggsave('problem-sets.png', height = 9, width = 8)
 
 # 02-permutation-tests.md
 
@@ -42,7 +57,7 @@ ReassignScores <- function(data) {
 
 ReassignScores(test_data)
 
-mean_diff = replicate(1e4, ReassignScores(test_data))
+mean_diff <- replicate(1e4, ReassignScores(test_data))
 mean(mean_diff >= true_diff)
 
 #
@@ -79,7 +94,7 @@ ggplot(test_data, aes(x = score, fill = group)) +
 
 ggsave('test-03.png', height = 9, width = 8)
 
-mean_diff = replicate(1e4, ReassignScores(test_data))
+mean_diff <- replicate(1e4, ReassignScores(test_data))
 mean(mean_diff >= true_diff)
 
 data.frame(mean_diff = mean_diff) |>

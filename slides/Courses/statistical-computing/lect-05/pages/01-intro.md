@@ -14,6 +14,7 @@ level: 2
 
 # Announcements
 
+- PS0 and PS1 grades are out!
 - PS2 is due tomorrow at 11.59p!
 - PS3 is out!
   - It has six parts
@@ -22,6 +23,21 @@ level: 2
   - Start soon!
 - Really enjoying seeing people around the department, at office hours, and active in Slack
 
+
+---
+level: 2
+layout: image-right
+image: /problem-sets.png
+---
+
+# A Note on Past Problem Sets
+
+- Correlation between scores on the two assignments is low $(r=0.34)$
+- People mostly did better on PS1 (above the dotted line)
+- People who did worse had one of two problems:
+  - Not following directions on Part 3
+  - Turning it in late
+- If you have a problem with how either assignment was graded, you can submit a regrade request on Gradescope and I'll take a look
 
 
 ---
