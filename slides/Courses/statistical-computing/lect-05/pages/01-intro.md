@@ -32,7 +32,7 @@ image: /problem-sets.png
 
 # A Note on Past Problem Sets
 
-- Correlation between scores on the two assignments is low $(r=0.34)$
+- Correlation between scores on the two assignments is low $(r=0.41)$
 - People mostly did better on PS1 (above the dotted line)
 - People who did worse had one of two problems:
   - Not following directions on Part 3
