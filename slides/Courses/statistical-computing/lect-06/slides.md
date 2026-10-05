@@ -7,7 +7,7 @@ info: |
   ## APSTA-GE 2352: StatComp
   Lecture 6
   Rejection Sampling; Matrix Computation; Principal Component Analysis
-date: 2025-10-09
+date: 2026-10-08
 class: text-center
 routerMode: hash
 download: true
@@ -33,15 +33,19 @@ src: ./pages/01-intro.md
 ---
 
 ---
-src: ./pages/02-tools.md
+src: ./pages/02-rejection-sampling.md
 ---
 
 ---
-src: ./pages/03-pca.md
+src: ./pages/03-tools.md
 ---
 
 ---
-src: ./pages/04-wrap-up.md
+src: ./pages/04-pca.md
+---
+
+---
+src: ./pages/05-wrap-up.md
 ---
 
 
