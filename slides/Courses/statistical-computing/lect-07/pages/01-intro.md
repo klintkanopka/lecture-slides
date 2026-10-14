@@ -14,27 +14,16 @@ level: 2
 
 # Announcements
 
-- PS3 is now late
+- PS3 is due tomorrow
 - PS4 is posted, due in two weeks
   - This is all numerical optimization
   - The PCA activity, while cool, got punted to PS5
-  - Happened because the optimization activities are plenty long on their own
-
-
-
----
-level: 2
----
-
-# Check-In
-
-- [PollEv.com/klintkanopka](https://PollEv.com/klintkanopka)
-
+  - Happened because the optimization activities are plenty long on their own and I want to devote some more time to PCA
 
 ---
 level: 1
 layout: section
---- 
+---
 
 # Motivating Problem
 
@@ -60,7 +49,7 @@ $$ \operatorname*{argmin}_{\theta} f\big(\mathbf{X}, \theta \big)$$
 level: 3
 ---
 
-# Just thinking about $\operatorname*{argmin}$
+# Just Thinking About $\operatorname*{argmin}$
 
 - How could we use a computer to minimize this?
 
@@ -80,7 +69,7 @@ $$ \operatorname*{argmin}_{x} x^2 - 2x - 3 $$
 level: 3
 ---
 
-# How do we optimize?
+# How Do We Optimize?
 
 - Remember that analytic solutions can be hard/impossible and grid search can be inefficient/slow/imprecise
 - Numerical optimization leverages an algorithm to find a solution faster, more efficiently, and more precisely than grid search

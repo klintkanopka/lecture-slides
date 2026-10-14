@@ -22,9 +22,9 @@ level: 3
 - Algorithm: To find the argmin of a function $f$ given parameter values $\theta_n$ at iteration $n$, and step size $\lambda$:
   1. Compute the gradient of $f$ with respect to $\theta_n$
   2. Find the next parameter values, $\theta_{n+1}$, according to the update rule:
-    - $\theta_{n+1} \leftarrow \theta_n - \lambda \nabla f$
+     - $\theta_{n+1} \leftarrow \theta_n - \lambda \nabla f$
   3. Repeat 1&2 until convergence
-- What actually happens: Starting at some guess, use the gradient to repeatedly take steps “downhill” until you hit the bottom
+- What actually happens: Starting at some guess, use the gradient to repeatedly take steps "downhill" until you hit the bottom
 
 
 ---
@@ -54,7 +54,7 @@ level: 3
 - Frame your solution as a minimization problem
   - Note that if you want to maximize something, it's the same as minimizing the negative of that thing
 - Recall that OLS attempts to minimize the sum of squared residuals
-  - For OLS with a single covariate $x$, outcome $y$, and coefficients, $\beta_0,\beta_1$, write down the sum of squared residuals
+  - For OLS with a single covariate $x$, outcome $y$, and coefficients $\beta_0,\beta_1$, write down the sum of squared residuals
   - Then how do we express that we want to minimize? What do we minimize with respect to?
   - What does this give us?
  
@@ -126,9 +126,9 @@ level: 3
 
 <v-clicks>
 
-- Next we pick a step size, $\lambda$
-  - Smaller values of $\lambda$ result in a more precise solution, but slower convergence time
-  - Larger values of $\lambda$ are less precise but converge faster
+- Next we pick a step size, $\lambda$ (also called the _learning rate_)
+  - Larger values of $\lambda$ take bigger steps and converge faster
+  - Smaller values of $\lambda$ take smaller steps and converge more slowly
   - If you make $\lambda$ too large, the optimization may become unstable and never converge! 
 - Initialize starting values for your parameters
   - Lots of choices! Start at zero? Pick randomly? 
@@ -144,7 +144,7 @@ level: 3
 level: 3
 ---
 
-# Simulating some OLS data 
+# Simulating Some OLS Data 
 
 ````md magic-move
 ```r
@@ -185,7 +185,7 @@ layout: image-right
 image: /ols-01.png
 ---
 
-# Simulating some OLS data
+# Simulating Some OLS Data
 
 ```r
 ggplot(d, aes(x = x, y = y)) +
@@ -211,7 +211,8 @@ beta <- c(0, 0)
 lr <- 1e-4
 beta <- c(0, 0)
 
-beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
+resid <- d$y - (beta[1] + beta[2] * d$x)
+grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
 
 ```
 ```r
@@ -219,8 +220,9 @@ beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
 lr <- 1e-4
 beta <- c(0, 0)
 
-beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
-beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
+resid <- d$y - (beta[1] + beta[2] * d$x)
+grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
+beta <- beta - lr * grad
 
 ```
 
@@ -229,12 +231,13 @@ beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
 lr <- 1e-4
 beta <- c(0, 0)
 
-beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
-beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
+resid <- d$y - (beta[1] + beta[2] * d$x)
+grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
+beta <- beta - lr * grad
 
 beta
 
-# [1]  0.5407162 -0.5354659
+# [1]  0.5407162 -0.5322326
 
 ```
 ```r
@@ -242,34 +245,38 @@ beta
 lr <- 1e-4
 beta <- c(0, 0)
 
-beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
-beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
+resid <- d$y - (beta[1] + beta[2] * d$x)
+grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
+beta <- beta - lr * grad
 
 beta
 
-# [1]  0.5407162 -0.5354659
+# [1]  0.5407162 -0.5322326
 
-beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
-beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
+resid <- d$y - (beta[1] + beta[2] * d$x)
+grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
+beta <- beta - lr * grad
 ```
 ```r
 
 lr <- 1e-4
 beta <- c(0, 0)
 
-beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
-beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
+resid <- d$y - (beta[1] + beta[2] * d$x)
+grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
+beta <- beta - lr * grad
 
 beta
 
-# [1]  0.5407162 -0.5354659
+# [1]  0.5407162 -0.5322326
 
-beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
-beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
+resid <- d$y - (beta[1] + beta[2] * d$x)
+grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
+beta <- beta - lr * grad
 
 beta
 
-# [1]  0.9764911 -0.9641414
+# [1]  0.9764718 -0.9589628
 ```
 ````
 
@@ -277,7 +284,7 @@ beta
 level: 3
 ---
 
-# How long until convergence? $\lambda = 10^{-4}$
+# How Long Until Convergence? $\lambda = 10^{-4}$
 
 ```r
 M <- 1e2
@@ -286,14 +293,16 @@ beta <- c(0, 0)
 betas <- data.frame(i = 1:M, beta_0 = numeric(M), beta_1 = numeric(M))
 
 for (i in 1:M) {
-  beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
-  beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
+  resid <- d$y - (beta[1] + beta[2] * d$x)
+  grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
+  beta <- beta - lr * grad
 
   betas$beta_0[i] <- beta[1]
   betas$beta_1[i] <- beta[2]
 }
 
-beta
+gd_beta <- beta
+gd_beta
 
 # [1]  2.783908 -2.686621
 
@@ -319,10 +328,10 @@ ggplot(betas, aes(x = i)) +
   geom_point(aes(y = beta_1), 
              size = 0.5, 
              color = okabeito_colors(2)) +
-  geom_hline(aes(yintercept = true_beta[1]),
+  geom_hline(yintercept = true_beta[1],
              lty = 2, 
              alpha = 0.5) +
-  geom_hline(aes(yintercept = true_beta[2]),
+  geom_hline(yintercept = true_beta[2],
                  lty = 2, 
                  alpha = 0.5) +
   labs(x='Gradient Descent Iteration', 
@@ -334,7 +343,7 @@ ggplot(betas, aes(x = i)) +
 level: 3
 ---
 
-# What about a faster learning rate? $\lambda = 10^{-3}$
+# What About a Faster Learning Rate? $\lambda = 10^{-3}$
 
 ```r
 M <- 1e2
@@ -343,8 +352,9 @@ beta <- c(0, 0)
 betas <- data.frame(i = 1:M, beta_0 = numeric(M), beta_1 = numeric(M))
 
 for (i in 1:M) {
-  beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
-  beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
+  resid <- d$y - (beta[1] + beta[2] * d$x)
+  grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
+  beta <- beta - lr * grad
 
   betas$beta_0[i] <- beta[1]
   betas$beta_1[i] <- beta[2]
@@ -352,7 +362,7 @@ for (i in 1:M) {
 
 beta
 
-# [1] -35.335523  -8.404527
+# [1] 1206.648 1709.712
 
 ```
 
@@ -376,10 +386,10 @@ ggplot(betas, aes(x = i)) +
   geom_point(aes(y = beta_1), 
              size = 0.5, 
              color = okabeito_colors(2)) +
-  geom_hline(aes(yintercept = true_beta[1]),
+  geom_hline(yintercept = true_beta[1],
              lty = 2, 
              alpha = 0.5) +
-  geom_hline(aes(yintercept = true_beta[2]),
+  geom_hline(yintercept = true_beta[2],
                  lty = 2, 
                  alpha = 0.5) +
   labs(x='Gradient Descent Iteration', 
@@ -391,7 +401,7 @@ ggplot(betas, aes(x = i)) +
 level: 3
 ---
 
-# What about a slower learning rate? $\lambda = 10^{-5}$
+# What About a Slower Learning Rate? $\lambda = 10^{-5}$
 
 ```r
 M <- 1e2
@@ -400,8 +410,9 @@ beta <- c(0, 0)
 betas <- data.frame(i = 1:M, beta_0 = numeric(M), beta_1 = numeric(M))
 
 for (i in 1:M) {
-  beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
-  beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
+  resid <- d$y - (beta[1] + beta[2] * d$x)
+  grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
+  beta <- beta - lr * grad
 
   betas$beta_0[i] <- beta[1]
   betas$beta_1[i] <- beta[2]
@@ -409,7 +420,7 @@ for (i in 1:M) {
 
 beta
 
-# [1]  2.392762 -2.323370
+# [1]  2.392748 -2.322928
 
 ```
 
@@ -433,10 +444,10 @@ ggplot(betas, aes(x = i)) +
   geom_point(aes(y = beta_1), 
              size = 0.5, 
              color = okabeito_colors(2)) +
-  geom_hline(aes(yintercept = true_beta[1]),
+  geom_hline(yintercept = true_beta[1],
              lty = 2, 
              alpha = 0.5) +
-  geom_hline(aes(yintercept = true_beta[2]),
+  geom_hline(yintercept = true_beta[2],
                  lty = 2, 
                  alpha = 0.5) +
   labs(x='Gradient Descent Iteration', 
@@ -449,11 +460,11 @@ ggplot(betas, aes(x = i)) +
 level: 3
 ---
 
-# When do you stop?
+# When Do You Stop?
 
 - The _easiest_ way to do it is just pick a number of iterations and then stop
   - You may not reach the solution
-  - You may take too many iterations that you didn’t need to
+  - You may take more iterations than you need
 - Typically we stop when the solution _converges_
   - Often this looks like picking a threshold value, $\epsilon$
   - After every iteration, check to see how much the estimate has changed by

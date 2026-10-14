@@ -25,11 +25,11 @@ $$ y_i \sim \mathcal{N}\big(\beta_0 + \beta_1x_i, \sigma^2\big)$$
 
 <div v-click>
 
-- We can write down the _likelihood_ (think Bayes' theorem) of observing a set of parameters conditioned on our observed data by multiplying together the normal density functions for each observation:
+- The _likelihood_ is the probability (density) of observing our data for a given set of parameters, viewed as a function of those parameters. We get it by multiplying together the normal density functions for each observation:
 
 $$ L(\beta | \mathbf{X}) = \prod_{y_i, x_i \in \mathbf{X}} \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\big(\frac{y_i - (\beta_0 + \beta_1x_i)}{\sigma}\big)^2}$$
 
-</div v-click>
+</div>
 
 ---
 level: 3
@@ -49,19 +49,19 @@ level: 3
 
 <div v-click>
 
-$$ \log \prod_{y_i, x_i \in \mathbf{X}} \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\big(\frac{y_i - (\beta_0 + \beta_1x_i)}{\sigma}\big)^2} = \sum_{y_i, x_i \in \mathbf{X}}\log\frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\big(\frac{y_i - (\beta_0 + \beta_1x_i)}{\sigma}\big)^2}$$
+$$ \log \prod_{y_i, x_i \in \mathbf{X}} \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\big(\frac{y_i - (\beta_0 + \beta_1x_i)}{\sigma}\big)^2} = \sum_{y_i, x_i \in \mathbf{X}}\log\bigg(\frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\big(\frac{y_i - (\beta_0 + \beta_1x_i)}{\sigma}\big)^2}\bigg)$$
 
 </div>
 
 <div v-click>
 
-$$  = \sum_{y_i, x_i \in \mathbf{X}}\log\frac{1}{\sigma\sqrt{2\pi}} + \log e^{-\frac{1}{2}\big(\frac{y_i - (\beta_0 + \beta_1x_i)}{\sigma}\big)^2}$$
+$$  = \sum_{y_i, x_i \in \mathbf{X}}\bigg[\log\frac{1}{\sigma\sqrt{2\pi}} + \log e^{-\frac{1}{2}\big(\frac{y_i - (\beta_0 + \beta_1x_i)}{\sigma}\big)^2}\bigg]$$
 
 </div>
 
 <div v-click>
 
-$$  = \sum_{y_i, x_i \in \mathbf{X}}\log\frac{1}{\sigma\sqrt{2\pi}} -\frac{1}{2}\bigg(\frac{y_i - (\beta_0 + \beta_1x_i)}{\sigma}\bigg)^2$$
+$$  = \sum_{y_i, x_i \in \mathbf{X}}\bigg[\log\frac{1}{\sigma\sqrt{2\pi}} -\frac{1}{2}\bigg(\frac{y_i - (\beta_0 + \beta_1x_i)}{\sigma}\bigg)^2\bigg]$$
 
 </div>
 
@@ -95,7 +95,7 @@ level: 3
 
 $${all|1|2|3|4|all}
 \begin{aligned}
-\hat{\beta}  &= \operatorname*{argmax}_{\beta} \bigg[\sum_{y_i, x_i \in \mathbf{X}}\log\frac{1}{\sigma\sqrt{2\pi}} -\frac{1}{2}\bigg(\frac{y_i - (\beta_0 + \beta_1x_i)}{\sigma}\bigg)^2\bigg] \\
+\hat{\beta}  &= \operatorname*{argmax}_{\beta} \sum_{y_i, x_i \in \mathbf{X}}\bigg[\log\frac{1}{\sigma\sqrt{2\pi}} -\frac{1}{2}\bigg(\frac{y_i - (\beta_0 + \beta_1x_i)}{\sigma}\bigg)^2\bigg] \\
 \hat{\beta}  &= \operatorname*{argmax}_{\beta} \bigg[N \log\frac{1}{\sigma\sqrt{2\pi}} -\frac{1}{2\sigma^2} \sum_{y_i, x_i \in \mathbf{X}}  \big(y_i - (\beta_0 + \beta_1x_i)\big)^2 \bigg] \\
 \hat{\beta}  &= \operatorname*{argmax}_{\beta}\bigg[ \underbrace{N \log\frac{1}{\sigma\sqrt{2\pi}}}_{\text{Constant}} -\underbrace{\frac{1}{2\sigma^2}}_{\text{Constant}} \sum_{y_i, x_i \in \mathbf{X}}  \big(y_i - (\beta_0 + \beta_1x_i)\big)^2 \bigg] \\
 \hat{\beta}  &= \operatorname*{argmax}_{\beta} \bigg[ - \sum_{y_i, x_i \in \mathbf{X}}  \big(y_i - (\beta_0 + \beta_1x_i)\big)^2 \bigg]
@@ -133,10 +133,10 @@ layout: section
 level: 3
 ---
 
-# All hail the greatest built-in function in base `R`, `optim()`
+# All Hail the Greatest Built-In Function in Base `R`, `optim()`
 
 - `optim()` is a general purpose optimization function in `R`
-- It has a bunch of different optimization methods and is used by just about every single modeling function under the hood
+- It has a bunch of different optimization methods and is used under the hood by many modeling functions
 - `optim()` specifically does **argmin**
   - You write a function that takes parameters as inputs
   - You give `optim()` starting values for those parameters (as a vector) and the function to be argmin'd
@@ -148,7 +148,7 @@ level: 3
 level: 3
 ---
 
-# MLE with optim() for OLS
+# MLE with `optim()` for OLS
 ````md magic-move
 
 ```r
@@ -274,7 +274,7 @@ out <- optim(c(0,0),          # starting vals for parameters
              SumSquaredResid, # fn to minimize
              d=d)             # args to pass to fn
 
-# pass control=list(scale=-1) to make optim argmax
+# pass control=list(fnscale=-1) to make optim argmax
 ```
 ```r
 SumSquaredResid <- function(beta, d){
@@ -293,7 +293,7 @@ out <- optim(c(0,0),          # starting vals for parameters
              SumSquaredResid, # fn to minimize
              d=d)             # args to pass to fn
 
-# pass control=list(scale=-1) to make optim argmax
+# pass control=list(fnscale=-1) to make optim argmax
 
 mle_beta <- out$par  
 
@@ -315,7 +315,7 @@ out <- optim(c(0,0),          # starting vals for parameters
              SumSquaredResid, # fn to minimize
              d=d)             # args to pass to fn
 
-# pass control=list(scale=-1) to make optim argmax
+# pass control=list(fnscale=-1) to make optim argmax
 
 mle_beta <- out$par  
 
@@ -339,7 +339,7 @@ out <- optim(c(0,0),          # starting vals for parameters
              SumSquaredResid, # fn to minimize
              d=d)             # args to pass to fn
 
-# pass control=list(scale=-1) to make optim argmax
+# pass control=list(fnscale=-1) to make optim argmax
 
 mle_beta <- out$par  
 
@@ -355,7 +355,7 @@ mle_beta
 level: 3
 ---
 
-# Checking results
+# Checking Results
 
 ````md magic-move
 ```r
@@ -426,13 +426,13 @@ mle_beta
 level: 3
 ---
 
-# Some notes on `optim()`
+# Some Notes on `optim()`
 
 - The function you minimize needs to output only a single scalar value
 - The first argument of the function you minimize needs to be all the parameters you want to optimize, passed as a vector
 - There are a whole bunch of options you can fiddle with in order to change convergence conditions, speed, or optimization algorithm
-- If you make a function that also returns the gradient, you can gain a lot of speed and precision!
+- If you also write a function for the gradient and pass it with `gr =` (and use a gradient-based method like `method = "BFGS"`), you can gain a lot of speed and precision!
 - Works best with _convex_ problems
   - Otherwise you can get stuck in local minima!
-  - If you can't be convex, just start from a bunch of random spots and take the best solution
+  - If your problem isn't convex, just start from a bunch of random spots and take the best solution
   - If your problem involves finding where a function is equal to zero, squaring it and finding the minimum will do the job!

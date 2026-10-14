@@ -7,7 +7,7 @@ info: |
   ## APSTA-GE 2352: StatComp
   Lecture 7
   Loss Functions; Numerical Optimization; Gradient Descent; Maximum Likelihood Estimation; optim()
-date: 2025-10-16
+date: 2026-10-15
 class: text-center
 routerMode: hash
 download: true

@@ -38,11 +38,13 @@ ggsave('ols-01.png', height = 9, width = 8)
 lr <- 1e-4
 beta <- c(0, 0)
 
-beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
-beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
+resid <- d$y - (beta[1] + beta[2] * d$x)
+grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
+beta <- beta - lr * grad
 beta
-beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
-beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
+resid <- d$y - (beta[1] + beta[2] * d$x)
+grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
+beta <- beta - lr * grad
 beta
 
 
@@ -52,8 +54,9 @@ beta <- c(0, 0)
 betas <- data.frame(i = 1:M, beta_0 = numeric(M), beta_1 = numeric(M))
 
 for (i in 1:M) {
-  beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
-  beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
+  resid <- d$y - (beta[1] + beta[2] * d$x)
+  grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
+  beta <- beta - lr * grad
 
   betas$beta_0[i] <- beta[1]
   betas$beta_1[i] <- beta[2]
@@ -67,8 +70,8 @@ ggplot(betas, aes(x = i)) +
   geom_line(aes(y = beta_1), color = okabeito_colors(2)) +
   geom_point(aes(y = beta_0), size = 0.5, color = okabeito_colors(1)) +
   geom_point(aes(y = beta_1), size = 0.5, color = okabeito_colors(2)) +
-  geom_hline(aes(yintercept = true_beta[1]), lty = 2, alpha = 0.5) +
-  geom_hline(aes(yintercept = true_beta[2]), lty = 2, alpha = 0.5) +
+  geom_hline(yintercept = true_beta[1], lty = 2, alpha = 0.5) +
+  geom_hline(yintercept = true_beta[2], lty = 2, alpha = 0.5) +
   labs(x = 'Gradient Descent Iteration', y = 'beta') +
   theme_bw()
 
@@ -80,8 +83,9 @@ beta <- c(0, 0)
 betas <- data.frame(i = 1:M, beta_0 = numeric(M), beta_1 = numeric(M))
 
 for (i in 1:M) {
-  beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
-  beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
+  resid <- d$y - (beta[1] + beta[2] * d$x)
+  grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
+  beta <- beta - lr * grad
 
   betas$beta_0[i] <- beta[1]
   betas$beta_1[i] <- beta[2]
@@ -94,8 +98,8 @@ ggplot(betas, aes(x = i)) +
   geom_line(aes(y = beta_1), color = okabeito_colors(2)) +
   geom_point(aes(y = beta_0), size = 0.5, color = okabeito_colors(1)) +
   geom_point(aes(y = beta_1), size = 0.5, color = okabeito_colors(2)) +
-  geom_hline(aes(yintercept = true_beta[1]), lty = 2, alpha = 0.5) +
-  geom_hline(aes(yintercept = true_beta[2]), lty = 2, alpha = 0.5) +
+  geom_hline(yintercept = true_beta[1], lty = 2, alpha = 0.5) +
+  geom_hline(yintercept = true_beta[2], lty = 2, alpha = 0.5) +
   labs(x = 'Gradient Descent Iteration', y = 'beta') +
   theme_bw()
 
@@ -108,8 +112,9 @@ beta <- c(0, 0)
 betas <- data.frame(i = 1:M, beta_0 = numeric(M), beta_1 = numeric(M))
 
 for (i in 1:M) {
-  beta[1] <- beta[1] + 2 * lr * sum(d$y - (beta[1] + beta[2] * d$x))
-  beta[2] <- beta[2] + 2 * lr * sum(d$x * (d$y - (beta[1] + beta[2] * d$x)))
+  resid <- d$y - (beta[1] + beta[2] * d$x)
+  grad <- c(-2 * sum(resid), -2 * sum(d$x * resid))
+  beta <- beta - lr * grad
 
   betas$beta_0[i] <- beta[1]
   betas$beta_1[i] <- beta[2]
@@ -122,8 +127,8 @@ ggplot(betas, aes(x = i)) +
   geom_line(aes(y = beta_1), color = okabeito_colors(2)) +
   geom_point(aes(y = beta_0), size = 0.5, color = okabeito_colors(1)) +
   geom_point(aes(y = beta_1), size = 0.5, color = okabeito_colors(2)) +
-  geom_hline(aes(yintercept = true_beta[1]), lty = 2, alpha = 0.5) +
-  geom_hline(aes(yintercept = true_beta[2]), lty = 2, alpha = 0.5) +
+  geom_hline(yintercept = true_beta[1], lty = 2, alpha = 0.5) +
+  geom_hline(yintercept = true_beta[2], lty = 2, alpha = 0.5) +
   labs(x = 'Gradient Descent Iteration', y = 'beta') +
   theme_bw()
 
@@ -145,7 +150,7 @@ out <- optim(
   d = d
 ) # args to pass to fn
 
-# pass control=list(scale=-1) to make optim argmax
+# pass control=list(fnscale=-1) to make optim argmax
 
 mle_beta <- out$par
 
