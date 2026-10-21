@@ -14,9 +14,10 @@ level: 3
 <v-clicks>
 
 - **Core Idea:** Regularization adds a penalty to your loss function (or likelihood) when you go to estimate your parameters that helps to fight against overfitting
-- Downside: Induces some bias in your parameter estimates
-  - This means you technically get "the wrong answer" when you go to interpret coefficients
-  - You can control how much bias you introduce, however!
+- **The trade:** accept a little bias in exchange for a lot less variance
+  - OLS is unbiased, but its estimates can swing wildly depending on the particular sample you got (remember the unusual points and the degree-9 polynomial?)
+  - The penalty pulls estimates toward zero, which induces bias: you technically get "the wrong answer" when you go to interpret coefficients
+  - You control how much bias you introduce through the strength of the penalty
 - Upsides: Lots!
   - Helps models generalize to OOS data
   - Useful when you have multicollinearity
@@ -47,7 +48,6 @@ image: /tikhonov.jpg
 level: 2
 ---
 
-
 # Ridge Regression
 
 - **Core Idea:** We will conduct a linear regression, but add a penalty proportional to the $L^2$ norm of the vector of coefficients, $\beta$
@@ -64,6 +64,7 @@ $$ \hat{\beta} =  \operatorname*{argmin}_{\beta} \sum_{\mathbf{x}_i, y_i \in \ma
 $$ \hat{\beta} =  \operatorname*{argmin}_{\beta} \sum_{\mathbf{x}_i, y_i \in \mathbf{X}} \big(y_i - \mathbf{x}_i\beta \big)^2 \underbrace{+ \lambda||\beta||^2_2}_\text{Ridge Penalty} $$
 
 - Note that minimizing the SSE is the same as minimizing the MSE!
+  - With a regularization penalty, switching between them just rescales $\lambda$ by $n$
 
 </div>
 
@@ -80,6 +81,9 @@ $$ \hat{\beta} =  \operatorname*{argmin}_{\beta} \sum_{\mathbf{x}_i, y_i \in \ma
 - So what happens here?
   - The left part of the argmin tries to minimize the MSE
   - The right part tries to minimize the length of the vector $\beta$
+
+<div v-click>
+
 - So who wins?
   - It depends on $\lambda$, often called the _regularization parameter_
   - If $\lambda = 0$, there is no regularization, and we recover OLS exactly
@@ -88,6 +92,7 @@ $$ \hat{\beta} =  \operatorname*{argmin}_{\beta} \sum_{\mathbf{x}_i, y_i \in \ma
   - The larger $\lambda$ is, the more $\beta$ is shrunk toward zero
   - This is how you control how much regularization (and how much bias) you induce
 
+</div>
 
 ---
 level: 3
@@ -98,12 +103,12 @@ image: /normal.png
 
 # The Ridge Penalty Puts a Normal Prior on $\beta$
 
-- We think that the elements of $\beta$ should be normally distributed
+- We think that the elements of $\beta$ should be normally distributed: $\beta_j \sim \mathcal{N}(0, \tau^2)$
 - They are _most likely_ to be _nearly_ zero
-- The value of $\lambda$ controls how much shrinkage toward zero is experienced
-- Another way to think about $\lambda$ is that it controls the _variance_ of the normal prior
+- The Ridge estimate is the _posterior mode_ (MAP)
+- $\lambda$ controls the _variance_ of the prior, $\lambda = \sigma^2/\tau^2$, so larger $\lambda$ means a smaller prior variance and more shrinkage toward zero
 - When you get to multilevel models, think of random effects as similar to regularization!
-- Typically, we pick $\lambda$ to maximize OOS predictive performance, either by holding out a _test set_ or through cross-validation
+- Typically, we pick $\lambda$ to maximize OOS performance (test set or cross-validation)
 
 ---
 level: 3
@@ -115,9 +120,13 @@ level: 3
 
 $$ \hat{\beta} =  \operatorname*{argmin}_{\beta} \sum_{i} \big(y_i - \mathbf{x}_i\beta \big)^2 + \lambda||\beta||^2_2 $$
 
-- This is how we maximize the log likelihood:
+- With normal errors, the log likelihood is $-\frac{1}{2\sigma^2}\sum_i \big(y_i - \mathbf{x}_i\beta\big)^2$ plus a constant, so (after rescaling $\lambda$) this is the same as maximizing:
 
 $$ \hat{\beta} =  \operatorname*{argmax}_{\beta}\ -\sum_{i} \big(y_i - \mathbf{x}_i\beta \big)^2- \lambda||\beta||^2_2$$
+
+- More generally, for _any_ model with log likelihood $\ell(\beta)$ (e.g., logistic regression, Poisson regression):
+
+$$ \hat{\beta} =  \operatorname*{argmax}_{\beta}\ \ell(\beta) - \lambda \cdot \text{penalty}(\beta)$$
 
 ---
 level: 3
@@ -138,11 +147,17 @@ image: /tibshirani.jpg
 
 # Robert Tibshirani (born 1956)
 
-- Professor of Statistics at Stanford University
+<v-clicks>
+
+- Professor of Statistics and Biomedical Data Science at Stanford University
 - Student of Bradley Efron
-- Invented Generalized Additive Models (GAMs)
-- Wrote _The Elements of Statistical Learning_ 
-- Wrote _An Introduction to Statistical Learning_ 
+- Introduced the LASSO (1996)
+- Co-developed Generalized Additive Models (GAMs) with Trevor Hastie
+- Co-wrote _The Elements of Statistical Learning_ 
+- Co-wrote _An Introduction to Statistical Learning_
+- Used to play pickup basketball at the Stanford gym
+
+</v-clicks>
 
 ---
 level: 2
@@ -172,13 +187,17 @@ $$ \hat{\beta} =  \operatorname*{argmin}_{\beta} \sum_{\mathbf{x}_i, y_i \in \ma
 - So what happens here?
   - The left part of the argmin tries to minimize the MSE
   - The right part tries to minimize the length of the vector $\beta$, but in kind of a different way from the Ridge penalty!
-- So what changes?
-  - Note that as $\beta,\epsilon \rightarrow 0$, $|\beta + \epsilon| - |\beta| > (\beta + \epsilon)^2 - \beta^2$
-  - This gives a loss function with a LASSO penalty extra incentive to force some coefficients to be zero!
-  - The Ridge penalty will uniformly shrink coefficients toward zero, while the LASSO penalty will force some number of coefficients to be _precisely_ zero
-  - This effectively drops variables with less predictive value from your model (which is the "selection" part of LASSO)
-  - Higher values of $\lambda$ will drop more variables
 
+<div v-click>
+
+- So what changes?
+  - Compare how hard each penalty pushes toward zero (its derivative):
+    Ridge: $\frac{d}{d\beta}\beta^2 = 2\beta$ fades away as $\beta \rightarrow 0$, but LASSO: $\frac{d}{d\beta}|\beta| = \pm 1$ no matter how small $\beta$ gets
+  - Ridge shrinks coefficients toward zero but (almost) never _exactly_ to zero, while LASSO forces some to be _precisely_ zero
+  - This effectively drops variables with less predictive value from your model (which is the "selection" part of LASSO)
+  - Higher values of $\lambda$ will tend to drop more variables
+
+</div>
 
 ---
 level: 3
@@ -188,7 +207,45 @@ image: /laplace.png
 
 # LASSO Penalty Puts a Laplace Prior on $\beta$
 
-- This means we think that the elements of $\beta$ should be Laplace distributed
-- This means they are _most likely_ to be _exactly_ zero, but with enough evidence they can take on any value
-- The value of $\lambda$ controls how aggressively coefficients are forced to be zero
-- Again, we pick the $\lambda$ value to maximize OOS predictive performance, either by holding out a _test set_ of some data or through cross-validation
+- We think that the elements of $\beta$ should be Laplace distributed
+- The density is sharply peaked at zero, so the _posterior mode_ (the LASSO estimate) is often _exactly_ zero
+- With enough evidence, coefficients can still take on any value
+- $\lambda$ controls how aggressively coefficients are forced to be zero
+- Again, pick $\lambda$ to maximize OOS performance (test set or cross-validation)
+
+---
+level: 3
+---
+
+# Penalized Regression in Practice
+
+- **Standardize your predictors first!**
+  - The penalty treats every coefficient the same, but a coefficient's size depends on the units of its predictor
+  - Income in dollars vs. thousands of dollars would get penalized very differently
+- **Don't penalize the intercept**
+  - Shrinking the intercept toward zero just biases all of your predictions toward zero
+- In R, `glmnet` does both of these by default (`standardize = TRUE`, unpenalized intercept)
+  - `glmnet(X, y, alpha = 0)` is Ridge, `glmnet(X, y, alpha = 1)` is LASSO
+  - `cv.glmnet()` picks $\lambda$ by cross-validation
+
+---
+level: 3
+layout: image-right
+image: /ridge-01.png
+---
+
+# Ridge Tames the Degree-9 Polynomial
+
+```r
+library(glmnet)
+
+X <- poly(d$x, 9, raw = TRUE)
+ridge <- glmnet(X, d$y, alpha = 0,
+                lambda = 0.01)
+```
+
+- Same 10 points, same 9 polynomial terms
+- $\lVert\beta\rVert_2$: 991 for OLS vs. 2.9 for Ridge
+- Test MSE: 28.3 for OLS vs. 1.33 for Ridge
+- Ridge doesn't hit every point (that's the bias), but it's much closer to the truth (the dashed line)
+- With only 10 points, `cv.glmnet()` is too noisy to trust, so we picked $\lambda$ with a separate validation set

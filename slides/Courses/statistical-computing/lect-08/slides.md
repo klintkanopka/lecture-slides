@@ -7,7 +7,7 @@ info: |
   ## APSTA-GE 2352: StatComp
   Lecture 8
   Overfitting; Regularization; Resampling Methods; The Jackknife; The Bootstrap
-date: 2025-10-23
+date: 2026-10-22
 class: text-center
 routerMode: hash
 download: true

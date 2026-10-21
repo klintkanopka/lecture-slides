@@ -24,13 +24,13 @@ level: 3
 
 # The Central Limit Theorem
 
-- As $n$ grows large, the _distribution of sample means_ converges to: 
+- As $n$ grows large, the _distribution of sample means_ is approximately: 
 
-$$\bar{X}_i \sim \mathcal{N}\bigg(\mu, \frac{\sigma^2}{n}\bigg)$$
+$$\bar{X}_n \;\dot{\sim}\; \mathcal{N}\bigg(\mu, \frac{\sigma^2}{n}\bigg)$$
 
 
 - This holds even if $X_i$ is not normally distributed!
-- This only applies to sample means!
+- This is a statement about sample means (and things that behave like them)!
 
 ---
 level: 3
@@ -57,7 +57,7 @@ image: /tukey.png
 - His book “Exploratory Data Analysis” is still one of the best sources for data visualization and exploratory analysis
 - Invented the term “bit” at Bell Labs
 - Invented the box plot
-- Invented the Fast Fourier Transform
+- Co-developed the Fast Fourier Transform (Cooley-Tukey, 1965)
 - Certified badass
 
 </v-clicks>
@@ -76,7 +76,9 @@ level: 2
 
 # The Jackknife
 
-- Thanks Tukey!
+- Thanks Tukey! (and Quenouille)
+  - Maurice Quenouille proposed it in 1949 as a way to reduce bias
+  - Tukey (1958) extended it to estimate variance and gave it its name
 - "Rough and ready" tool to solve statistical problems when the exact solution might be hard or unknown
 - **Core idea:** We take our data, make new datasets by dropping single observations, compute our statistic of interest, and then look at the distribution
 
@@ -87,9 +89,9 @@ level: 3
 # The Jackknife
 
 - We have $\{X_1, X_2, \ldots, X_n\}$, which are i.i.d. samples from some population
-- We care about some estimator or statistic in the population, $f(X_i)$
-We often think that: $\text{E}[f(X_i)] = f\big(\{X_1, X_2, \ldots, X_n\}\big)$
-- But this tells us nothing about the bias or variance of that estimator!
+- We care about some parameter $\theta$ in the population, and estimate it with a statistic computed on our sample: $\hat{\theta} = f(X_1, X_2, \ldots, X_n)$
+- We often hope that our estimator is unbiased: $\text{E}[\hat{\theta}] = \theta$
+- But a single $\hat{\theta}$ tells us nothing about the bias or variance of that estimator!
 
 
 ---
@@ -99,8 +101,10 @@ level: 3
 # The Jackknife
 
 - From your dataset of length $n$, create $n$ new resampled datasets of length $n-1$, each missing one observation
-- Compute your estimator or statistic on each resampled dataset
-- Aggregate these statistics to get your jackknife estimate
-  - The mean of the estimator in jackknife samples can be used to understand bias
-  - The variance of the estimator in jackknife samples can be used to quantify uncertainty 
-  - Does not require the CLT to apply to the estimator!
+- Compute your estimator on each resampled dataset: $\hat{\theta}_{(i)}$ is the estimate with observation $i$ left out
+- Aggregate these using their mean, $\bar{\theta}_{(\cdot)} = \frac{1}{n}\sum_{i=1}^n \hat{\theta}_{(i)}$
+  - Bias: $\widehat{\text{bias}} = (n-1)\big(\bar{\theta}_{(\cdot)} - \hat{\theta}\big)$
+  - Variance: $\widehat{\text{Var}}(\hat{\theta}) = \frac{n-1}{n}\sum_{i=1}^n \big(\hat{\theta}_{(i)} - \bar{\theta}_{(\cdot)}\big)^2$
+  - The $(n-1)$ factors matter! Leave-one-out datasets are nearly identical, so the raw spread of the $\hat{\theta}_{(i)}$ badly underestimates the uncertainty
+- Does not require the CLT to apply to the estimator!
+- Caveat: works poorly for non-smooth statistics, like the median
