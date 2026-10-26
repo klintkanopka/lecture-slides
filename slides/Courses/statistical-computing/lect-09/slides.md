@@ -7,7 +7,7 @@ info: |
   ## APSTA-GE 2352: StatComp
   Lecture 9
   Non-Convex Optimization; Markov Chain Monte Carlo; MCMC
-date: 2025-10-30
+date: 2026-10-29
 class: text-center
 routerMode: hash
 download: true

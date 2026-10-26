@@ -125,9 +125,9 @@ for (i in 1:n_locations){
 
 dist_mat[1:3, 1:3]
 
-#           [,1]     [,2]     [,3] 
-#  [1,] 0.000000 4.388056 8.869981 
-#  [2,] 4.388056 0.000000 3.998735 
+#           [,1]     [,2]     [,3]
+#  [1,] 0.000000 4.388056 8.869981
+#  [2,] 4.388056 0.000000 3.998735
 #  [3,] 8.869981 3.998735 0.000000
 ```
 ````
@@ -579,14 +579,14 @@ image: /traveling-salesman.png
 ```r
 conv <- do.call('rbind', conv)
 
-ggplot(conv, 
-       aes(x=i, 
-           y=dist,  
+ggplot(conv,
+       aes(x=i,
+           y=dist,
            color=as.character(T))) +
   geom_line() +
   facet_grid(T~.) +
-  labs(x='iteration', 
-       y='distance', 
+  labs(x='iteration',
+       y='distance',
        color='temp') +
   theme_bw()
 ```

@@ -21,11 +21,3 @@ level: 2
     - Gibbs Sampling
 - This stuff is challenging, but you'll practice and implement it in your homework. Please ask questions!
 
-
----
-level: 3
----
-
-# Final Thoughts
-
-- [PollEv.com/klintkanopka](https://PollEv.com/klintkanopka)

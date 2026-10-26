@@ -14,22 +14,13 @@ level: 2
 
 # Announcements
 
-- PS4 is now late
+- PS4 is due tomorrow
   - Very spooky
   - How's it going?
 - PS5 is up!
   - It's long
-  - The code you write will take time to run
+  - The code you write will take quite some time to run
 
-
-
----
-level: 3
----
-
-# Check-In
-
-- [PollEv.com/klintkanopka](https://PollEv.com/klintkanopka)
 
 
 ---
@@ -45,7 +36,7 @@ level: 3
 
 # A Problem
 
-## Klint now finds that he can make even more money by selling both hot dogs and actual dogs. He finds that his daily revenue for selling $x$ dozen hot dogs and $y$ dozen actual dogs is: 
+## Klint now finds that he can make even more money by selling both hot dogs and actual dogs. He finds that his daily revenue for selling $x$ dozen hot dogs and $y$ dozen actual dogs is:
 
 $$R(x,y) = -5x^2 -8y^2-2xy+42x+102y$$
 
@@ -161,9 +152,9 @@ image: /optim.png
 # A variety of dogs with `optim()`
 
 ```r
-ggplot(hotdogs, 
-       aes(x = x, 
-           y = y, 
+ggplot(hotdogs,
+       aes(x = x,
+           y = y,
            fill = revenue)) +
   geom_tile() +
   scale_fill_viridis_c() +
