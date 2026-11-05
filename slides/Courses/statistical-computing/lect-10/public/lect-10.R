@@ -4,7 +4,9 @@ library(SnowballC)
 library(RSpectra)
 library(see)
 
-setwd('~/projects/lecture-slides/slides/statcomp-lect-10/public/')
+setwd(
+  '~/projects/lecture-slides/slides/Courses/statistical-computing/lect-10/public/'
+)
 
 set.seed(242424)
 
@@ -13,8 +15,19 @@ imdb_neg_raw <- read_csv('neg-imdb.csv') |>
 
 imdb_neg_raw$text[2]
 
+# cleaning: drop duplicate reviews, html line breaks, and add missing spaces
+# after punctuation (otherwise 'predictable.i' becomes one token)
+
+sum(duplicated(imdb_neg_raw$text))
+
+imdb_neg_raw <- imdb_neg_raw |>
+  distinct(text, .keep_all = TRUE) |>
+  mutate(
+    text = str_replace_all(text, '<br\\s*/?>', ' '),
+    text = str_replace_all(text, '([.!?,;:])(?=[A-Za-z])', '\\1 ')
+  )
+
 imdb_neg <- imdb_neg_raw |>
-  #slice_sample(n=2500) |>
   unnest_tokens(word, text)
 
 imdb_neg
@@ -45,7 +58,7 @@ imdb_counts <- imdb_neg |>
   summarize(n = n(), .groups = 'drop')
 
 imdb_counts <- imdb_counts |>
-  filter(!word %in% c('br', 'movie', 'film'))
+  filter(!word %in% c('movie', 'film'))
 
 # tf-idf weighting
 
@@ -55,8 +68,7 @@ target <- sample(unique(imdb_neg$review), 1)
 
 tf_idf |>
   filter(review == target) |>
-  arrange(tf_idf) |>
-  head(25) |>
+  slice_max(tf_idf, n = 25) |>
   ggplot(aes(x = tf_idf, y = reorder(word, tf_idf))) +
   geom_col(fill = okabeito_colors(2)) +
   labs(y = NULL) +
@@ -65,7 +77,7 @@ tf_idf |>
 ggsave('lsa-02.png', height = 9, width = 8)
 
 
-# one thing we can do is stem words, let's redo with stemming -
+# one thing we can do is stem words, let's redo with stemming
 
 imdb_neg <- imdb_neg |>
   mutate(stem = wordStem(word))
@@ -73,17 +85,13 @@ imdb_neg <- imdb_neg |>
 imdb_counts <- imdb_neg |>
   group_by(review, stem) |>
   summarize(n = n(), .groups = 'drop') |>
-  filter(!stem %in% c('br', 'movi', 'film'))
-
-
-# tf-idf weighting
+  filter(!stem %in% c('movi', 'film'))
 
 tf_idf <- bind_tf_idf(imdb_counts, stem, review, n)
 
 tf_idf |>
   filter(review == target) |>
-  arrange(tf_idf) |>
-  head(25) |>
+  slice_max(tf_idf, n = 25) |>
   ggplot(aes(x = tf_idf, y = reorder(stem, tf_idf))) +
   geom_col(fill = okabeito_colors(2)) +
   labs(y = NULL) +
@@ -92,14 +100,29 @@ tf_idf |>
 ggsave('lsa-03.png', height = 9, width = 8)
 
 
-# the document-term matrix and latent semantic analysis
+# very short reviews dominate tf-idf (tf is a proportion), so drop reviews
+# with fewer than 20 stems and recompute
 
-dtm <- cast_dtm(imdb_counts, review, stem, n)
+review_length <- imdb_counts |>
+  group_by(review) |>
+  summarize(n_stems = sum(n))
+
+sum(review_length$n_stems < 20)
+
+imdb_counts <- imdb_counts |>
+  semi_join(filter(review_length, n_stems >= 20), by = 'review')
+
+tf_idf <- bind_tf_idf(imdb_counts, stem, review, n)
+
+
+# the document-term matrix and latent semantic analysis, on tf-idf weights
+# cast_sparse() keeps the DTM sparse: as a dense matrix it would be ~3 GB
+
+dtm <- cast_sparse(tf_idf, review, stem, tf_idf)
+dim(dtm)
 
 n_topics <- 9
-
-#imdb_lsa <- svd(dtm, nu=6, nv=6)
-imdb_lsa <- svds(as.matrix(dtm), n_topics)
+imdb_lsa <- svds(dtm, n_topics)
 
 imdb_topics <- as.data.frame(imdb_lsa$v)
 colnames(imdb_topics) <- paste0('topic_', 1:n_topics)
@@ -108,7 +131,7 @@ imdb_topics$term <- colnames(dtm)
 imdb_top_terms <- imdb_topics |>
   pivot_longer(-term, names_to = 'topic', values_to = 'beta') |>
   group_by(topic) |>
-  slice_max(abs(beta), n = 15) |>
+  slice_max(abs(beta), n = 12) |>
   ungroup() |>
   arrange(topic, -beta)
 
@@ -147,56 +170,20 @@ imdb_top_reviews |>
 ggsave('lsa-05.png', height = 9, width = 16)
 
 
-# we can also use the right singular vectors to find similar reviews using
-# cosine similarity
+# for comparison: the same LSA on raw counts instead of tf-idf
 
-U <- imdb_lsa$u
-rownames(U) <- rownames(dtm)
+raw_dtm <- cast_sparse(imdb_counts, review, stem, n)
+raw_lsa <- svds(raw_dtm, n_topics)
 
-norm <- sqrt(matrix(rowSums(U * U), byrow = F, nrow = nrow(U), ncol = nrow(U)))
-cos_sim <- U %*% t(U) / (norm * t(norm))
+raw_topics <- as.data.frame(raw_lsa$v)
+colnames(raw_topics) <- paste0('topic_', 1:n_topics)
+raw_topics$term <- colnames(raw_dtm)
 
-cos_sim_df <- as.data.frame(cos_sim) |>
-  rownames_to_column('review_1') |>
-  pivot_longer(-review_1, names_to = 'review_2', values_to = 'cos_sim') |>
-  filter(review_1 != review_2) |>
-  filter(cos_sim < 0.98) |>
-  arrange(-cos_sim)
-
-head(cos_sim_df, 5)
-
-imdb_neg_raw |>
-  filter(review %in% c('10223_4.txt', '11884_4.txt')) |>
-  pull(text)
-
-# let's try removing words with the lowest inverse document frequency to filter
-# out common words
-
-filter_words <- tf_idf |>
-  select(stem, idf) |>
-  distinct() |>
-  filter(idf < 2.5)
-
-filtered_imdb_counts <- imdb_counts |>
-  anti_join(filter_words, by = 'stem')
-
-
-filtered_dtm <- cast_dtm(filtered_imdb_counts, review, stem, n)
-
-f_imdb_lsa <- svds(as.matrix(filtered_dtm), n_topics)
-
-f_imdb_topics <- as.data.frame(f_imdb_lsa$v)
-colnames(f_imdb_topics) <- paste0('topic_', 1:n_topics)
-f_imdb_topics$term <- colnames(filtered_dtm)
-
-f_imdb_top_terms <- f_imdb_topics |>
+raw_topics |>
   pivot_longer(-term, names_to = 'topic', values_to = 'beta') |>
   group_by(topic) |>
-  slice_max(abs(beta), n = 10) |>
+  slice_max(abs(beta), n = 12) |>
   ungroup() |>
-  arrange(topic, -beta)
-
-f_imdb_top_terms |>
   mutate(term = reorder_within(term, beta, topic)) |>
   ggplot(aes(x = beta, y = term, fill = as.character(topic))) +
   geom_col(show.legend = FALSE) +
@@ -208,46 +195,37 @@ f_imdb_top_terms |>
 ggsave('lsa-06.png', height = 9, width = 16)
 
 
-f_imdb_reviews <- as.data.frame(f_imdb_lsa$u)
-colnames(f_imdb_reviews) <- paste0('topic_', 1:n_topics)
-f_imdb_reviews$document <- rownames(filtered_dtm)
+# we can also use the left singular vectors to find similar reviews using
+# cosine similarity: each review's position in topic space is a row of U %*% Sigma
 
-f_imdb_top_reviews <- f_imdb_reviews |>
-  pivot_longer(-document, names_to = 'topic', values_to = 'gamma') |>
-  group_by(topic) |>
-  slice_max(abs(gamma), n = 9) |>
-  ungroup() |>
-  arrange(topic, -gamma)
+doc_coords <- imdb_lsa$u %*% diag(imdb_lsa$d)
+rownames(doc_coords) <- rownames(dtm)
 
-f_imdb_top_reviews |>
-  mutate(document = reorder_within(document, gamma, topic)) |>
-  ggplot(aes(x = gamma, y = document, fill = as.character(topic))) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(. ~ topic, scales = 'free') +
-  scale_y_reordered() +
-  theme_bw()
+# scale each row to length 1, so a dot product is a cosine similarity
+doc_coords <- doc_coords / sqrt(rowSums(doc_coords^2))
 
-ggsave('lsa-07.png', height = 9, width = 16)
+MostSimilar <- function(target, coords, n = 5) {
+  sims <- drop(coords %*% coords[target, ])
+  sims <- sims[names(sims) != target]
+  head(sort(sims, decreasing = TRUE), n)
+}
 
-U <- f_imdb_lsa$u
-rownames(U) <- rownames(filtered_dtm)
-
-norm <- sqrt(matrix(rowSums(U * U), byrow = F, nrow = nrow(U), ncol = nrow(U)))
-cos_sim <- U %*% t(U) / (norm * t(norm))
-
-cos_sim_df <- as.data.frame(cos_sim) |>
-  rownames_to_column('review_1') |>
-  pivot_longer(-review_1, names_to = 'review_2', values_to = 'cos_sim') |>
-  filter(review_1 != review_2) |>
-  filter(cos_sim < 0.98) |>
-  arrange(-cos_sim)
-
-head(cos_sim_df, 5)
+MostSimilar('8397_3.txt', doc_coords)
+MostSimilar('10986_1.txt', doc_coords)
 
 imdb_neg_raw |>
-  filter(review %in% c('1512_2.txt', '3596_2.txt')) |>
+  filter(review %in% c('8397_3.txt', '2977_1.txt', '2982_1.txt')) |>
   pull(text)
 
 imdb_neg_raw |>
-  filter(review %in% c('8397_3.txt', '10986_1.txt')) |>
+  filter(review %in% c('10986_1.txt', '8953_1.txt', '3916_3.txt')) |>
   pull(text)
+
+# the same search with raw counts
+
+raw_coords <- raw_lsa$u %*% diag(raw_lsa$d)
+rownames(raw_coords) <- rownames(raw_dtm)
+raw_coords <- raw_coords / sqrt(rowSums(raw_coords^2))
+
+MostSimilar('8397_3.txt', raw_coords)
+MostSimilar('10986_1.txt', raw_coords)
