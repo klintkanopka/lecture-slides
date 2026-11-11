@@ -11,7 +11,7 @@ level: 2
 
 # Side Effects
 
-- If a function or operation modifies things outside its local environment, it has “side effects”
+- If a function or operation modifies things outside its local environment, it has "side effects"
 - These side effects can be hard to observe, but cause serious errors in analysis!
 - Side effects most often occur when we are trying to hack together a solution to a problem
   - Functions that take and modify information from the global environment
@@ -26,7 +26,7 @@ level: 3
 - Writing things in functions is a good start! 
   - Calls to functions generate new environments 
   - New environments protect data in the global environment
-- We can “hide loops”
+- We can "hide loops"
   - The `apply()` family of functions does this really well
   - These nest the entire loop we want to carry out inside of a function call
 

@@ -3,7 +3,7 @@ library(see)
 library(mirt)
 library(ggrepel)
 
-setwd('~/projects/lecture-slides/slides/measurement-lect-03/public/')
+setwd('~/projects/lecture-slides/slides/Courses/measurement/lect-03/public/')
 
 set.seed(242424)
 

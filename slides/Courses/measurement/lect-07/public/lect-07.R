@@ -8,7 +8,7 @@ library(SnowballC)
 set.seed(242424)
 
 setwd(
-  '~/projects/lecture-slides/slides/Courses/measurement/measurement-lect-07/public'
+  '~/projects/lecture-slides/slides/Courses/measurement/lect-07/public'
 )
 
 #food_text <- read_csv('food-reviews.csv')

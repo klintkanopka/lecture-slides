@@ -4,7 +4,7 @@ library(see)
 library(viridis)
 
 setwd(
-  '~/projects/lecture-slides/slides/Courses/measurement/measurement-lect-06/public'
+  '~/projects/lecture-slides/slides/Courses/measurement/lect-06/public'
 )
 
 # IRT models

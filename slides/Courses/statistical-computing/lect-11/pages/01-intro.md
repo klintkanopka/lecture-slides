@@ -7,13 +7,6 @@ transition: fade
 
 <Toc text-sm minDepth="1" maxDepth="2"/>
 
----
-level: 3
----
-
-# Check-In
-
-- [PollEv.com/klintkanopka](https://PollEv.com/klintkanopka)
 
 ---
 level: 2
@@ -29,5 +22,6 @@ level: 2
   - 3 more lectures
   - 3 more labs
   - 2 more psets
-- Reminder about next week's PRIISM seminar talk with my friend Charlie Rahal from Oxford!
+  - 1 final exam
+- Reminder about next week's PRIISM seminar talk with Jessica Hullman from Northwestern!
 

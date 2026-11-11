@@ -1,7 +1,7 @@
 library(tidyverse)
 library(see)
 
-setwd('~/projects/lecture-slides/slides/statcomp-lect-11/public/')
+setwd('~/projects/lecture-slides/slides/Courses/statistical-computing/lect-11/public/')
 
 set.seed(242424)
 
@@ -9,7 +9,7 @@ set.seed(242424)
 
 Ns <- seq(from = 50, to = 1000, by = 50)
 M <- 1000
-means <- list(length = length(Ns))
+means <- vector(mode = "list", length = length(Ns))
 
 for (i in seq_along(Ns)) {
   N <- Ns[i]

@@ -1,13 +1,13 @@
 ---
 theme: klint
 background: /theme/nyu-header.jpg
-title: Statistical Computing - Week 11
+title: Statistical Computing - Lecture 11
 author: Klint Kanopka
 info: |
   ## APSTA-GE 2352: StatComp
   Lecture 11
   Advanced Debugging; The apply() family
-date: 2025-11-13
+date: 2026-11-12
 class: text-center
 routerMode: hash
 download: true

@@ -2,7 +2,7 @@ library(tidyverse)
 library(mirt)
 
 setwd(
-  '~/projects/lecture-slides/slides/Courses/measurement/measurement-lect-05/public'
+  '~/projects/lecture-slides/slides/Courses/measurement/lect-05/public'
 )
 
 d <- read_csv('grit_brummerhoffman_2021.csv')

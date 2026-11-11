@@ -3,7 +3,7 @@ library(see)
 library(mirt)
 library(lubridate)
 
-setwd('~/projects/lecture-slides/slides/measurement-lect-04/public/')
+setwd('~/projects/lecture-slides/slides/Courses/measurement/lect-04/public/')
 
 set.seed(242424)
 

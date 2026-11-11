@@ -3,7 +3,7 @@ library(tidyverse)
 library(see)
 library(viridis)
 
-setwd('~/projects/lecture-slides/slides/statcomp-lect-09/public/')
+setwd('~/projects/lecture-slides/slides/Courses/statistical-computing/lect-09/public/')
 set.seed(1337)
 
 ###############

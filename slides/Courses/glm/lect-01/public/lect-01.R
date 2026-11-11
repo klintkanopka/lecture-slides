@@ -1,8 +1,8 @@
 library(tidyverse)
 library(see)
 
-setwd("~/courses/archive/03-glmm/apsta-2044-s2425/wk01/")
-d <- read_csv("data/manhattan_restaurants.csv")
+setwd("~/projects/lecture-slides/slides/Courses/glm/lect-01/public/")
+d <- read_csv("manhattan_restaurants.csv")
 
 
 d_logit <- data.frame(mu = seq(0, 1, by = 1e-3))

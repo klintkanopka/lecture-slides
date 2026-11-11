@@ -8,7 +8,7 @@ library(factoextra)
 set.seed(242424)
 
 setwd(
-  '~/projects/lecture-slides/slides/Courses/measurement/measurement-lect-08/public'
+  '~/projects/lecture-slides/slides/Courses/measurement/lect-08/public'
 )
 
 #kmeans

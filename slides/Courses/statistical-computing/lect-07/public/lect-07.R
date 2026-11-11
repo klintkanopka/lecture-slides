@@ -2,7 +2,7 @@ library(ggplot2)
 library(tidyverse)
 library(see)
 
-setwd('~/projects/lecture-slides/slides/statcomp-lect-07/public/')
+setwd('~/projects/lecture-slides/slides/Courses/statistical-computing/lect-07/public/')
 
 d <- data.frame(x = seq(from = -2, to = 4, length.out = 1e3))
 

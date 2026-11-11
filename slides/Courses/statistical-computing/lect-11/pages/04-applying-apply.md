@@ -29,13 +29,13 @@ M <- 1000
 ```r
 Ns <- seq(from = 50, to = 1000, by = 50)
 M <- 1000
-means <- list(length = length(Ns))
+means <- vector(mode = "list", length = length(Ns))
 
 ```
 ```r
 Ns <- seq(from = 50, to = 1000, by = 50)
 M <- 1000
-means <- list(length = length(Ns))
+means <- vector(mode = "list", length = length(Ns))
 
 for (i in seq_along(Ns)) {
 
@@ -44,7 +44,7 @@ for (i in seq_along(Ns)) {
 ```r
 Ns <- seq(from = 50, to = 1000, by = 50)
 M <- 1000
-means <- list(length = length(Ns))
+means <- vector(mode = "list", length = length(Ns))
 
 for (i in seq_along(Ns)) {
   for (j in 1:M) {
@@ -55,7 +55,7 @@ for (i in seq_along(Ns)) {
 ```r
 Ns <- seq(from = 50, to = 1000, by = 50)
 M <- 1000
-means <- list(length = length(Ns))
+means <- vector(mode = "list", length = length(Ns))
 
 for (i in seq_along(Ns)) {
   means[[i]] <- vector(length = M)
@@ -67,7 +67,7 @@ for (i in seq_along(Ns)) {
 ```r
 Ns <- seq(from = 50, to = 1000, by = 50)
 M <- 1000
-means <- list(length = length(Ns))
+means <- vector(mode = "list", length = length(Ns))
 
 for (i in seq_along(Ns)) {
   means[[i]] <- vector(length = M)
@@ -79,7 +79,7 @@ for (i in seq_along(Ns)) {
 ```r
 Ns <- seq(from = 50, to = 1000, by = 50)
 M <- 1000
-means <- list(length = length(Ns))
+means <- vector(mode = "list", length = length(Ns))
 
 for (i in seq_along(Ns)) {
   means[[i]] <- vector(length = M)
@@ -93,7 +93,7 @@ d_mean <- data.frame()
 ```r
 Ns <- seq(from = 50, to = 1000, by = 50)
 M <- 1000
-means <- list(length = length(Ns))
+means <- vector(mode = "list", length = length(Ns))
 
 for (i in seq_along(Ns)) {
   means[[i]] <- vector(length = M)
@@ -107,7 +107,7 @@ d_mean <- data.frame(n = , mean = )
 ```r
 Ns <- seq(from = 50, to = 1000, by = 50)
 M <- 1000
-means <- list(length = length(Ns))
+means <- vector(mode = "list", length = length(Ns))
 
 for (i in seq_along(Ns)) {
   means[[i]] <- vector(length = M)
@@ -121,7 +121,7 @@ d_mean <- data.frame(n = , mean = do.call(c, means))
 ```r
 Ns <- seq(from = 50, to = 1000, by = 50)
 M <- 1000
-means <- list(length = length(Ns))
+means <- vector(mode = "list", length = length(Ns))
 
 for (i in seq_along(Ns)) {
   means[[i]] <- vector(length = M)
@@ -157,7 +157,7 @@ level: 3
 
 # Estimating uncertainty directly
 
-- Next we visualize our estimates of the standard errors of these sampling distributions at each sample size
+- Next we estimate the standard error of the mean at each sample size, using the spread of our simulated means
 
 ````md magic-move
 ```r
@@ -466,6 +466,7 @@ level: 3
 
 # Estimating uncertainty directly with `apply()`
 
+- Now one function call does all `M` replications for a given `n`, and `mapply()` loops over `n`
 
 ````md magic-move
 ```r
@@ -796,6 +797,8 @@ level: 3
 ---
 
 # Extending to more distributions
+
+- Pass the name of the random number function as an argument and call it with `do.call()`
 
 ````md magic-move
 ```r
@@ -1238,7 +1241,7 @@ ggplot(sim_control_3,
 
 ---
 level: 3
---- 
+---
 
 # Constructing more complex data frame output
 
@@ -1339,7 +1342,9 @@ SimFun4 <- function(n_draws, n_reps, dist) {
 SimFun4 <- function(n_draws, n_reps, dist) {
   draws <- do.call(dist, args = list(n = n_draws * n_reps))
   draws <- matrix(draws, nrow = n_draws, ncol = n_reps)
-  out <- data.frame(n = n_draws, dist = dist, mean = apply(X = draws, MARGIN = 2, FUN = mean))
+  out <- data.frame(n = n_draws,
+                    dist = dist,
+                    mean = apply(X = draws, MARGIN = 2, FUN = mean))
   return(out)
 }
 
@@ -1352,7 +1357,9 @@ SimFun4 <- function(n_draws, n_reps, dist) {
 SimFun4 <- function(n_draws, n_reps, dist) {
   draws <- do.call(dist, args = list(n = n_draws * n_reps))
   draws <- matrix(draws, nrow = n_draws, ncol = n_reps)
-  out <- data.frame(n = n_draws, dist = dist, mean = apply(X = draws, MARGIN = 2, FUN = mean))
+  out <- data.frame(n = n_draws,
+                    dist = dist,
+                    mean = apply(X = draws, MARGIN = 2, FUN = mean))
   return(out)
 }
 
@@ -1368,7 +1375,9 @@ out <- mapply(FUN = , ...)
 SimFun4 <- function(n_draws, n_reps, dist) {
   draws <- do.call(dist, args = list(n = n_draws * n_reps))
   draws <- matrix(draws, nrow = n_draws, ncol = n_reps)
-  out <- data.frame(n = n_draws, dist = dist, mean = apply(X = draws, MARGIN = 2, FUN = mean))
+  out <- data.frame(n = n_draws,
+                    dist = dist,
+                    mean = apply(X = draws, MARGIN = 2, FUN = mean))
   return(out)
 }
 
@@ -1387,7 +1396,9 @@ out <- mapply(
 SimFun4 <- function(n_draws, n_reps, dist) {
   draws <- do.call(dist, args = list(n = n_draws * n_reps))
   draws <- matrix(draws, nrow = n_draws, ncol = n_reps)
-  out <- data.frame(n = n_draws, dist = dist, mean = apply(X = draws, MARGIN = 2, FUN = mean))
+  out <- data.frame(n = n_draws,
+                    dist = dist,
+                    mean = apply(X = draws, MARGIN = 2, FUN = mean))
   return(out)
 }
 
@@ -1407,7 +1418,9 @@ out <- mapply(
 SimFun4 <- function(n_draws, n_reps, dist) {
   draws <- do.call(dist, args = list(n = n_draws * n_reps))
   draws <- matrix(draws, nrow = n_draws, ncol = n_reps)
-  out <- data.frame(n = n_draws, dist = dist, mean = apply(X = draws, MARGIN = 2, FUN = mean))
+  out <- data.frame(n = n_draws,
+                    dist = dist,
+                    mean = apply(X = draws, MARGIN = 2, FUN = mean))
   return(out)
 }
 
@@ -1428,7 +1441,9 @@ out <- mapply(
 SimFun4 <- function(n_draws, n_reps, dist) {
   draws <- do.call(dist, args = list(n = n_draws * n_reps))
   draws <- matrix(draws, nrow = n_draws, ncol = n_reps)
-  out <- data.frame(n = n_draws, dist = dist, mean = apply(X = draws, MARGIN = 2, FUN = mean))
+  out <- data.frame(n = n_draws,
+                    dist = dist,
+                    mean = apply(X = draws, MARGIN = 2, FUN = mean))
   return(out)
 }
 
@@ -1449,7 +1464,9 @@ out <- mapply(
 SimFun4 <- function(n_draws, n_reps, dist) {
   draws <- do.call(dist, args = list(n = n_draws * n_reps))
   draws <- matrix(draws, nrow = n_draws, ncol = n_reps)
-  out <- data.frame(n = n_draws, dist = dist, mean = apply(X = draws, MARGIN = 2, FUN = mean))
+  out <- data.frame(n = n_draws,
+                    dist = dist,
+                    mean = apply(X = draws, MARGIN = 2, FUN = mean))
   return(out)
 }
 
@@ -1471,7 +1488,9 @@ out <- mapply(
 SimFun4 <- function(n_draws, n_reps, dist) {
   draws <- do.call(dist, args = list(n = n_draws * n_reps))
   draws <- matrix(draws, nrow = n_draws, ncol = n_reps)
-  out <- data.frame(n = n_draws, dist = dist, mean = apply(X = draws, MARGIN = 2, FUN = mean))
+  out <- data.frame(n = n_draws,
+                    dist = dist,
+                    mean = apply(X = draws, MARGIN = 2, FUN = mean))
   return(out)
 }
 
@@ -1494,7 +1513,9 @@ d_sim_4 <- do.call('rbind', out)
 SimFun4 <- function(n_draws, n_reps, dist) {
   draws <- do.call(dist, args = list(n = n_draws * n_reps))
   draws <- matrix(draws, nrow = n_draws, ncol = n_reps)
-  out <- data.frame(n = n_draws, dist = dist, mean = apply(X = draws, MARGIN = 2, FUN = mean))
+  out <- data.frame(n = n_draws,
+                    dist = dist,
+                    mean = apply(X = draws, MARGIN = 2, FUN = mean))
   return(out)
 }
 
@@ -1518,7 +1539,9 @@ ggplot(d_sim_4, aes(x = n, y = mean, group = n, fill = dist)) +
 
 ---
 level: 3
-layout: image
-image: /apply-06.png
 ---
+
+# Sampling distributions of the mean across distributions
+
+<img src="/apply-06.png" class="h-95 mx-auto" />
 

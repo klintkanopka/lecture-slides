@@ -2,7 +2,7 @@ library(tidyverse)
 library(see)
 library(parallel)
 
-setwd('~/projects/lecture-slides/slides/statcomp-lect-13/public/')
+setwd('~/projects/lecture-slides/slides/Courses/statistical-computing/lect-13/public/')
 
 set.seed(242424)
 

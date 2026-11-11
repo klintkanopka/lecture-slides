@@ -1,7 +1,7 @@
 library(tidyverse)
 library(see)
 
-setwd('~/projects/lecture-slides/slides/measurement-lect-02/public/')
+setwd('~/projects/lecture-slides/slides/Courses/measurement/lect-02/public/')
 
 set.seed(242424)
 

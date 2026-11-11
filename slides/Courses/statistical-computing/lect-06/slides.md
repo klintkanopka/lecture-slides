@@ -1,7 +1,7 @@
 ---
 theme: klint
 background: /theme/nyu-header.jpg
-title: Statistical Computing - Week 6
+title: Statistical Computing - Lecture 6
 author: Klint Kanopka
 info: |
   ## APSTA-GE 2352: StatComp

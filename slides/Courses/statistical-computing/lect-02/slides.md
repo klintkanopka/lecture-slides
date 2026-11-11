@@ -3,7 +3,7 @@ theme: klint
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: /theme/nyu-header.jpg
-title: Statistical Computing - Week 2
+title: Statistical Computing - Lecture 2
 author: Klint Kanopka
 info: |
   ## APSTA-GE 2352: StatComp
