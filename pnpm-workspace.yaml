@@ -3,6 +3,10 @@ packages:
   - themes/*
   - addons/*
 
+# pnpm 11+ ignores these in .npmrc
+shamefullyHoist: true
+autoInstallPeers: true
+
 allowBuilds:
   esbuild: true
   playwright-chromium: true
