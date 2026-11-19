@@ -7,7 +7,7 @@ info: |
   ## APSTA-GE 2352: StatComp
   Lecture 12
   Computer Architecture; Parallelization
-date: 2025-11-20
+date: 2026-11-19
 class: text-center
 routerMode: hash
 download: true

@@ -4,7 +4,17 @@ library(parallel)
 
 setwd('~/projects/lecture-slides/slides/Courses/statistical-computing/lect-12/public/')
 
+# L'Ecuyer-CMRG gives every parallel worker its own independent, reproducible
+# random number stream (mclapply() uses it automatically; for socket clusters
+# we call clusterSetRNGStream() below)
+RNGkind("L'Ecuyer-CMRG")
 set.seed(242424)
+
+# how many cores do we have? leave one free for the operating system (and you)
+detectCores()
+detectCores(logical = FALSE)
+n_cores <- max(1, detectCores() - 1)
+n_cores
 
 n_locations <- 50
 
@@ -89,11 +99,46 @@ TravelingSalesmanMCMC <- function(chain_id, N_iter, temp, dist_mat) {
   return(out)
 }
 
+###############
+# Amdahl's law #
+###############
+
+# if a fraction p of the work can run in parallel on k cores, the best possible
+# speedup is 1 / ((1 - p) + p / k)
+
+Amdahl <- function(p, k) {
+  1 / ((1 - p) + p / k)
+}
+
+Amdahl(p = 0.9, k = 8)
+Amdahl(p = 0.9, k = 1e6)
+
+d_amdahl <- expand.grid(k = 1:64, p = c(0.5, 0.75, 0.9, 0.95, 0.99))
+d_amdahl$speedup <- Amdahl(d_amdahl$p, d_amdahl$k)
+
+ggplot(d_amdahl, aes(x = k, y = speedup, color = as.factor(p))) +
+  geom_line(linewidth = 1) +
+  scale_color_okabeito() +
+  labs(x = 'cores', color = 'parallel\nfraction') +
+  theme_bw(base_size = 16)
+
+ggsave('amdahl.png', height = 9, width = 8)
+
+
 ########################
 # parallel comparisons #
 ########################
 
-system.time(single_out <- TravelingSalesmanMCMC(1, 1e5, 0.01, dist_mat))
+timings <- data.frame()
+
+AddTiming <- function(timings, task, method, t) {
+  rbind(timings, data.frame(task = task, method = method, seconds = t[['elapsed']]))
+}
+
+t_single <- system.time(
+  single_out <- TravelingSalesmanMCMC(1, 1e5, 0.01, dist_mat)
+)
+timings <- AddTiming(timings, 'TSP: 1 chain', 'serial', t_single)
 
 ggplot(single_out$dist, aes(x = i, y = dist)) +
   geom_line(color = okabeito_colors(2)) +
@@ -102,7 +147,9 @@ ggplot(single_out$dist, aes(x = i, y = dist)) +
 ggsave('parallel-01.png', height = 9, width = 8)
 
 
-system.time({
+# ten chains, three ways
+
+t_lapply <- system.time({
   lapply_out <- lapply(
     1:10,
     TravelingSalesmanMCMC,
@@ -111,18 +158,40 @@ system.time({
     dist_mat = dist_mat
   )
 })
+timings <- AddTiming(timings, 'TSP: 10 chains', 'lapply()', t_lapply)
 
-system.time({
+t_mc <- system.time({
   mc_out <- mclapply(
     1:10,
     TravelingSalesmanMCMC,
     N_iter = 1e5,
     temp = 0.01,
     dist_mat = dist_mat,
-    mc.cores = 4
+    mc.cores = n_cores
   )
 })
+timings <- AddTiming(timings, 'TSP: 10 chains', 'mclapply()', t_mc)
 
+t_par <- system.time({
+  cl <- makeCluster(n_cores)
+  clusterSetRNGStream(cl, 242424)
+  # workers are fresh R sessions: they need the helper functions that
+  # TravelingSalesmanMCMC() calls
+  clusterExport(cl, c('TripDist', 'PermutePath'))
+  par_lapply_out <- parLapply(
+    cl,
+    1:10,
+    TravelingSalesmanMCMC,
+    N_iter = 1e5,
+    temp = 0.01,
+    dist_mat = dist_mat
+  )
+  stopCluster(cl)
+})
+timings <- AddTiming(timings, 'TSP: 10 chains', 'parLapply()', t_par)
+
+
+# 10 chains at each of 4 temperatures with clusterMap()
 
 control <- expand.grid(
   chain_id = 1:10,
@@ -130,12 +199,10 @@ control <- expand.grid(
   N_iter = 1e5
 )
 
-system.time({
-  cl <- makeCluster(6)
-  clusterExport(
-    cl,
-    c('TripDist', 'PermutePath', 'TravelingSalesmanMCMC', 'control', 'dist_mat')
-  )
+t_map <- system.time({
+  cl <- makeCluster(n_cores)
+  clusterSetRNGStream(cl, 242424)
+  clusterExport(cl, c('TripDist', 'PermutePath'))
   par_out <- clusterMap(
     cl,
     TravelingSalesmanMCMC,
@@ -146,6 +213,7 @@ system.time({
   )
   stopCluster(cl)
 })
+timings <- AddTiming(timings, 'TSP: 40 chains', 'clusterMap()', t_map)
 
 
 d_out_par <- data.frame()
@@ -156,15 +224,22 @@ for (i in 1:nrow(control)) {
   d_out_par <- rbind(d_out_par, par_out[[i]]$dist)
 }
 
+# Okabe-Ito only has 9 colors, so we add a tenth for chain 10
+chain_colors <- c(unname(okabeito_colors()), '#882255')
+
 ggplot(d_out_par, aes(x = i, y = dist, color = as.factor(chain_id))) +
   geom_line() +
   facet_grid(temp ~ .) +
-  scale_color_okabeito() +
+  scale_color_manual(values = chain_colors) +
   labs(color = 'chain') +
   theme_bw()
 
 ggsave('parallel-02.png', height = 9, width = 8)
 
+
+#####################
+# parallel bootstrap #
+#####################
 
 d <- data.frame(
   x1 = rnorm(1e3),
@@ -178,37 +253,55 @@ m <- lm(y ~ x1 * x2 * x3, d)
 summary(m)
 
 coef(m)
-est_real <- unname(coef(m)[7])
+est_real <- unname(coef(m)['x2:x3'])
 
 boot <- function(rep, data) {
-  idx <- sample(nrow(data), replace = T)
-  d_tmp <- data[idx, ]
-  m <- lm(y ~ x1 * x2 * x3, d_tmp)
-  est <- unname(coef(m)[7])
-  return(data.frame(rep = rep, est = est))
+  idx <- sample(nrow(data), replace = TRUE)
+  m <- lm(y ~ x1 * x2 * x3, data[idx, ])
+  data.frame(rep = rep, est = unname(coef(m)['x2:x3']))
 }
 
+B <- 1e4
 
-boot_out <- lapply(1:1e4, boot, data = d)
+t_boot_serial <- system.time({
+  boot_out <- lapply(1:B, boot, data = d)
+  boot_out <- do.call('rbind', boot_out)
+})
+timings <- AddTiming(timings, 'Bootstrap: 10,000 reps', 'lapply()', t_boot_serial)
 
-boot_out <- do.call('rbind', boot_out)
-boot_out
+t_boot_par <- system.time({
+  cl <- makeCluster(n_cores)
+  clusterSetRNGStream(cl, 242424)
+  # nothing to export: boot() and d are sent along as arguments
+  par_boot_out <- parLapply(cl, 1:B, boot, data = d)
+  stopCluster(cl)
+  par_boot_out <- do.call('rbind', par_boot_out)
+})
+timings <- AddTiming(timings, 'Bootstrap: 10,000 reps', 'parLapply()', t_boot_par)
 
-ggplot(boot_out, aes(x = est)) +
-  geom_histogram() +
-  geom_vline(aes(xintercept = est_real))
+# same answer either way: compare the two bootstrap distributions
+
+d_boot <- rbind(
+  data.frame(method = 'lapply()', est = boot_out$est),
+  data.frame(method = 'parLapply()', est = par_boot_out$est)
+)
+
+ggplot(d_boot, aes(x = est, fill = method)) +
+  geom_histogram(bins = 50, alpha = 0.5) +
+  geom_vline(xintercept = est_real, linetype = 'dashed') +
+  facet_grid(method ~ .) +
+  scale_fill_okabeito() +
+  labs(x = 'bootstrap estimates of the x2:x3 coefficient') +
+  theme_bw()
+
+ggsave('parallel-03.png', height = 9, width = 8)
 
 
-cl <- makeCluster(4)
-clusterExport(cl, c('boot', 'd'))
+# how much faster was each parallel version?
 
-par_out <- parLapply(cl, 1:1e5, boot, data = d)
-
-stopCluster(cl)
-par_out
-par_out <- do.call('rbind', par_out)
-par_out
-
-ggplot(par_out, aes(x = est)) +
-  geom_histogram() +
-  geom_vline(aes(xintercept = est_real))
+timings$speedup <- NA
+for (task in unique(timings$task)) {
+  serial <- timings$seconds[timings$task == task][1]
+  timings$speedup[timings$task == task] <- serial / timings$seconds[timings$task == task]
+}
+timings

@@ -8,15 +8,6 @@ transition: fade
 <Toc text-sm minDepth="1" maxDepth="2"/>
 
 ---
-level: 3
-hide: true
----
-
-# Check-In
-
-- [PollEv.com/klintkanopka](https://PollEv.com/klintkanopka)
-
----
 level: 2
 ---
 
@@ -31,8 +22,8 @@ level: 2
   - 2 more lectures
   - 2 more labs
   - 1 final exam
-  
-  
+
+
 ---
 level: 3
 ---
